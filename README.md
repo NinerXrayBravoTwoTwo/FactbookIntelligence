@@ -7,7 +7,7 @@ Theory Of Inteligence
 This is the practice of science.  A STEM of journalism and persuation.  Most of all it is the art of finding the truth and incorporating it in yourself and accepting when your world view is discovered to be in error.  
 
 
-Boyde and OODA
+Boyd and OODA
 -
 Formal science is old and dusty.  The "Scientific Metond (SM)" is essential however we have no time for formal review, publishing, pier review, that may take a lifetime.  Instead we MUST use a different method that looks very similar to the SM; Boyde's OODA loop.
 
