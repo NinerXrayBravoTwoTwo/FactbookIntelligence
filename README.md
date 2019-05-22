@@ -9,7 +9,7 @@ This is the practice of science.  A STEM of journalism and persuation.  Most of 
 
 Boyd and OODA
 -
-Formal science is old and dusty.  The "Scientific Metond (SM)" is essential however we have no time for formal review, publishing, pier review, that may take a lifetime.  Instead we MUST use a different method that looks very similar to the SM; Boyde's OODA loop.
+Formal science is old and dusty.  The "Scientific Method (SM)" is essential however we have no time for formal review, publishing, pier review, that may take a lifetime.  Instead we MUST use a different method that looks very similar to the SM; Boyde's OODA loop.
 
 In summary; (O) Take raw data -> (O) ohhh crud -> (O orient) Huh? what is this -> (D decide) Create Testable hypothesis -> (A) Act/Test -> push feedback into start. (AAR, after action review)
 
