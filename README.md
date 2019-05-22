@@ -8,7 +8,7 @@ This is the practice of science.  A STEM of journalism and persuation.  Most of 
 
 Boyd and OODA
 -
-Formal science is old and dusty.  The "Scientific Method (SM)" is essential however we have no time for formal review, publishing, pier review, that may take a lifetime.  Instead we MUST use a different method that looks very similar to the SM; Boyde's OODA loop.
+The "Scientific Method (SM)" is the basis of turning data into intelligence, however we have no time for formal review, publishing, pier review, that may take a lifetime.  Instead we MUST use a more intense version of SM; Boyde's OODA loop.
 
 In summary; (O) Take raw data -> (O) ohhh crud -> (O orient) Huh? what is this -> (D decide) Create Testable hypothesis -> (A) Act/Test -> push feedback into start. (AAR, after action review)
 
@@ -19,8 +19,6 @@ This is a leadership technique, it is a persuation technique,
 https://commons.wikimedia.org/wiki/File:OODA.Boyd.svg#/media/File:OODA.Boyd.svg
 
 After discovering OODA you might think that this has nothing to do with "intelligence" science, or undrestanding.  On the contrary this is essential and the core of ALL intelligence.  Without some variation of this process data might just as well be random drops in an ocean.  To organize and Act on them is what Intelligence is about. 
-
-Faster ...
 
 Itteration
 -
