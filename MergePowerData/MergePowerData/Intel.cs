@@ -29,10 +29,10 @@ namespace MergePowerData
         {
             foreach (var c in data.OrderByDescending(d => d.electric.ProdTWh))
             {
-                                var kgEfossil = c.electric.Electricity.by_source.fossil_fuels.percent / 100 * c.electric.ProdTWh * TWh2kg;
+                var kgEfossil = c.electric.Electricity.by_source.fossil_fuels.percent / 100 * c.electric.ProdTWh * TWh2kg;
                 var wrldKgEfossil = _world.electric.Electricity.by_source.fossil_fuels.percent / 100 * _world.electric.ProdTWh * TWh2kg;
 
-                var igc = c.electric?.Electricity.installed_generating_capacity;
+                var igc = c.electric.Electricity.installed_generating_capacity;
 
                 if (igc == null) continue;
 
@@ -40,28 +40,28 @@ namespace MergePowerData
                 var futureCap50y = igc.YearCapacityTWhr() * 2;
 
                 Console.WriteLine(
-             $"{c.electric.ProdTWh}\t"
-             + $"{c.electric.ProdTWh * TWh2kg:F1}\t"
-             + $"{c.pop / 1e6:F0}\t"
-             + $"{c.electric.ProdKWh / c.pop:F0}\t"
-             + $"{c.electric.ProdTWh / _world.electric.ProdTWh:F3}\t"
-             + $"{kgEfossil / wrldKgEfossil:F3}\t"
-             + $"{c.electric.TtonCo2 / _world.electric.TtonCo2:F3}\t" // want amtCo2 per TW consumed Fossil
-                                                                      //+ $"{growthRate.value:F1}\t"
-                                                                      //+ $"{purchasingPower.value / worldPP.value:F3}\t"
-             + $"{c.electric.Electricity.by_source.nuclear_fuels.percent}\t"
-             + $"{c.electric.Electricity.by_source.hydroelectric_plants.percent}\t"
-             + $"{c.electric.Electricity.by_source.fossil_fuels.percent}%\t"
-             + $"{c.electric.Electricity.by_source.fossil_fuels.percent / 100 * c.electric.ProdTWh:F0}\t"
-             + $"{c.electric.Electricity.by_source.other_renewable_sources.percent}\t"
-             + $"{igc.YearCapacityTWhr():F0}\t"
-             + $"{igc.YearCapacityTWhr() / c.electric.ProdTWh:F2}\t"
-             + $"{c.electric.ProdTWh / _world.electric.ProdTWh:F3}\t"
-             + $"{kgEfossil / wrldKgEfossil:F3}\t"
-             + $"{c.electric.TtonCo2 / _world.electric.TtonCo2:F3}\t" // want amtCo2 per TW consumed Fossil
-                                                                      //+ $"{growthRate.value:F1}\t"
-                                                                      //+ $"{purchasingPower.value / worldPP.value:F3}\t"
-             + $"{c.name}");
+                $"{c.electric.ProdTWh}\t"
+                + $"{c.electric.ProdTWh * TWh2kg:F1}\t"
+                + $"{c.pop / 1e6:F0}\t"
+                + $"{c.electric.ProdKWh / c.pop:F0}\t"
+                + $"{c.electric.ProdTWh / _world.electric.ProdTWh:F3}\t"
+                + $"{kgEfossil / wrldKgEfossil:F3}\t"
+                + $"{c.electric.TtonCo2 / _world.electric.TtonCo2:F3}\t" // want amtCo2 per TW consumed Fossil
+                                                                         //+ $"{growthRate.value:F1}\t"
+                                                                         //+ $"{purchasingPower.value / worldPP.value:F3}\t"
+                + $"{c.electric.Electricity.by_source.nuclear_fuels.percent}\t"
+                + $"{c.electric.Electricity.by_source.hydroelectric_plants.percent}\t"
+                + $"{c.electric.Electricity.by_source.fossil_fuels.percent}%\t"
+                + $"{c.electric.Electricity.by_source.fossil_fuels.percent / 100 * c.electric.ProdTWh:F0}\t"
+                + $"{c.electric.Electricity.by_source.other_renewable_sources.percent}\t"
+                + $"{igc.YearCapacityTWhr():F0}\t"
+                + $"{igc.YearCapacityTWhr() / c.electric.ProdTWh:F2}\t"
+                + $"{c.electric.ProdTWh / _world.electric.ProdTWh:F3}\t"
+                + $"{kgEfossil / wrldKgEfossil:F3}\t"
+                + $"{c.electric.TtonCo2 / _world.electric.TtonCo2:F3}\t" // want amtCo2 per TW consumed Fossil
+                                                                         //+ $"{growthRate.value:F1}\t"
+                                                                         //+ $"{purchasingPower.value / worldPP.value:F3}\t"
+                + $"{c.name}");
             }
         }
     }

@@ -34,33 +34,20 @@ namespace MergePowerData
                 {
                     var data = country["data"];
                     var name = data["name"].Value<string>();
-                    //var name2 = data.SelectToken("name").Value<string>();
-
                     var energy = data["energy"];
-
-                    // population
                     var pop = Population(data);
 
                     if (energy == null) continue;
 
-                    var e = energy["electricity"] != null ? new Electric(energy) : null;
+                    var electric = energy["electricity"] != null ? new Electric(energy) : null;
+                    if (electric == null) continue;
 
-                    var gdp = Gdp(data);
+                    var purchasingPower = EconBase(Gdp(data), out var growthRate);
 
-                    var purchasingPower = EconBase(gdp, out var growthRate);
-
-                    var igc = e?.Electricity.installed_generating_capacity;
-
-                    if (igc == null) continue;
-
-                    var currentCap = igc.YearCapacityTWhr();
-                    var futureCap50y = igc.YearCapacityTWhr() * 2;
-
-                    Intel.Add(name, e, purchasingPower,  pop);
+                    Intel.Add(name, electric, purchasingPower,  pop);
                 }
 
             Intel.Report();
-
         }
 
         /// <summary>
