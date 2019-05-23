@@ -52,6 +52,7 @@
     <Compile Include="AnalysisCapacity.cs" />
     <Compile Include="EnergyReport.cs" />
     <Compile Include="Gdp.cs" />
+    <Compile Include="Intel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
