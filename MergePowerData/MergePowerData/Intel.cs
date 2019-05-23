@@ -26,57 +26,67 @@ namespace MergePowerData
 
         internal void Report()
         {
-            foreach (var c in data.OrderByDescending(d => d.electric.ProdTWh))
-            {
-                var kgEfossil = c.electric.Electricity.by_source.fossil_fuels.percent / 100 * c.electric.ProdTWh * TWh2kg;
-                var wrldKgEfossil = _world.electric.Electricity.by_source.fossil_fuels.percent / 100 * _world.electric.ProdTWh * TWh2kg;
+            // header
+            Console.WriteLine(
+            "ProdTWh\t"
+            + "kg_e\t"
+            //+ "pop_M\t"
+            //+ "kWh/pop\t"
+            + "Prod_FF_TWh/y\t"
+            + "Capacity_TWh/y\t"
+            + "Country");
 
-                var igc = c.electric.Electricity.installed_generating_capacity;
+            foreach (var c in data.OrderByDescending(d => d.Electric.ProdTWh))
+            {
+                var kgEfossil = c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh * TWh2kg;
+                var wrldKgEfossil = _world.Electric.Electricity.by_source.fossil_fuels.percent / 100 * _world.Electric.ProdTWh * TWh2kg;
+
+                var igc = c.Electric.Electricity.installed_generating_capacity;
 
                 if (igc == null) continue;
 
                 var currentCap = igc.YearCapacityTWhr();
-                var futureCap50y = igc.YearCapacityTWhr() * 2;
+                var futureCap50Y = igc.YearCapacityTWhr() * 2;
 
                 Console.WriteLine(
-                $"{c.electric.ProdTWh}\t"
-                + $"{c.electric.ProdTWh * TWh2kg:F1}\t"
-                + $"{c.pop / 1e6:F0}\t"
-                + $"{c.electric.ProdKWh / c.pop:F0}\t"
-                + $"{c.electric.ProdTWh / _world.electric.ProdTWh:F3}\t"
+                $"{c.Electric.ProdTWh}\t"
+                + $"{c.Electric.ProdTWh * TWh2kg:F1}\t"
+                + $"{c.Pop / 1e6:F0}\t"
+                + $"{c.Electric.ProdKWh / c.Pop:F0}\t"
+                + $"{c.Electric.ProdTWh / _world.Electric.ProdTWh:F3}\t"
                 + $"{kgEfossil / wrldKgEfossil:F3}\t"
-                + $"{c.electric.TtonCo2 / _world.electric.TtonCo2:F3}\t" // want amtCo2 per TW consumed Fossil
-                + $"{c.growthRate.value:F1}\t"
-                + $"{c.purchasePower.value / _world.purchasePower.value:F3}\t"
-                + $"{c.electric.Electricity.by_source.nuclear_fuels.percent}\t"
-                + $"{c.electric.Electricity.by_source.hydroelectric_plants.percent}\t"
-                + $"{c.electric.Electricity.by_source.fossil_fuels.percent}%\t"
-                + $"{c.electric.Electricity.by_source.fossil_fuels.percent / 100 * c.electric.ProdTWh:F0}\t"
-                + $"{c.electric.Electricity.by_source.other_renewable_sources.percent}\t"
+                + $"{c.Electric.TtonCo2 / _world.Electric.TtonCo2:F3}\t" // want amtCo2 per TW consumed Fossil
+                + $"{c.GrowthRate.value:F1}\t"
+                + $"{c.PurchasePower.value / _world.PurchasePower.value:F3}\t"
+                + $"{c.Electric.Electricity.by_source.nuclear_fuels.percent}\t"
+                + $"{c.Electric.Electricity.by_source.hydroelectric_plants.percent}\t"
+                + $"{c.Electric.Electricity.by_source.fossil_fuels.percent}%\t"
+                + $"{c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh:F0}\t"
+                + $"{c.Electric.Electricity.by_source.other_renewable_sources.percent}\t"
                 + $"{igc.YearCapacityTWhr():F0}\t"
-                + $"{igc.YearCapacityTWhr() / c.electric.ProdTWh:F2}\t"
-                + $"{c.name}");
+                + $"{igc.YearCapacityTWhr() / c.Electric.ProdTWh:F2}\t"
+                + $"{c.Name}");
             }
         }
     }
 
     internal class Country
     {
-        public readonly string name;
-        public readonly Electric electric;
-        public readonly Gdp gdp;
-        public readonly long pop;
-        public readonly AnnualValue2 growthRate;
-        public readonly AnnualValue3 purchasePower;
+        public readonly string Name;
+        public readonly Electric Electric;
+        public readonly Gdp Gdp;
+        public readonly long Pop;
+        public readonly AnnualValue2 GrowthRate;
+        public readonly AnnualValue3 PurchasePower;
 
         public Country(string name, Electric electric, Gdp gdp, long pop)
         {
-            this.name = name;
-            this.electric = electric;
-            this.gdp = gdp;
-            this.pop = pop;
+            this.Name = name;
+            this.Electric = electric;
+            this.Gdp = gdp;
+            this.Pop = pop;
 
-            this.purchasePower = EconBase(gdp, out  growthRate);
+            this.PurchasePower = EconBase(gdp, out GrowthRate);
         }
 
         /// <summary>

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -10,7 +7,7 @@ namespace MergePowerData
     internal class AnalysisCapacity
     {
         private readonly JObject _fact;
-        
+
         public AnalysisCapacity(string fileName)
         {
             _fact = JObject.Parse(File.ReadAllText(fileName));
@@ -18,16 +15,7 @@ namespace MergePowerData
 
         public void ElectricReport()
         {
-            Console.WriteLine(
-                "ProdTWh\t"
-                + "kg_e\t"
-                //+ "pop_M\t"
-                //+ "kWh/pop\t"
-                + "Prod_FF_TWh/y\t"
-                + "Capacity_TWh/y\t"
-                + "Country");
-
-            var Intel = new Intel();
+            var intel = new Intel();
 
             foreach (var item in _fact["countries"])
                 foreach (var country in item)
@@ -35,21 +23,17 @@ namespace MergePowerData
                     var data = country["data"];
                     var name = data["name"].Value<string>();
                     var energy = data["energy"];
-                    
-                    if (energy == null) continue;
 
-                    var electric = energy["electricity"] != null ? new Electric(energy) : null;
+                    var electric = energy?["electricity"] != null ? new Electric(energy) : null;
+
                     if (electric == null) continue;
 
-                    //var purchasingPower = EconBase(Gdp(data), out var growthRate);
-
-                    Intel.Add(name, electric, Gdp(data), Population(data));
+                    intel.Add(name, electric, Gdp(data), Population(data));
                 }
 
-            Intel.Report();
+            intel.Report();
         }
 
-        // People
         /// <summary>
         ///     Population data -> people
         /// </summary>
