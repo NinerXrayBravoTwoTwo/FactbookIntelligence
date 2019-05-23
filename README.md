@@ -30,7 +30,7 @@ https://github.com/iancoleman/cia_world_factbook_api
 
 CIA Factbook Data Quality
  
-It is obvious to me that CIAF is a sanatized extraction of basic data that the DOD gathers continously from around the world.  There is much I would like to know that is missing, but then If I were privey to such information I couldn't talk about it so this is situation is fine.
+It is obvious to me that CIAF is a sanatized extraction of basic data that the DOD gathers continously from around the world.  There is much I would like to know that is missing, but then If I were privey to such information I couldn't talk about it so this situation is fine.
 
 The CIAF data set is very small.  It is a 15 MB Json data file which compresses to only 3 MB with gzip when the redundencies are removed (See Enthropy (Information Theory on why this is a significant measure).  This is why I maintain this is only a pitifully small atom of data the DOD collects.  I'm not sure what their purpose(s) in providing this data is(are).
 
@@ -64,6 +64,9 @@ Method
 
 Every search starts someplace;  I have started with physics and general relativity. This perspective allows me to understand the energies expeneded in the earths/sun/space climate system and actually comprehend these energies.  
 
+Method Notes
+-
+
 Brief Relativity summary; Time is not a special unit, it is part of space and should be measured in meters. This 'fact' means that the speed of light is actually a unitless measure equal to one and the second is equal to 186,000 miles.
 
 This means that energy and mass are actually the same thing. Mass is not matter, it is an attribute of matter.  A kg is 89.9 Peta J or 25 Tera watt hrs.  This might take 186k miles to absorb. 
@@ -71,6 +74,8 @@ This means that energy and mass are actually the same thing. Mass is not matter,
 Note: the nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg of energy, 1000 x nagasaki.  Annual world electricity production is about 24,000 TWh or 947 kg (947,000 nagasaki sized bombs).
 
 Our star radiates 385 yotta watts about 0.1 x the mass of Mt Everest per hour or 15,000 trillion nagasaki's per hr.
+
+How much energy the earth absorbs and radiates per day seems to be a closely garded secret.  Clearly they are in equilibrium because the earth is not getting warmer or cooler within any margin of error we can currently measure.
 
 Procedures
 -
