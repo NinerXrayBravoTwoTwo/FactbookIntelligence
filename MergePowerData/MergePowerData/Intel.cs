@@ -16,13 +16,12 @@ namespace MergePowerData
         private List<Country> data = new List<Country>();
         private Country _world;
 
-        public void Add(string name, Electric electric, AnnualValue3 purchasingPower, long pop)
+        public void Add(string name, Electric electric, Gdp gdp, long pop)
         {
             if (name.Equals("World"))
-                _world = new Country(name, electric, purchasingPower, pop);
+                _world = new Country(name, electric, gdp, pop);
 
-
-            data.Add(new Country(name, electric, purchasingPower, pop));
+            data.Add(new Country(name, electric, gdp, pop));
         }
 
         internal void Report()
@@ -47,8 +46,8 @@ namespace MergePowerData
                 + $"{c.electric.ProdTWh / _world.electric.ProdTWh:F3}\t"
                 + $"{kgEfossil / wrldKgEfossil:F3}\t"
                 + $"{c.electric.TtonCo2 / _world.electric.TtonCo2:F3}\t" // want amtCo2 per TW consumed Fossil
-                                                                         //+ $"{growthRate.value:F1}\t"
-                                                                         //+ $"{purchasingPower.value / worldPP.value:F3}\t"
+                + $"{c.growthRate.value:F1}\t"
+                + $"{c.purchasePower.value / _world.purchasePower.value:F3}\t"
                 + $"{c.electric.Electricity.by_source.nuclear_fuels.percent}\t"
                 + $"{c.electric.Electricity.by_source.hydroelectric_plants.percent}\t"
                 + $"{c.electric.Electricity.by_source.fossil_fuels.percent}%\t"
@@ -56,11 +55,6 @@ namespace MergePowerData
                 + $"{c.electric.Electricity.by_source.other_renewable_sources.percent}\t"
                 + $"{igc.YearCapacityTWhr():F0}\t"
                 + $"{igc.YearCapacityTWhr() / c.electric.ProdTWh:F2}\t"
-                + $"{c.electric.ProdTWh / _world.electric.ProdTWh:F3}\t"
-                + $"{kgEfossil / wrldKgEfossil:F3}\t"
-                + $"{c.electric.TtonCo2 / _world.electric.TtonCo2:F3}\t" // want amtCo2 per TW consumed Fossil
-                                                                         //+ $"{growthRate.value:F1}\t"
-                                                                         //+ $"{purchasingPower.value / worldPP.value:F3}\t"
                 + $"{c.name}");
             }
         }
@@ -70,15 +64,50 @@ namespace MergePowerData
     {
         public readonly string name;
         public readonly Electric electric;
-        public readonly AnnualValue3 purchasingPower;
+        public readonly Gdp gdp;
         public readonly long pop;
+        public readonly AnnualValue2 growthRate;
+        public readonly AnnualValue3 purchasePower;
 
-        public Country(string name, Electric electric, AnnualValue3 purchasingPower, long pop)
+        public Country(string name, Electric electric, Gdp gdp, long pop)
         {
             this.name = name;
             this.electric = electric;
-            this.purchasingPower = purchasingPower;
+            this.gdp = gdp;
             this.pop = pop;
+
+            this.purchasePower = EconBase(gdp, out  growthRate);
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="gdp"></param>
+        /// <param name="growthRate"></param>
+        /// <returns></returns>
+        private static AnnualValue3 EconBase(Gdp gdp, out AnnualValue2 growthRate)
+        {
+            var gr = gdp.real_growth_rate ?? new RealGrowthRate();
+
+            if (gr.annual_values == null)
+                gr.annual_values = new List<AnnualValue2>
+                    {new AnnualValue2 {date = "2000", units = "USD", value = double.NaN}};
+
+            growthRate = gr.annual_values.OrderBy(av => av.date).LastOrDefault();
+
+            AnnualValue3 purchasingPower;
+            if (gdp.per_capita_purchasing_power_parity == null)
+            {
+                purchasingPower = new AnnualValue3 { date = "2000", units = "USD", value = double.NaN };
+            }
+            else
+            {
+                var pp = gdp.per_capita_purchasing_power_parity.annual_values;
+
+                purchasingPower = pp != null ? pp.OrderBy(p => p.date).LastOrDefault() : new AnnualValue3 { date = "1990", value = 0, units = "USD" };
+            }
+
+            return purchasingPower;
         }
     }
+
 }
