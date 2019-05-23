@@ -2,6 +2,8 @@
 
 What is the difference between intelligence and data?  This project parses "CIA Factbook" (CIAF) data and attempts to turn some of it into "intelligence".
 
+Data and algorithms are not technology, they are artifacts of technolgy.
+
 Theory Of Inteligence 
 -
 This is the practice of science.  A STEM of journalism and persuation.  Most of all it is the art of finding the truth and incorporating it in yourself and accepting when your world view is discovered to be in error.  
@@ -51,9 +53,24 @@ Not easy but it is possible to gather first hand data that is more up to date th
 
 Purpose/Hypothesis
 -
-Always consider the source and motives of intelligence. For example "Journalism" usually starts from the story the editor wants to tell and works backwards to find "evidence/facts" that support the narative they want to tell.  My motive is simple; To understand the economic realities of the "Climage Change" narative with actual facts and determine the voracity of Climate change motivations.
+Always consider the source and motives of intelligence. For example "Journalism" usually starts from the story the editor wants to tell and works backwards to find "evidence/facts" that support that narative.  If the journalist and editor have integrety they will change their story to reflect facts and not ignore facts that don't support their story. This is a reason ACTUAL intelligence is often a secret, in order to figure out what is going on away from political influences. 
 
-Every search starts someplace, Orientaiton, for this I take my decdes of software development experiance
+This project represents a starting point for your improvment of your own perception of the world. You already have a preconcieved notion of how things are.  If you practice intelligence correctly you will always find aspects of yourD preconceptions that are in error.  When you learn the facts and their context they will not agree with your friends, the media, your professors, generally accepted theories, or yourself.  Often reality crystallizes into truths that are so profound it may take years before you accept them let alone are able to convince others.  Look at AE's work for example.  It took him years to understand and accept some of the implications of his early work.  He never did fully believe the implications of quantum mechaninics.  And today, 100 years later, most of the human race still does not even partially believe/understand it. 
+
+My motive is simple; To understand the economic realities and facts of the "Climage Change" narative in order to determine the voracity of Climate change and their motivations.
+
+Method
+-
+
+Every search starts someplace;  I have started with physics and general relativity. This perspective allows me to understand the energies expeneded in the earths/sun/space climate system and actually comprehend these energies.  
+
+Brief Relativity summary; Time is not a special unit, it is part of space and should be measured in meters. This 'fact' means that the speed of light is actually a unitless measure equal to one and the second is equal to 186,000 miles.
+
+This means that energy and mass are actually the same thing. Mass is not matter, it is an attribute of matter.  A kg is 89.9 Peta J or 25 Tera watt hrs.  This might take 186k miles to absorb. 
+
+Note: the nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg of energy, 1000 x nagasaki.  Annual world electricity production is about 24,000 TWh or 947 kg (947,000 nagasaki sized bombs).
+
+Our star radiates 385 yotta watts about 0.1 x the mass of Mt Everest per hour or 15,000 trillion nagasaki's per hr.
 
 Procedures
 -
