@@ -4,7 +4,7 @@
     {
         private static void Main(string[] args)
         {
-            var report = new AnalysisCapacity("/Users/Jillian England/source/repos/cia_world_factbook_api/data/" + "factbook.json");
+            var report = new AnalysisCapacity("../../../../../cia_world_factbook_api/data/" + "factbook.json");
             report.ElectricReport();
         }
     }
