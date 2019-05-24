@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MergePowerData.CIAFData;
 
 namespace MergePowerData
 {
@@ -22,7 +23,7 @@ namespace MergePowerData
             _data.Add(new Country(name, electric, gdp, pop));
         }
 
-        public void Report()
+        public void CsvReport()
         {
             // header
             Console.WriteLine(
@@ -70,7 +71,7 @@ namespace MergePowerData
             }
         }
 
-        public void ReportPdf()
+        public void PdfReport()
         {
             var pdf = new PowerPdf(_world, _data);
         }

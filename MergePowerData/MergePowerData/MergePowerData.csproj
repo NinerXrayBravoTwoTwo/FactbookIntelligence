@@ -49,12 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Country.cs" />
-    <Compile Include="Electric.cs" />
-    <Compile Include="Energy.cs" />
+    <Compile Include="CIAFData\Country.cs" />
+    <Compile Include="CIAFData\Electric.cs" />
+    <Compile Include="CIAFData\Energy.cs" />
     <Compile Include="AnalysisCapacity.cs" />
     <Compile Include="EnergyReport.cs" />
-    <Compile Include="Gdp.cs" />
+    <Compile Include="CIAFData\Gdp.cs" />
     <Compile Include="Intel.cs" />
     <Compile Include="PowerPdf.cs" />
     <Compile Include="Program.cs" />
@@ -63,6 +63,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Report\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

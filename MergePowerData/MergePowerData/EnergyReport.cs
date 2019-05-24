@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using MergePowerData.CIAFData;
 using Newtonsoft.Json.Linq;
 
 namespace MergePowerData

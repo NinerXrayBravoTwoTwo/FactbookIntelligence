@@ -1,4 +1,4 @@
-﻿namespace MergePowerData
+﻿namespace MergePowerData.CIAFData
 {
     public class PopulationWithoutElectricity
     {

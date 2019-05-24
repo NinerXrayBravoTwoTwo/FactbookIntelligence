@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using MergePowerData.CIAFData;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -31,7 +32,7 @@ namespace MergePowerData
                     intel.Add(name, electric, Gdp(data), Population(data));
                 }
 
-            intel.Report();
+            intel.CsvReport();
         }
 
         /// <summary>
