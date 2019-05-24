@@ -5,8 +5,10 @@ using Newtonsoft.Json.Linq;
 
 namespace MergePowerData
 {
+    // Obsolete  - May 24, 2019, represents simplest report
     internal class EnergyReport
     {
+        // ReSharper disable once InconsistentNaming
         private const double TWh2kg = 0.040055402;
         private readonly JObject _fact;
 
