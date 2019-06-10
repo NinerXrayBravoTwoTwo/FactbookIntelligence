@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace MergePowerData.CIAFData
+namespace MergePowerData.CIAFdata
 {
     /// <summary>
     /// Country is not intended to absorb all the data from CIAF.

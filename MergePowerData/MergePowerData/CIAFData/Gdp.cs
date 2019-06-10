@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MergePowerData.CIAFData
+namespace MergePowerData.CIAFdata
 {
     public class AnnualValue
     {

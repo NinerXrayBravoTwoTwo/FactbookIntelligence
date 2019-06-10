@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using MergePowerData.CIAFData;
+using MergePowerData.CIAFdata;
 
 namespace MergePowerData
 {

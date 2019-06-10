@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using MergePowerData.CIAFData;
+using MergePowerData.CIAFdata;
 
 namespace MergePowerData
 {

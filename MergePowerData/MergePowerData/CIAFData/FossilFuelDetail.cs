@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 
-namespace MergePowerData.CIAFData
+namespace MergePowerData.CIAFdata
 {
     public class FossilFuelDetail
     {
