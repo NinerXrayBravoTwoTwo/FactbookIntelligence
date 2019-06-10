@@ -79,6 +79,7 @@ namespace MergePowerData
                     //+ $"{c.PurchasePower.value / _world.PurchasePower.value:F3}\t"
                     + $"{c.PurchasePower.value}\t"
                     + $"{c.PurchasePower.value / c.Electric.ProdTWh:F2}\t"
+                    + $"{c.FossilFuelDetail.RefinedPetroleum.Production.Value:F0}\t"
                     + $"{c.Name}");
             }
         }
