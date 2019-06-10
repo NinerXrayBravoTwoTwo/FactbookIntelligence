@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using MergePowerData.CIAFData;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -29,7 +30,11 @@ namespace MergePowerData
 
                     if (electric == null) continue;
 
-                    intel.Add(name, electric, Gdp(data), Population(data));
+                    var ff = new FossilFuelDetail(energy);
+
+                  // Console.WriteLine(value: $"{ff.CrudeOil.Production.Value}  {ff.CrudeOil.Exports.Value} ");
+
+                    intel.Add(name, electric, ff, Gdp(data), Population(data));
                 }
 
             intel.CsvReport();

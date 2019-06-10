@@ -10,16 +10,18 @@ namespace MergePowerData.CIAFData
     public class Country
     {
         public readonly Electric Electric;
+        public readonly FossilFuelDetail FossilFuelDetail;
         public readonly Gdp Gdp;
         public readonly string Name;
         public readonly long Pop;
         public readonly AnnualValue2 GrowthRate;
         public readonly AnnualValue3 PurchasePower;
 
-        public Country(string name, Electric electric, Gdp gdp, long pop)
+        public Country(string name, Electric electric, FossilFuelDetail ff, Gdp gdp, long pop)
         {
             Name = name;
             Electric = electric;
+            FossilFuelDetail = ff;
             Gdp = gdp;
             Pop = pop;
 

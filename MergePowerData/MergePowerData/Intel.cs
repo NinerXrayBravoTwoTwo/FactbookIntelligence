@@ -18,12 +18,12 @@ namespace MergePowerData
         // CIAF is a collection of data by country.  To analyze a specific set of data into a report we must extract a relevant subset 
         private readonly List<Country> _data = new List<Country>();
 
-        public void Add(string name, Electric electric, Gdp gdp, long pop)
+        public void Add(string name, Electric electric, FossilFuelDetail ff, Gdp gdp, long pop)
         {
             if (name.Equals("World"))
-                _world = new Country(name, electric, gdp, pop);
+                _world = new Country(name, electric, ff, gdp, pop);
 
-            _data.Add(new Country(name, electric, gdp, pop));
+            _data.Add(new Country(name, electric, ff, gdp, pop));
         }
 
         public void CsvReport()
