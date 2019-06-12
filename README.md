@@ -88,4 +88,4 @@ How much energy the earth absorbs and radiates per day seems to be a closely gua
 
 AARS
 -
-Processed a series of pie charts detailing crude oil, refined oil, electric production, and CO2 emissions.  Converted some of this data into color coded world maps.  Interesting results.  Each graph poses more experiments and questions.  Am considering changes to output graphs directly instead of post processing the data in Excel.
+June 11, 2019; Processed a series of pie charts detailing crude oil, refined oil, electric production, and CO2 emissions.  Converted some of this data into color coded world maps.  Interesting results.  Each graph poses more experiments and questions.  Am considering changes to output graphs directly instead of post processing the data in Excel.
