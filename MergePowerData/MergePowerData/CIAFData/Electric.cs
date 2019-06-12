@@ -5,7 +5,8 @@ namespace MergePowerData.CIAFdata
 {
     public class Electric
     {
-        public double TtonCo2;
+        public double TtonCo2 => MtonCo2 / 1.0e6;
+        public double MtonCo2;
         public double ConsKWh;
         public double ConsTWh;
         public double KWfossil;
@@ -36,8 +37,8 @@ namespace MergePowerData.CIAFdata
 
             // electricity = JsonConvert.DeserializeObject<Electricity>(el);
             var co2Json = energy["carbon_dioxide_emissions_from_consumption_of_energy"];
-            TtonCo2 = co2Json?["megatonnes"].Value<double>() ?? 0;
-            TtonCo2 /= 1.0e6; // convert M ton to T ton
+            MtonCo2 = co2Json?["megatonnes"].Value<double>() ?? 0;
+           // TtonCo2 = 1.0e6; // convert M ton to T ton
 
             PrcntTtl += Electricity.by_source.nuclear_fuels.percent;
             KWnuke = Electricity.by_source.nuclear_fuels.KWh(Electricity.installed_generating_capacity);

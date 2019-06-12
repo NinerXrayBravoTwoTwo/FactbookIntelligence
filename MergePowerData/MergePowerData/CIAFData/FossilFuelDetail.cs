@@ -1,22 +1,16 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using System;
+using Newtonsoft.Json.Linq;
 
 namespace MergePowerData.CIAFdata
 {
     public class FossilFuelDetail
     {
-        private readonly JToken _energy;
-
         public readonly CrudeOil CrudeOil;
         public readonly RefinedPetroleum RefinedPetroleum;
         public readonly NaturalGas NaturalGas;
 
         public FossilFuelDetail(JToken energy)
         {
-            this._energy = energy;
-            //crude = energy["crude_oil"];
-            //refined = energy["refined_petroleum_products"];
-            //natGas = energy["natural_gas"];
-
             CrudeOil = new CrudeOil(energy["crude_oil"]);
             RefinedPetroleum = new RefinedPetroleum(energy["refined_petroleum_products"]);
             NaturalGas = new NaturalGas(energy["natural_gas"]);
@@ -84,7 +78,7 @@ namespace MergePowerData.CIAFdata
     {
         public NaturalGas(JToken token)
         {
-            //Console.WriteLine($"{token.ToString(Newtonsoft.Json.Formatting.Indented)}");
+           // Console.WriteLine($"{token.ToString(Newtonsoft.Json.Formatting.Indented)}");
 
             if(token == null)
             {
@@ -96,6 +90,7 @@ namespace MergePowerData.CIAFdata
                 return;
             }
 
+            
             Production = new ValueDate(token["production"], "cubic_metres");
             Consumption = new ValueDate(token["consumption"], "cubic_metres");
             Imports = new ValueDate(token["imports"], "cubic_metres");
@@ -112,7 +107,7 @@ namespace MergePowerData.CIAFdata
 
     public class ValueDate
     {
-        public static  ValueDate Empty { get { return new ValueDate(); } }
+        public static  ValueDate Empty => new ValueDate();
 
         public ValueDate()
         {

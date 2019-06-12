@@ -1,5 +1,4 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using MergePowerData.CIAFdata;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -20,22 +19,22 @@ namespace MergePowerData
             var intel = new Intel();
 
             foreach (var item in _fact["countries"])
-                foreach (var country in item)
-                {
-                    var data = country["data"];
-                    var name = data["name"].Value<string>();
-                    var energy = data["energy"];
+            foreach (var country in item)
+            {
+                var data = country["data"];
+                var name = data["name"].Value<string>();
+                var energy = data["energy"];
 
-                    var electric = energy?["electricity"] != null ? new Electric(energy) : null;
+                var electric = energy?["electricity"] != null ? new Electric(energy) : null;
 
-                    if (electric == null) continue;
+                if (electric == null) continue;
 
-                    var ff = new FossilFuelDetail(energy);
+                var ff = new FossilFuelDetail(energy);
 
-                  // Console.WriteLine(value: $"{ff.CrudeOil.Production.Value}  {ff.CrudeOil.Exports.Value} ");
+                // Console.WriteLine(value: $"{ff.CrudeOil.Production.Value}  {ff.CrudeOil.Exports.Value} ");
 
-                    intel.Add(name, electric, ff, Gdp(data), Population(data));
-                }
+                intel.Add(name, electric, ff, Gdp(data), Population(data));
+            }
 
             intel.CsvReport();
         }
