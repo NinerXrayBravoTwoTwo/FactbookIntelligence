@@ -10,7 +10,7 @@ This is the practice of science.  A STEM of journalism and persuation.  Most of 
 
 Boyd and OODA
 -
-The "Scientific Method (SM)" is the basis of turning data into intelligence, however we have no time for formal review, publishing, pier review, that may take a lifetime.  Instead we MUST use a more intense version of SM; Boyde's OODA loop.
+The "Scientific Method (SM)" is the basis of turning data into intelligence, however we have no time for formal review, publishing, peer review, that may take a lifetime.  Instead we MUST use a more intense version of SM; Boyde's OODA loop.
 
 In summary; (O) Take raw data -> (O) ohhh crud -> (O orient) Huh? what is this -> (D decide) Create Testable hypothesis -> (A) Act/Test -> push feedback into start. (AAR, after action review)
 
@@ -24,12 +24,12 @@ After discovering OODA you might think that this has nothing to do with "intelli
 
 Itteration
 -
-For parsable factbook data I am currently using Ian Coleman's project. As of now there is no API from the DOD that allows direct access to this data.  Ian's project is a python app that scan's mines the CIA-Factbook pages for data.
+For parsable factbook data I am currently using Ian Coleman's project. As of now there is no API from the DOD that allows direct access to this data.  Ian's project is a python app that scans/mines the CIA-Factbook html pages for data.
 
 https://github.com/iancoleman/cia_world_factbook_api
 
 CIA Factbook Data Quality
- 
+-
 It is obvious to me that CIAF is a sanatized extraction of basic data that the DOD gathers continously from around the world.  There is much I would like to know that is missing, but then If I were privey to such information I couldn't talk about it so this situation is fine.
 
 The CIAF data set is very small.  It is a 15 MB Json data file which compresses to only 3 MB with gzip when the redundencies are removed (See Enthropy (Information Theory on why this is a significant measure).  This is why I maintain this is only a pitifully small atom of data the DOD collects.  I'm not sure what their purpose(s) in providing this data is(are).
@@ -42,13 +42,13 @@ Data collection and reporting errors,
 Data aggregation errors
 
 Detectable Aggregation Errors
-
+-
 Some of the data for a country is expressed as percent's of a whole.  If the sum of a set of percents is not 100 then we can identify a simple aggration error and work with it.
 
 CIAF has a world summary for all country data.  This can be used to find gross aggrigation errors.  There are also sub countries such as "EU" which are composits of their members
 
 Third Party Data Sources
-
+-
 Not easy but it is possible to gather first hand data that is more up to date than CIAF from internet and other pubic data sources.  This can be used to validate or suplement CIAF.
 
 Purpose/Hypothesis
@@ -61,7 +61,6 @@ My motive is simple; To understand the economic realities and facts of the "Clim
 
 Method
 -
-
 Every search starts someplace;  I have started with physics and general relativity. This perspective allows me to understand the energies expeneded in the earths/sun/space climate system and actually comprehend these energies.  
 
 Method Notes
