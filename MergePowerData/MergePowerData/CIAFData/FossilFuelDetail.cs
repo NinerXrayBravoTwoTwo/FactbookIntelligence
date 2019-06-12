@@ -1,13 +1,12 @@
-﻿using System;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 
 namespace MergePowerData.CIAFdata
 {
     public class FossilFuelDetail
     {
         public readonly CrudeOil CrudeOil;
-        public readonly RefinedPetroleum RefinedPetroleum;
         public readonly NaturalGas NaturalGas;
+        public readonly RefinedPetroleum RefinedPetroleum;
 
         public FossilFuelDetail(JToken energy)
         {
@@ -17,11 +16,23 @@ namespace MergePowerData.CIAFdata
         }
     }
 
+    /*
+        Electricity - from fossil fuels Electricity - from fossil fuels field listing
+        This entry measures the capacity of plants that generate electricity by burning fossil fuels 
+        (such as coal, petroleum products, and natural gas), expressed as a share of the country's total generating capacity.
+     */
+
     public class CrudeOil
     {
+        public readonly ValueDate Exports;
+        public readonly ValueDate Imports;
+
+        public readonly ValueDate Production;
+        public readonly ValueDate ProvedReserves;
+
         public CrudeOil(JToken token)
         {
-            if(token == null)
+            if (token == null)
             {
                 Production = ValueDate.Empty;
                 Exports = ValueDate.Empty;
@@ -30,6 +41,7 @@ namespace MergePowerData.CIAFdata
 
                 return;
             }
+
             Production = new ValueDate(token["production"], "bbl_per_day");
             Exports = new ValueDate(token["exports"], "bbl_per_day");
             Imports = new ValueDate(token["imports"], "bbl_per_day");
@@ -37,15 +49,15 @@ namespace MergePowerData.CIAFdata
 
             // Console.WriteLine($"{token.ToString(Newtonsoft.Json.Formatting.Indented)}");
         }
-
-        public readonly ValueDate Production;
-        public readonly ValueDate Exports;
-        public readonly ValueDate Imports;
-        public readonly ValueDate ProvedReserves;
     }
 
     public class RefinedPetroleum
     {
+        public readonly ValueDate Consumption;
+        public readonly ValueDate Exports;
+        public readonly ValueDate Imports;
+
+        public readonly ValueDate Production;
 
         public RefinedPetroleum(JToken token)
         {
@@ -66,21 +78,23 @@ namespace MergePowerData.CIAFdata
             Imports = new ValueDate(token["imports"], "bbl_per_day");
             Exports = new ValueDate(token["exports"], "bbl_per_day");
         }
-
-        public readonly ValueDate Production;
-        public readonly ValueDate Exports;
-        public readonly ValueDate Imports;
-        public readonly ValueDate Consumption;
     }
 
 
     public class NaturalGas
     {
+        public readonly ValueDate Consumption;
+        public readonly ValueDate Exports;
+        public readonly ValueDate Imports;
+
+        public readonly ValueDate Production;
+        public readonly ValueDate ProvedReserves;
+
         public NaturalGas(JToken token)
         {
-           // Console.WriteLine($"{token.ToString(Newtonsoft.Json.Formatting.Indented)}");
+            // Console.WriteLine($"{token.ToString(Newtonsoft.Json.Formatting.Indented)}");
 
-            if(token == null)
+            if (token == null)
             {
                 Production = ValueDate.Empty;
                 Consumption = ValueDate.Empty;
@@ -90,25 +104,17 @@ namespace MergePowerData.CIAFdata
                 return;
             }
 
-            
+
             Production = new ValueDate(token["production"], "cubic_metres");
             Consumption = new ValueDate(token["consumption"], "cubic_metres");
             Imports = new ValueDate(token["imports"], "cubic_metres");
             Exports = new ValueDate(token["exports"], "cubic_metres");
             ProvedReserves = new ValueDate(token["proved_reserves"], "cubic_metres");
         }
-
-        public readonly ValueDate Production;
-        public readonly ValueDate Exports;
-        public readonly ValueDate Imports;
-        public readonly ValueDate Consumption;
-        public readonly ValueDate ProvedReserves;
     }
 
     public class ValueDate
     {
-        public static  ValueDate Empty => new ValueDate();
-
         public ValueDate()
         {
             Value = 0;
@@ -127,8 +133,9 @@ namespace MergePowerData.CIAFdata
             Value = token[name].Value<double>();
             Date = token["date"] != null ? token["date"].Value<string>() : string.Empty;
         }
+
+        public static ValueDate Empty => new ValueDate();
         public double Value { get; set; }
         public string Date { get; set; }
     }
 }
-
