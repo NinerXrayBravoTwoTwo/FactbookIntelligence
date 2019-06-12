@@ -4,7 +4,7 @@ What is the difference between intelligence and data?
 -
 This project parses "CIA Factbook" (CIAF) data and attempts to turn some of it into "intelligence".
 
-Data and algorithms are not technology, they are artifacts of technology.
+"Data and algorithms are not technology, they are artifacts of technology." -- Quote from myself in 1992
 
 Theory of Intelligence 
 -
@@ -24,17 +24,17 @@ https://commons.wikimedia.org/wiki/File:OODA.Boyd.svg#/media/File:OODA.Boyd.svg
 
 After discovering OODA, you might think that this has nothing to do with "intelligence" science or understanding.  On the contrary this is essential and the core of ALL intelligence.  Without some variation of this process data might just as well be random drops in an ocean.  To organize and Act on them is what Intelligence is about. 
 
-Iteration
+Factbook Data Source
 -
 For parseable factbook data I am currently using Ian Coleman's project. As of now there is no API from the DOD that allows direct access to this data.  Ian's project is a python app that scans/mines the CIA-Factbook html pages for data.
 
 https://github.com/iancoleman/cia_world_factbook_api
 
-CIA Factbook Data Quality
+Factbook Data Quality
 -
 It is obvious to me that CIAF is a sanitized extraction of basic data that the DOD gathers continuously from around the world.  There is much I would like to know that is missing, but then If I were privy to such information, I couldn't talk about it, so this situation is fine.
 
-The CIAF data set is very small.  It is a 15 MB Json data file which compresses to only 3 MB with gzip when the redundancies are removed (See Entropy (Information Theory on why this is a significant measure).  Therefore, I maintain this is only a pitifully small atom of data the DOD collects.  I'm not sure what their purpose(s) in providing this data is(are).
+This CIAF data set is very small.  It is a 15 MB Json data file which compresses to only 3 MB with gzip when the redundancies are removed (See Entropy (Information Theory on why this is a significant measure).  Therefore, I maintain this is only a pitifully small atom of data the DOD collects.  I'm not sure what their purpose(s) in providing this data is(are).
 
 Testing Data Quality
 -
@@ -52,6 +52,8 @@ CIAF has a world summary for all country data.  This can be used to find gross a
 Third Party Data Sources
 -
 Not easy but it is possible to gather firsthand data that is more up to date than CIAF from internet and other pubic data sources.  This can be used to validate or supplement CIAF.
+
+For example; Statistics in Coal production and consumption are not provided in Factbook.  This seems to me a curious oversite because world electric and steel production is very reliant upon coal.  Coal usage statistics are available from third party sources and am considering supplementing CIAF data with these third-party data sources.
 
 Purpose/Hypothesis
 -
@@ -84,4 +86,3 @@ How much energy the earth absorbs and radiates per day seems to be a closely gua
 
 AARS
 -
-
