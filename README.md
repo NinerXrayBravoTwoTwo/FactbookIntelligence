@@ -76,11 +76,11 @@ Analysis
 -
 Brief Relativity Summary
 -
-Brief Relativity summary; Time is not a special unit; it is part of space and should be measured in meters. This 'fact' means that the speed of light is a unitless measure equal to one and the second is equal to 186,000 miles.
+Time is not a special unit; it is part of space and should be measured in meters. This 'fact' means that the speed of light is a unitless measure equal to one and the second is equal to 186,000 miles.
 
 This means that energy and mass are the same thing. Mass is not matter; it is an attribute of matter.  A kg is 89.9 Peta J or 25 Tera watt hrs.  This might take 186k miles to absorb. 
 
-Note: the Nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg of energy, 1000 x Nagasaki.  Annual world electricity production is about 24,000 TWh or 947 kg (947,000 Nagasaki sized bombs).
+Note: the Nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg of energy, 1000 x Nagasaki.  Annual world electricity production is about 24,000 TWh or 947 kg (947,000 Nagasaki sized bombs. I am aware of the rounding error here but am trying to communicate not get lost in the weeds. One Nagasaki is actually 1.0242 g)
 
 Our star radiates 385 yotta watts about 0.1 x the mass of Mt Everest per hour or 15,000 trillion Nagasaki’s per hr.
 
