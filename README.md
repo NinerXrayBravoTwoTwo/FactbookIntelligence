@@ -4,7 +4,7 @@ What is the difference between intelligence and data?  This project parses "CIA 
 
 Data and algorithms are not technology, they are artifacts of technology.
 
-Theory Of Intelligence 
+Theory of Intelligence 
 -
 This is the practice of science.  A STEM of journalism and persuasion.  Most of all it is the art of finding the truth and incorporating it in yourself and accepting when your world view is discovered to be in error.  
 
@@ -20,7 +20,7 @@ This is a leadership technique, it is a persuasion technique,
 
 https://commons.wikimedia.org/wiki/File:OODA.Boyd.svg#/media/File:OODA.Boyd.svg
 
-After discovering OODA you might think that this has nothing to do with "intelligence" science, or understanding.  On the contrary this is essential and the core of ALL intelligence.  Without some variation of this process data might just as well be random drops in an ocean.  To organize and Act on them is what Intelligence is about. 
+After discovering OODA, you might think that this has nothing to do with "intelligence" science or understanding.  On the contrary this is essential and the core of ALL intelligence.  Without some variation of this process data might just as well be random drops in an ocean.  To organize and Act on them is what Intelligence is about. 
 
 Iteration
 -
@@ -30,30 +30,30 @@ https://github.com/iancoleman/cia_world_factbook_api
 
 CIA Factbook Data Quality
 -
-It is obvious to me that CIAF is a sanitized extraction of basic data that the DOD gathers continuously from around the world.  There is much I would like to know that is missing, but then If I were privacy to such information I couldn't talk about it so this situation is fine.
+It is obvious to me that CIAF is a sanitized extraction of basic data that the DOD gathers continuously from around the world.  There is much I would like to know that is missing, but then If I were privy to such information, I couldn't talk about it, so this situation is fine.
 
-The CIAF data set is very small.  It is a 15 MB Json data file which compresses to only 3 MB with gzip when the redundancies are removed (See Entropy (Information Theory on why this is a significant measure).  This is why I maintain this is only a pitifully small atom of data the DOD collects.  I'm not sure what their purpose(s) in providing this data is(are).
+The CIAF data set is very small.  It is a 15 MB Json data file which compresses to only 3 MB with gzip when the redundancies are removed (See Entropy (Information Theory on why this is a significant measure).  Therefore, I maintain this is only a pitifully small atom of data the DOD collects.  I'm not sure what their purpose(s) in providing this data is(are).
 
 Testing Data Quality
 -
-Sources of errors in factbook may be  either by commission or omission;
+Sources of errors in factbook may be either by commission or omission;
 attributable to; Intentional propaganda by DOD or data manipulation by third parties (foreign & domestic),  
 Data collection and reporting errors,
 Data aggregation errors
 
 Detectable Aggregation Errors
 -
-Some of the data for a country is expressed as percent's of a whole.  If the sum of a set of percentages is not 100 then we can identify a simple aggregation error and work with it.
+Some of the data for a country is expressed as percent of a whole.  If the sum of a set of percentages is not 100 then we can identify a simple aggregation error and work with it.
 
 CIAF has a world summary for all country data.  This can be used to find gross aggregation errors.  There are also sub countries such as "EU" which are composite of their members
 
 Third Party Data Sources
 -
-Not easy but it is possible to gather first hand data that is more up to date than CIAF from internet and other pubic data sources.  This can be used to validate or supplement CIAF.
+Not easy but it is possible to gather firsthand data that is more up to date than CIAF from internet and other pubic data sources.  This can be used to validate or supplement CIAF.
 
 Purpose/Hypothesis
 -
-Always consider the source and motives of intelligence. For example "Journalism" usually starts from the story the editor wants to tell and works backwards to find "evidence/facts" that support that narrative.  If the journalist and editor have integrity they will change their story to reflect facts and not ignore facts that don't support their story. This is a reason ACTUAL intelligence is often a secret, in order to figure out what is going on away from political influences. 
+Always consider the source and motives of intelligence. For example, "Journalism" usually starts from the story the editor wants to tell and works backwards to find "evidence/facts" that support that narrative.  If the journalist and editor have integrity, they will change their story to reflect facts and not ignore facts that don't support their story. This is a reason ACTUAL intelligence is often a secret, in order to figure out what is going on away from political influences. 
 
 This project represents a starting point for your improvement of your own perception of the world. You already have a preconceived notion of how things are.  If you practice intelligence correctly you will always find aspects of your preconceptions that are in error.  When you learn the facts and their context they will not agree with your friends, the media, your professors, generally accepted theories, or yourself.  Often reality crystallizes into truths that are so profound it may take years before you accept them let alone are able to convince others.  Look at AE's work for example.  It took him years to understand and accept some of the implications of his early work.  He never did fully believe the implications of quantum mechanics.  And today, 100 years later, most of the human race still does not even partially believe/understand it. 
 
@@ -61,20 +61,20 @@ My motive is simple; To understand the economic realities and facts of the "Clim
 
 Method
 -
-Every search starts someplace;  I have started with physics and general relativity. This perspective allows me to understand the energies expended in the earths/sun/space climate system and actually comprehend these energies.  
+Every search starts someplace; I have started with physics and general relativity. This perspective allows me to understand the energies expended in the earths/sun/space climate system and comprehend these energies.  
 
 Method Notes
 -
 
-Brief Relativity summary; Time is not a special unit, it is part of space and should be measured in meters. This 'fact' means that the speed of light is actually a unitless measure equal to one and the second is equal to 186,000 miles.
+Brief Relativity summary; Time is not a special unit; it is part of space and should be measured in meters. This 'fact' means that the speed of light is a unitless measure equal to one and the second is equal to 186,000 miles.
 
-This means that energy and mass are actually the same thing. Mass is not matter, it is an attribute of matter.  A kg is 89.9 Peta J or 25 Tera watt hrs.  This might take 186k miles to absorb. 
+This means that energy and mass are the same thing. Mass is not matter; it is an attribute of matter.  A kg is 89.9 Peta J or 25 Tera watt hrs.  This might take 186k miles to absorb. 
 
 Note: the Nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg of energy, 1000 x Nagasaki.  Annual world electricity production is about 24,000 TWh or 947 kg (947,000 Nagasaki sized bombs).
 
 Our star radiates 385 yotta watts about 0.1 x the mass of Mt Everest per hour or 15,000 trillion Nagasaki’s per hr.
 
-How much energy the earth absorbs and radiates per day seems to be a closely guarded secret.  Clearly they are in equilibrium because the earth is not getting warmer or cooler within any margin of error we can currently measure.
+How much energy the earth absorbs and radiates per day seems to be a closely guarded secret.  Clearly, they are in equilibrium because the earth is not getting warmer or cooler within any margin of error we can currently measure.
 
 Procedures
 -
