@@ -65,7 +65,9 @@ My motive is simple; To understand the economic realities and facts of the "Clim
 
 Method
 -
-Every search starts someplace; I have started with physics and general relativity. This perspective allows me to understand the energies expended in the earths/sun/space climate system and comprehend these energies.  
+Every search starts someplace; I have started with physics and general relativity. This perspective allows me to understand the energies expended in the earths/sun/space climate system and comprehend these energies.  Note; Nagasaki bomb released 1g of energy (see note at end of this file for more or reference my Mass-Energy GitHub project.)
+
+To keep everything in context I occasionally pop out to the 10 AU view (~1.4 hours distance from sun, twice as far as Jupiter’s orbit.)  From here it is easier to remember that, we and everything are in space, that the earth is very close to our star, which is incredibly hot and bright, surrounded by nothing at all for light years in every direction. Our arguments about climate change are insignificant relative to the reality in which we actually exist.
 
 Procedures
 -
@@ -86,3 +88,4 @@ How much energy the earth absorbs and radiates per day seems to be a closely gua
 
 AARS
 -
+Processed a series of pie charts detailing crude oil, refined oil, electric production, and CO2 emissions.  Converted some of this data into color coded world maps.  Interesting results.  Each graph poses more experiments and questions.  Am considering changes to output graphs directly instead of post processing the data in Excel.
