@@ -1,12 +1,14 @@
 # Factbook Intelligence
 
-What is the difference between intelligence and data?  This project parses "CIA Factbook" (CIAF) data and attempts to turn some of it into "intelligence".
+What is the difference between intelligence and data?
+-
+This project parses "CIA Factbook" (CIAF) data and attempts to turn some of it into "intelligence".
 
 Data and algorithms are not technology, they are artifacts of technology.
 
 Theory of Intelligence 
 -
-This is the practice of science.  A STEM of journalism and persuasion.  Most of all it is the art of finding the truth and incorporating it in yourself and accepting when your world view is discovered to be in error.  
+This project represents the practice of a science.  A STEM of journalism and persuasion.  Most of all it is the art of finding actual truth, incorporating it in yourself, and accepting when your world view is discovered to be in error.  
 
 Boyd and OODA
 -
@@ -63,9 +65,13 @@ Method
 -
 Every search starts someplace; I have started with physics and general relativity. This perspective allows me to understand the energies expended in the earths/sun/space climate system and comprehend these energies.  
 
-Method Notes
+Procedures
 -
 
+Analysis
+-
+Brief Relativity Summary
+-
 Brief Relativity summary; Time is not a special unit; it is part of space and should be measured in meters. This 'fact' means that the speed of light is a unitless measure equal to one and the second is equal to 186,000 miles.
 
 This means that energy and mass are the same thing. Mass is not matter; it is an attribute of matter.  A kg is 89.9 Peta J or 25 Tera watt hrs.  This might take 186k miles to absorb. 
@@ -74,15 +80,8 @@ Note: the Nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg 
 
 Our star radiates 385 yotta watts about 0.1 x the mass of Mt Everest per hour or 15,000 trillion Nagasaki’s per hr.
 
-How much energy the earth absorbs and radiates per day seems to be a closely guarded secret.  Clearly, they are in equilibrium because the earth is not getting warmer or cooler within any margin of error we can currently measure.
+How much energy the earth absorbs and radiates per day seems to be a closely guarded secret.  Clearly, absorption and radiation are in equilibrium because the earth is not getting warmer or cooler within any margin of error we can currently measure.
 
-Procedures
+AARS
 -
-
-Analysis
--
-
-Feedback
--
-
 
