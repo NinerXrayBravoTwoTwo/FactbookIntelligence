@@ -104,7 +104,6 @@ namespace MergePowerData.CIAFdata
                 return;
             }
 
-
             Production = new ValueDate(token["production"], "cubic_metres");
             Consumption = new ValueDate(token["consumption"], "cubic_metres");
             Imports = new ValueDate(token["imports"], "cubic_metres");

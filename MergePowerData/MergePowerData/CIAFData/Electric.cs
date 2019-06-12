@@ -23,7 +23,6 @@ namespace MergePowerData.CIAFdata
 
             if (Electricity.by_source == null)
                 Electricity.by_source = new BySource();
-
             {
                 if (Electricity.by_source.nuclear_fuels == null)
                     Electricity.by_source.nuclear_fuels = new NuclearFuels { percent = 0, global_rank = int.MaxValue };
@@ -35,11 +34,9 @@ namespace MergePowerData.CIAFdata
                     Electricity.by_source.other_renewable_sources = new OtherRenewableSources { percent = 0, global_rank = int.MaxValue };
             }
 
-            // electricity = JsonConvert.DeserializeObject<Electricity>(el);
             var co2Json = energy["carbon_dioxide_emissions_from_consumption_of_energy"];
             MtonCo2 = co2Json?["megatonnes"].Value<double>() ?? 0;
-           // TtonCo2 = 1.0e6; // convert M ton to T ton
-
+           
             PrcntTtl += Electricity.by_source.nuclear_fuels.percent;
             KWnuke = Electricity.by_source.nuclear_fuels.KWh(Electricity.installed_generating_capacity);
             PrcntTtl += Electricity.by_source.hydroelectric_plants.percent;

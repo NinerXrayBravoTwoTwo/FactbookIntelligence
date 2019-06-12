@@ -1,4 +1,6 @@
-﻿namespace MergePowerData.CIAFdata
+﻿using System;
+
+namespace MergePowerData.CIAFdata
 {
     public class PopulationWithoutElectricity
     {
@@ -92,7 +94,7 @@
 
         public double KWh(InstalledGeneratingCapacity igc)
         {
-            if (percent == 0 || double.IsNaN(percent))
+            if (Math.Abs(percent) < 0.0000001 || double.IsNaN(percent))
                 return 0.0;
 
             return percent / 100 * igc.kW;
@@ -108,7 +110,7 @@
 
         public double KWh(InstalledGeneratingCapacity igc)
         {
-            if (percent == 0 || percent == double.NaN)
+            if (Math.Abs(percent) < 0.0000001 || double.IsNaN(percent))
                 return 0.0;
 
             return percent / 100 * igc.kW;
@@ -123,7 +125,7 @@
 
         public double KWh(InstalledGeneratingCapacity igc)
         {
-            if (percent == 0 || percent == double.NaN)
+            if (Math.Abs(percent) < 0.0000001 || double.IsNaN(percent))
                 return 0.0;
 
             return percent / 100 * igc.kW;
@@ -138,7 +140,7 @@
 
         public double KWh(InstalledGeneratingCapacity igc)
         {
-            if (percent == 0 || percent == double.NaN)
+            if (Math.Abs(percent) < 0.0000001 || double.IsNaN(percent))
                 return 0.0;
 
             return percent / 100 * igc.kW;
