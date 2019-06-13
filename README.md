@@ -62,11 +62,12 @@ This entry measures the capacity of plants that generate electricity by burning 
 
 Purpose/Hypothesis
 -
-Always consider the source and motives of intelligence. For example, "Journalism" usually starts from the story the editor wants to tell and works backwards to find "evidence/facts" that support that narrative.  If the journalist and editor have integrity, they will change their story to reflect facts and not ignore facts that don't support their story. This is a reason ACTUAL intelligence is often a secret, in order to figure out what is going on away from political influences. 
+
+My motive is simple; To understand the economic realities and facts of the "Climate Change" narrative in order to determine the voracity of Climate change and their motivations.
 
 This project represents a starting point for your improvement of your own perception of the world. You already have a preconceived notion of how things are.  If you practice intelligence correctly you will always find aspects of your preconceptions that are in error.  When you learn the facts and their context they will not agree with your friends, the media, your professors, generally accepted theories, or yourself.  Often reality crystallizes into truths that are so profound it may take years before you accept them let alone are able to convince others.  Look at AE's work for example.  It took him years to understand and accept some of the implications of his early work.  He never did fully believe the implications of quantum mechanics.  And today, 100 years later, most of the human race still does not even partially believe/understand it. 
 
-My motive is simple; To understand the economic realities and facts of the "Climate Change" narrative in order to determine the voracity of Climate change and their motivations.
+Always consider the source and motives of intelligence. For example, "Journalism" usually starts from the story the editor wants to tell and works backwards to find "evidence/facts" that support that narrative.  If the journalist and editor have integrity, they will change their story to reflect facts and not ignore facts that don't support their story. This is a reason ACTUAL intelligence is often a secret, in order to figure out what is going on away from political influences. 
 
 Method
 -
