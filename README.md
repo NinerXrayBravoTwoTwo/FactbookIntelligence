@@ -55,6 +55,11 @@ Not easy but it is possible to gather firsthand data that is more up to date tha
 
 For example; Statistics in Coal production and consumption are not provided in Factbook.  This seems to me a curious oversite because world electric and steel production is very reliant upon coal.  Coal usage statistics are available from third party sources and am considering supplementing CIAF data with these third-party data sources.
 
+Note however that Electricity from Fossil fuels statistic includes electric production from coal.
+
+"Electricity - from fossil fuels Electricity - from fossil fuels field listing 
+This entry measures the capacity of plants that generate electricity by burning fossil fuels (such as coal, petroleum products, and natural gas), expressed as a share of the country's total generating capacity."
+
 Purpose/Hypothesis
 -
 Always consider the source and motives of intelligence. For example, "Journalism" usually starts from the story the editor wants to tell and works backwards to find "evidence/facts" that support that narrative.  If the journalist and editor have integrity, they will change their story to reflect facts and not ignore facts that don't support their story. This is a reason ACTUAL intelligence is often a secret, in order to figure out what is going on away from political influences. 
@@ -78,13 +83,16 @@ Brief Relativity Summary
 -
 Time is not a special unit; it is part of space and should be measured in meters. This 'fact' means that the speed of light is a unitless measure equal to one and the second is equal to 186,000 miles.
 
-This means that energy and mass are the same thing. Mass is not matter; it is an attribute of matter.  A kg is 89.9 Peta J or 25 Tera watt hrs.  This might take 186k miles to absorb. 
-
-Note: the Nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg of energy, 1000 x Nagasaki.  Annual world electricity production is about 24,000 TWh or 947 kg (947,000 Nagasaki sized bombs. I am aware of the rounding error here but am trying to communicate not get lost in the weeds. One Nagasaki is actually 1.0242 g)
+When you substitute c=1, s=300 Mm into Newtonian equations energy and mass become the same thing. A kg is 89.9 Peta J or 25 Tera watt hrs.  This might take 186k miles to absorb.
 
 Our star radiates 385 yotta watts about 0.1 x the mass of Mt Everest per hour or 15,000 trillion Nagasaki’s per hr.
+(yotta = trillion trillion)
 
 How much energy the earth absorbs and radiates per day seems to be a closely guarded secret.  Clearly, absorption and radiation are in equilibrium because the earth is not getting warmer or cooler within any margin of error we can currently measure.
+
+Note: Mass is not matter; it is an attribute of matter. 
+
+Note: the Nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg of energy, 1000 x Nagasaki.  Annual world electricity production is about 24,000 TWh or 947 kg (947,000 Nagasaki sized bombs. I am aware of the rounding error here but am trying to communicate not get lost in the weeds. One Nagasaki is actually 1.0242 g)
 
 AARS
 -
