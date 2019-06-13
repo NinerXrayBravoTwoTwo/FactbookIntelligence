@@ -81,9 +81,13 @@ Analysis
 -
 Brief Relativity Summary
 -
+Energy is very difficult for people to comprehend. We do understand things we can hold, lift, and see.  I you knew that the USA consumed 3,902 tera watt hrs in 2016 it seems incomprehensible.  What if I told you that this could be loaded into the back of your truck and would weigh 344.6 lbs? (156.3 kg)
+
 Time is not a special unit; it is part of space and should be measured in meters. This 'fact' means that the speed of light is a unitless measure equal to one and the second is equal to 186,000 miles.
 
 When you substitute c=1, s=300 Mm into Newtonian equations energy and mass become the same thing. A kg is 89.9 Peta J or 25 Tera watt hrs.  This might take 186k miles to absorb.
+
+Note: In AE’s e=mc^2 C^2 is just a conversion factor.
 
 Our star radiates 385 yotta watts about 0.1 x the mass of Mt Everest per hour or 15,000 trillion Nagasaki’s per hr.
 (yotta = trillion trillion)
@@ -96,4 +100,6 @@ Note: the Nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg 
 
 AARS
 -
-June 11, 2019; Processed a series of pie charts detailing crude oil, refined oil, electric production, and CO2 emissions.  Converted some of this data into color coded world maps.  Interesting results.  Each graph poses more experiments and questions.  Am considering changes to output graphs directly instead of post processing the data in Excel.
+June 11, 2019; Processed a series of pie charts detailing crude oil, refined oil, electric production, and CO2 emissions.  Converted some of this data into color coded world maps. Interesting results.  Each graph poses more experiments and questions. Am considering changes to output graphs directly instead of post processing the data in Excel.
+
+Published the results on twitter and did not receive much feedback. I’m wonder if it needs to be packaged better. Where else could I publish this intelligence?  Who needs this intelligence?
