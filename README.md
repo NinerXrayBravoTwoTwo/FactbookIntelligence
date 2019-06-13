@@ -14,7 +14,7 @@ Boyd and OODA
 -
 The "Scientific Method (SM)" is the basis of turning data into intelligence, however we have no time for formal review, publishing, peer review, that may take a lifetime.  Instead we MUST use a more intense version of SM; Boyde's OODA loop.
 
-In summary; (O) Take raw data -> (O) ohhh crud -> (O orient) Huh? what is this -> (D decide) Create Testable hypothesis -> (A) Act/Test -> push feedback into start. (AAR, after action review)
+In summary; (O) Take raw data -> (O orient) Huh? what is this -> (D decide) Create Testable hypothesis -> (A) Act/Test -> push feedback into start. (AAR, after action review)
 
 Through this process you can get/approach correct "intelligence".
 
@@ -84,11 +84,11 @@ Brief Relativity Summary
 -
 Energy is very difficult for people to comprehend. We understand things we can hold, lift, and see.  If you knew that the USA consumed 3,902 tera watt hrs in 2016 it seems incomprehensible.  What if I told you that this could be loaded into the back of your truck and would weigh 344.6 lbs? (156.3 kg)
 
-Time is not a special unit; it is part of space and should be measured in meters. This 'fact' means that the speed of light is a unitless measure equal to one and the second is equal to 186,000 miles.
+Time is not a special unit; it is part of space and should be measured in meters, specifically three hundred million meters. Substituting the new value for s makes the speed of light a unitless constant equal to one.
 
-When you substitute s=300 Mm (this means that c=1) into Newtonian equations energy and mass become the same thing. A kg is 89.9 Peta J or 25 Tera watt hrs.  This might take 186k miles to absorb.
+When you substitute s=300 Mm into Newtonian physics, energy and mass become the same thing. A kg is 89.9 Peta J or 25 Tera watt hrs.  This might take 186k miles to absorb.
 
-Note: In AE’s e=mc^2, c^2 is just a conversion factor.
+Note: In AE’s e=mc^2, c^2 is just a conversion factor, ergs to grams. The speed of light, c=1 after all.
 
 Our star radiates 385 yotta watts about 0.1 x the mass of Mt Everest per hour or 15,000 trillion Nagasaki’s per hr.
 (yotta = trillion trillion)
