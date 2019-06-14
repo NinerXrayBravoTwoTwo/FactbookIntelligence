@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using MergePowerData.CIAFdata;
 
-namespace MergePowerData
+namespace MergePowerData.Report
 {
 
     // <summary>
@@ -25,5 +24,28 @@ namespace MergePowerData
             _world = world;
             _data = data;
         }
+
+        public void Create(Stream stream)
+        {
+            const float margin = 10f;
+            const float marginTop = 60f;
+
+            //var headerEvents = new PdfReportEvents(PdfReportData reportData);
+
+            var doc = new Document(PageSize.A4.Rotate(), margin, margin, marginTop, margin);
+            doc.AddAuthor("Boo:");
+            doc.AddCreationDate();
+            doc.AddTitle("boohoo");
+
+            var writer = PdfWriter.GetInstance(doc, stream);
+            //writer.PageEvent = headerEvents;
+
+            doc.Open();
+
+           // Document(doc, stream, writer);
+
+            doc.Close();
+        }
+
     }
 }

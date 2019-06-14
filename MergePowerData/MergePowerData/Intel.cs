@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
+using System.IO;
 using System.Linq;
 using MergePowerData.CIAFdata;
+using MergePowerData.Report;
 
 namespace MergePowerData
 {
@@ -16,14 +19,14 @@ namespace MergePowerData
         private Country _world;
 
         // CIAF is a collection of data by country.  To analyze a specific set of data into a report we must extract a relevant subset 
-        private readonly List<Country> _data = new List<Country>();
+        private readonly List<Country> _countries = new List<Country>();
 
         public void Add(string name, Electric electric, FossilFuelDetail ff, Gdp gdp, long pop)
         {
             if (name.Equals("World"))
                 _world = new Country(name, electric, ff, gdp, pop);
 
-            _data.Add(new Country(name, electric, ff, gdp, pop));
+            _countries.Add(new Country(name, electric, ff, gdp, pop));
         }
 
         public void CsvReport()
@@ -32,20 +35,19 @@ namespace MergePowerData
             Console.WriteLine(
                 //"ProdTWh\t"-
                 //+ "kg\t"
-                //+ "CoalElecProd\t"
-                "Co2MT\t"
+                "Co2TT\t"
                 //+ "maxFF_kWh"
                 //+ "kw/pop\t"
                 //+ "pop_M\t"
                 //+ "kWh/pop\t"
-                //+ "Prod_FF_TWh/y\t"
+                + "Prod_FF_TWh/y\t"
                 //+ "Capacity_TWh/y\t"
-                //+ "$Growth\t"
+                + "$Growth\t"
                 //+ "$PP\t"
                 //+ "$PP/TWh\t"
                 + "Country");
 
-            foreach (var c in _data.OrderByDescending(d => d.Electric.ProdTWh))
+            foreach (var c in _countries.OrderByDescending(d => d.Electric.ProdTWh))
             {
                 var kgEfossil = c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh * TWh2kg;
                 var wrldKgEfossil = _world.Electric.Electricity.by_source.fossil_fuels.percent / 100 *
@@ -59,22 +61,24 @@ namespace MergePowerData
                 // Note; Working on making sense of Economics relative to use of FF and electricity.
                 // Note; Need to bring in oil usage numbers
                 Console.WriteLine(
-                     // $"{c.Electric.ProdTWh}\t"
-                     //+ $"{c.Electric.ProdTWh * TWh2kg:F1}\t"
-                     //+ $"{c.Pop / 1e6:F0}\t"
-                     //+ $"{c.Electric.ProdKWh / c.Pop:F0}\t"
-                     //+ $"{c.Electric.ProdTWh / _world.Electric.ProdTWh:F3}\t"
-                     //+ $"{kgEfossil / wrldKgEfossil:F3}\t"
-                     $"{c.Electric.MtonCo2 / c.Pop:F2}\t"
-                    //+ $"{c.Electric.TtonCo2 / _world.Electric.TtonCo2:F3}\t" // want amtCo2 per TW consumed Fossil
-                    //+ $"{c.Electric.Electricity.by_source.nuclear_fuels.percent}\t"
-                    //+ $"{c.Electric.Electricity.by_source.hydroelectric_plants.percent}\t"
-                    //+ $"{c.Electric.Electricity.by_source.fossil_fuels.percent}\t"
-                    //+ $"{c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh:F0}\t"
-                    //+ $"{c.Electric.Electricity.by_source.other_renewable_sources.percent}\t"
-                    //+ $"{igc.YearCapacityTWhr():F0}\t"
-                    //+ $"{igc.YearCapacityTWhr() / c.Electric.ProdTWh:F2}\t"
-                    //+ $"{c.GrowthRate.value:F1}\t"
+                    // $"{c.Electric.ProdTWh}\t"
+                    //+ $"{c.Electric.ProdTWh * TWh2kg:F1}\t"
+                    //+ $"{c.Pop / 1e6:F0}\t"
+                    //+ $"{c.Electric.ProdKWh / c.Pop:F0}\t"
+                    //+ $"{c.Electric.ProdTWh / _world.Electric.ProdTWh:F3}\t"
+                    //+ $"{kgEfossil / wrldKgEfossil:F3}\t"
+                    //$"{c.Electric.MtonCo2 / c.Pop:F2}\t"
+                    //$"{c.Electric.TtonCo2 / _world.Electric.TtonCo2:F3}\t" // want amtCo2 per TW consumed Fossil
+                    $"{c.Electric.TtonCo2:F3}\t" //  Emissions Co2 
+                   //+ $"{c.Electric.Electricity.by_source.nuclear_fuels.percent}\t"
+                   //+ $"{c.Electric.Electricity.by_source.hydroelectric_plants.percent}\t"
+                   //+ $"{c.Electric.Electricity.by_source.fossil_fuels.percent}\t"
+                     + $"{c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh:F0}\t"
+                     //+ $"{c.Electric.Electricity.by_source.other_renewable_sources.percent}\t"
+                     //+ $"{igc.YearCapacityTWhr():F0}\t"
+                     //+ $"{igc.YearCapacityTWhr() / c.Electric.ProdTWh:F2}\t"
+                     + $"{c.GrowthRate.value:F1}\t"
+                    //+ $"{c.GrowthRate.date}\t"
                     //+ $"{c.PurchasePower.value / _world.PurchasePower.value:F3}\t"
                     //+ $"{c.PurchasePower.value}\t"
                     //+ $"{c.PurchasePower.value / c.Electric.ProdTWh:F2}\t"
@@ -89,7 +93,18 @@ namespace MergePowerData
 
         public void PdfReport()
         {
-            var pdf = new PowerPdf(_world, _data);
+            var pdf = new PowerPdf(_world, _countries);
+
+            //  var test = new CertificatePdf(certData);
+
+            var path = Environment.CurrentDirectory;
+
+            var stream = new FileStream(path + "/pdfdocQtsDomain.pdf", FileMode.Create);
+
+            pdf.Create(stream);
+
+            Process.Start(path + "/pdfdocQtsDomain.pdf");
+
         }
     }
 

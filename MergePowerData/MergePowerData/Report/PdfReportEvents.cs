@@ -3,13 +3,13 @@ using iTextSharp.text.pdf;
 
 namespace MergePowerData.Report
 {
-    public class ReportEvents : PdfPageEventHelper
+    public class PdfReportEvents : PdfPageEventHelper
     {
         private readonly PdfReportData _reportData;
 
         private int _pageCount;
 
-        public ReportEvents(PdfReportData reportData)
+        public PdfReportEvents(PdfReportData reportData)
         {
             _reportData = reportData;
         }
