@@ -30,23 +30,24 @@ namespace MergePowerData
         {
             // header
             Console.WriteLine(
-                "ProdTWh\t"
-                + "kg\t"
-                + "max%FF\t"
+                //"ProdTWh\t"-
+                //+ "kg\t"
+                //+ "CoalElecProd\t"
+                "Co2MT\t"
                 //+ "maxFF_kWh"
                 //+ "kw/pop\t"
                 //+ "pop_M\t"
                 //+ "kWh/pop\t"
                 //+ "Prod_FF_TWh/y\t"
                 //+ "Capacity_TWh/y\t"
-                + "$Growth\t"
-                + "$PP\t"
-                + "$PP/TWh\t"
+                //+ "$Growth\t"
+                //+ "$PP\t"
+                //+ "$PP/TWh\t"
                 + "Country");
 
             foreach (var c in _data.OrderByDescending(d => d.Electric.ProdTWh))
             {
-                var kgEfossil = c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh *TWh2kg;
+                var kgEfossil = c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh * TWh2kg;
                 var wrldKgEfossil = _world.Electric.Electricity.by_source.fossil_fuels.percent / 100 *
                                     _world.Electric.ProdTWh * TWh2kg;
 
@@ -58,27 +59,27 @@ namespace MergePowerData
                 // Note; Working on making sense of Economics relative to use of FF and electricity.
                 // Note; Need to bring in oil usage numbers
                 Console.WriteLine(
-                    $"{c.Electric.ProdTWh}\t"
-                    //+ $"{c.Electric.ProdTWh * TWh2kg:F1}\t"
-                    //+ $"{c.Pop / 1e6:F0}\t"
-                    //+ $"{c.Electric.ProdKWh / c.Pop:F0}\t"
-                    //+ $"{c.Electric.ProdTWh / _world.Electric.ProdTWh:F3}\t"
-                    //+ $"{kgEfossil / wrldKgEfossil:F3}\t"
-                    //+ $"{c.Electric.MtonCo2/c.Pop:F2}\t"
+                     // $"{c.Electric.ProdTWh}\t"
+                     //+ $"{c.Electric.ProdTWh * TWh2kg:F1}\t"
+                     //+ $"{c.Pop / 1e6:F0}\t"
+                     //+ $"{c.Electric.ProdKWh / c.Pop:F0}\t"
+                     //+ $"{c.Electric.ProdTWh / _world.Electric.ProdTWh:F3}\t"
+                     //+ $"{kgEfossil / wrldKgEfossil:F3}\t"
+                     $"{c.Electric.MtonCo2 / c.Pop:F2}\t"
                     //+ $"{c.Electric.TtonCo2 / _world.Electric.TtonCo2:F3}\t" // want amtCo2 per TW consumed Fossil
                     //+ $"{c.Electric.Electricity.by_source.nuclear_fuels.percent}\t"
                     //+ $"{c.Electric.Electricity.by_source.hydroelectric_plants.percent}\t"
                     //+ $"{c.Electric.Electricity.by_source.fossil_fuels.percent}\t"
-                    + $"{c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh:F0}\t"
+                    //+ $"{c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh:F0}\t"
                     //+ $"{c.Electric.Electricity.by_source.other_renewable_sources.percent}\t"
                     //+ $"{igc.YearCapacityTWhr():F0}\t"
                     //+ $"{igc.YearCapacityTWhr() / c.Electric.ProdTWh:F2}\t"
-                    + $"{c.GrowthRate.value:F1}\t"
+                    //+ $"{c.GrowthRate.value:F1}\t"
                     //+ $"{c.PurchasePower.value / _world.PurchasePower.value:F3}\t"
                     //+ $"{c.PurchasePower.value}\t"
                     //+ $"{c.PurchasePower.value / c.Electric.ProdTWh:F2}\t"
                     //+ $"{c.FossilFuelDetail.RefinedPetroleum.Consumption.Value:F0}\t"
-                   // + $"{c.FossilFuelDetail.RefinedPetroleum.Production.Value:F0}\t"
+                    // + $"{c.FossilFuelDetail.RefinedPetroleum.Production.Value:F0}\t"
                     //+ $"{c.FossilFuelDetail.CrudeOil.Exports.Value / c.FossilFuelDetail.CrudeOil.Production.Value:F2}\t"
                     //+ $"{c.FossilFuelDetail.RefinedPetroleum.Consumption.Value / _world.FossilFuelDetail.RefinedPetroleum.Consumption.Value:F5}\t"
                     //+$"{c.FossilFuelDetail.RefinedPetroleum.Consumption.Date}\t"
@@ -91,5 +92,6 @@ namespace MergePowerData
             var pdf = new PowerPdf(_world, _data);
         }
     }
+
 
 }

@@ -16,13 +16,13 @@ The "Scientific Method (SM)" is the basis of turning data into intelligence, how
 
 In summary; (O) Take raw data -> (O orient) Huh? what is this -> (D decide) Create Testable hypothesis -> (A) Act/Test -> push feedback into start. (AAR, after action review)
 
-Through this process you can get/approach correct "intelligence".
+Through this process we can get/approach correct "intelligence".
 
 This is a leadership technique, it is a persuasion technique, 
 
 https://commons.wikimedia.org/wiki/File:OODA.Boyd.svg#/media/File:OODA.Boyd.svg
 
-After discovering OODA, you might think that this has nothing to do with "intelligence" science or understanding.  On the contrary this is essential and the core of ALL intelligence.  Without some variation of this process data might just as well be random drops in an ocean.  To organize and Act on them is what Intelligence is about. 
+After discovering OODA, we might think that this has nothing to do with "intelligence" science or understanding.  On the contrary this is essential and the core of ALL intelligence.  Without some variation of this process data might just as well be random drops in an ocean.  To organize and Act on them is what Intelligence is about. 
 
 Factbook Data Source
 -
@@ -65,7 +65,7 @@ Purpose/Hypothesis
 
 My motive is simple; To understand the economic realities and facts of the "Climate Change" narrative in order to determine their voracity and motivations.
 
-This project represents a starting point for your improvement of your own perception of the world. You already have a preconceived notion of how things are.  If you practice intelligence correctly you will always find aspects of your preconceptions that are in error.  When you learn the facts and their context they will not agree with your friends, the media, your professors, generally accepted theories, or yourself.  Often reality crystallizes into truths that are so profound it may take years before you accept them let alone are able to convince others.  Look at AE's work for example.  It took him years to understand and accept some of the implications of his early work.  He never did fully believe the implications of quantum mechanics.  And today, 100 years later, most of the human race still does not even partially believe/understand it. 
+This project represents a starting point for our improvement of perception of the world. We start with a preconceived notion of how things are.  If intelligence is practiced correctly we will always find aspects of our preconceptions that are in error.  When we learn the facts and their context they will not agree with your friends, the media, your professors, generally accepted theories, or ourselves.  Often reality crystallizes into truths that are so profound it may take years before we accept them let alone are able to convince others. Look at AE's work for example.  It took him years to understand and accept some of the implications of his early work.  He never did fully believe the implications of quantum mechanics.  And today, 100 years later, most of the human race still does not even partially believe/understand it. 
 
 Always consider the source and motives of intelligence. For example, "Journalism" usually starts from the story the editor wants to tell and works backwards to find "evidence/facts" that support that narrative.  If the journalist and editor have integrity, they will change their story to reflect facts and not ignore facts that don't support their story. This is a reason ACTUAL intelligence is often a secret, in order to figure out what is going on away from political influences. 
 
