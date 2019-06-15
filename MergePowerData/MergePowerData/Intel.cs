@@ -41,9 +41,9 @@ namespace MergePowerData
             Console.WriteLine(
                  //"ProdTWh\t"-
                  "ekg\t"
-                 + "eFF_kg\t"
-                 + "Fuel_Mbbl\t"
-                 + "NatGas_Gcm\t"                 
+                 + "eFFkg\t"
+                 + "FuelMbl\t"
+                 + "NatGasGcm\t"                 
                  + "Co2Tton\t"
                 //+ "maxFF_kWh"
                 //+ "kw/pop\t"
