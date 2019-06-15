@@ -110,15 +110,12 @@ AARS
 $ ./MergePowerData
 ```
 ekg|eFF_kg|Fuel_Mbbl|NatGas_Gcm|Co2Tton|$Growth|Country
----|------|---------|----------|-------|-------|-------
+---:|------:|---------:|----------:|------:|------:|-------
 947.3|596.8|96.26|3477.0|33620|3.7|World
 235.6|146.1|12.47|238.6|11670|6.9|China
 164.0|114.8|19.96|767.6|5242|2.2|United States
 121.9|53.6|12.89|428.8|3475|2.3|European Union
 55.5|39.4|4.52|55.4|2383|6.7|India
-
-
-*?? What does China do with all that NatGas they consume??*
 
 Switch back to kg of energy from Tera watt's because it is eaiser to compare/understand and for ordinary humans to relate too.  Add in fuel and natGas to table.
 Problems;  There is no value for Coal consumption.  It is mixed into FF electric BUT there is no separate statistic for other uses of coal such as direct coal steal making industry, paper, heading, steam production, steam powered trains (china/VN) etc.  Not all coal is consumed in electric generation.
