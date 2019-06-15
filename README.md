@@ -101,18 +101,22 @@ Note: the Nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg 
 
 AARS
 -
-June 15, 19; Relating data in energy sectors to Econ growth.
+**June 15, 2019;** Also mising from the data are Uranium / Thorium mining for reactor fuel.  Not significant today but in 100 years?
+```
+"8 kWh of heat can be generated from 1 kg of coal, approx. 12 kWh from 1 kg of mineral oil and around 24,000,000 kWh from 1 kg of uranium-235. Related to one kilogram, uranium-235 contains two to three million times the energy equivalent of oil or coal. The illustration shows how much coal, oil or natural uranium is required for a certain quantity of electricity. Thus, 1 kg natural uranium - following a corresponding enrichment and used for power generation in light water reactors - corresponds to nearly 10,000 kg of mineral oil or 14,000 kg of coal and enables the generation of 45,000 kWh of electricity."
+```
+**June 15, 2019;** Relating data in energy sectors to Econ growth.
 ```
 ekg     eFF_kg  Fuel_Mbbl       NatGas_Gcm      Co2Tton $Growth 
 ```
 Switch back to kg of energy from Tera watt's because it is eaiser to compare/understand and for ordinary humans to relate too.  Add in fuel and natGas to table.
 Problems;  There is no value for Coal consumption.  It is mixed into FF electric BUT there is no separate statistic for other uses of coal such as direct coal steal making industry, paper, heading, steam production, steam powered trains (china/VN) etc.  Not all coal is consumed in electric generation.
 
-June 14, 2019; Reduced all the data concepts into a single story/question; “How is country economics related to CO2 emissions.  Many ways to go with this; Am currently testing three views, 1> FF Electric Production, 2> CO2 Emissions, 3> Economic growth.
+**June 14, 2019;** Reduced all the data concepts into a single story/question; “How is country economics related to CO2 emissions.  Many ways to go with this; Am currently testing three views, 1> FF Electric Production, 2> CO2 Emissions, 3> Economic growth.
 
 Some problems; a> Only the top 40 or so countries by total Power production have an economy b> Some countries are in growth decline or collapse due to war (Venezuela, Syria, Saudi Arabia, Iran, Iraq)
 
-June 11, 2019; Processed a series of pie charts detailing crude oil, refined oil, electric production, and CO2 emissions.  Converted some of this data into color coded world maps. Interesting results.  Each graph poses more experiments and questions. Am considering changes to output graphs directly instead of post processing the data in Excel.
+**June 11, 2019;** Processed a series of pie charts detailing crude oil, refined oil, electric production, and CO2 emissions.  Converted some of this data into color coded world maps. Interesting results.  Each graph poses more experiments and questions. Am considering changes to output graphs directly instead of post processing the data in Excel.
 
 Published the results on twitter and did not receive much feedback. I’m wonder if it needs to be packaged better. Where else could I publish this intelligence?  Who needs this intelligence?
 
