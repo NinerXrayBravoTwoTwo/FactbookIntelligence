@@ -108,6 +108,7 @@ AARS
 **June 15, 2019;** Relating data in energy sectors to Econ growth.
 ```
 $ ./MergePowerData
+```
 ekg|eFF_kg|Fuel_Mbbl|NatGas_Gcm|Co2Tton|$Growth|Country
 ---|------|---------|----------|-------|-------|-------
 947.3|596.8|96.26|3477.0|33620|3.7|World
@@ -115,7 +116,7 @@ ekg|eFF_kg|Fuel_Mbbl|NatGas_Gcm|Co2Tton|$Growth|Country
 164.0|114.8|19.96|767.6|5242|2.2|United States
 121.9|53.6|12.89|428.8|3475|2.3|European Union
 55.5|39.4|4.52|55.4|2383|6.7|India
-```
+
 
 *?? What does China do with all that NatGas they consume??*
 
