@@ -106,7 +106,7 @@ June 15, 19; Relating data in energy sectors to Econ growth.
 ekg     eFF_kg  Fuel_Mbbl       NatGas_Gcm      Co2Tton $Growth 
 ```
 Switch back to kg of energy from Tera watt's because it is eaiser to compare/understand and for ordinary humans to relate too.  Add in fuel and natGas to table.
-Problems;  There is no value for Coal consumption.  It is mixed into FF electric BUT there is no separate statistic for other uses of coal such as direct coal steal making industry. 
+Problems;  There is no value for Coal consumption.  It is mixed into FF electric BUT there is no separate statistic for other uses of coal such as direct coal steal making industry, paper, heading, steam production, steam powered trains (china/VN) etc.  Not all coal is consumed in electric generation.
 
 June 14, 2019; Reduced all the data concepts into a single story/question; “How is country economics related to CO2 emissions.  Many ways to go with this; Am currently testing three views, 1> FF Electric Production, 2> CO2 Emissions, 3> Economic growth.
 
