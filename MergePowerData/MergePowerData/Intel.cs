@@ -99,11 +99,11 @@ namespace MergePowerData
 
             var path = Environment.CurrentDirectory;
 
-            var stream = new FileStream(path + "/pdfdocQtsDomain.pdf", FileMode.Create);
+            var stream = new FileStream(path + "/EnergyUseReport.pdf", FileMode.Create);
 
             pdf.Create(stream);
 
-            Process.Start(path + "/pdfdocQtsDomain.pdf");
+            Process.Start(path + "/EnergyUseReport.pdf");
 
         }
     }
