@@ -101,7 +101,7 @@ Note: the Nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg 
 
 AARS
 -
-**June 15, 2019;** Beside Coal also missing from the data are Uranium / Thorium mining for reactor fuel.  Not significant today but in 100 years?
+**June 15, 2019;** Beside Coal also missing from the data are Uranium / Thorium mining for reactor fuel.  Significant today an more important every year.
 
 *8 kWh of heat can be generated from 1 kg of coal, approx. 12 kWh from 1 kg of mineral oil and around 24,000,000 kWh from 1 kg of uranium-235. Related to one kilogram, uranium-235 contains two to three million times the energy equivalent of oil or coal. The illustration shows how much coal, oil or natural uranium is required for a certain quantity of electricity. Thus, 1 kg natural uranium - following a corresponding enrichment and used for power generation in light water reactors - corresponds to nearly 10,000 kg of mineral oil or 14,000 kg of coal and enables the generation of 45,000 kWh of electricity.*
 
