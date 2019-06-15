@@ -95,7 +95,7 @@ namespace MergePowerData
         {
             var pdf = new PowerPdf(_world, _countries);
 
-            //  var test = new CertificatePdf(certData);
+            //  var test = new ReportPdf(CiafData);
 
             var path = Environment.CurrentDirectory;
 
