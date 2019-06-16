@@ -101,6 +101,26 @@ Note: the Nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg 
 
 AARS
 -
+** June 15, 2019** Calculate kg of Uranium and exchange $growth for Purchasing_Power which is better correlated to CO2 emmissions.
+
+ekg|eFFkg|Nuclearkg|FuelMbl|NatGasGcm|Co2Tton|$PP|Country
+---:|---:|---:|---:|---:|---:|---:|---
+947.3|596.8|94600.0|96.26|3477.0|33620|127800|World
+235.6|146.1|7844.0|12.47|238.6|11670|23210|China
+164.0|114.8|24570.0|19.96|767.6|5242|19490|United States
+121.9|53.6|24344.0|12.89|428.8|3475|20850|European Union
+55.5|39.4|1848.0|4.52|55.4|2383|9474|India
+41.3|28.1|7560.7|3.65|467.5|1847|4016|Russia
+39.6|28.1|659.5|3.89|127.2|1268|5443|Japan
+26.0|6.0|3897.6|2.45|124.4|641|1774|Canada
+24.5|10.1|2042.7|2.46|93.4|848|4199|Germany
+22.7|3.9|378.6|2.96|34.4|514|3248|Brazil
+21.2|3.6|17636.7|1.71|41.9|341|2856|France
+21.1|14.7|7364.0|2.58|45.3|778|2035|Korea, South
+13.0|13.0|0.0|3.29|109.3|657|1775|Saudi Arabia
+12.7|6.4|1909.2|1.58|79.2|424|2925|United Kingdom
+
+
 **June 15, 2019;** It should be possible to calculate the U235 equivelent burned in generating electric power.  Equation (%nuclear * ElectricProd / kgU235tokWh).  The conversion factor is 24 mega kWh per kg, which should provide an estimate for Uranium used to compare (Excluding military applications). 
 
 **June 15, 2019;** Beside Coal also missing from the data are Uranium / Thorium mining for reactor fuel.  Significant today and more important every year.

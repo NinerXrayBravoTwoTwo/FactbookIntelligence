@@ -15,7 +15,7 @@ namespace MergePowerData.CIAFdata
         public readonly string Name;
         public readonly long Pop;
         public readonly AnnualValue2 GrowthRate;
-        public readonly AnnualValue3 PurchasePower;
+        public readonly AnnualValue PurchasePower;
 
         public Country(string name, Electric electric, FossilFuelDetail ff, Gdp gdp, long pop)
         {
@@ -33,7 +33,7 @@ namespace MergePowerData.CIAFdata
         /// <param name="gdp"></param>
         /// <param name="growthRate"></param>
         /// <returns></returns>
-        private static AnnualValue3 EconBase(Gdp gdp, out AnnualValue2 growthRate)
+        private static AnnualValue EconBase(Gdp gdp, out AnnualValue2 growthRate)
         {
             var gr = gdp.real_growth_rate ?? new RealGrowthRate();
 
@@ -43,18 +43,18 @@ namespace MergePowerData.CIAFdata
 
             growthRate = gr.annual_values.OrderBy(av => av.date).LastOrDefault();
 
-            AnnualValue3 purchasingPower;
-            if (gdp.per_capita_purchasing_power_parity == null)
+            AnnualValue purchasingPower;
+            if (gdp.purchasing_power_parity == null)
             {
-                purchasingPower = new AnnualValue3 { date = "2000", units = "USD", value = double.NaN };
+                purchasingPower = new AnnualValue { date = "2000", units = "USD", value = double.NaN };
             }
             else
             {
-                var pp = gdp.per_capita_purchasing_power_parity.annual_values;
+                var pp = gdp.purchasing_power_parity.annual_values;
 
                 purchasingPower = pp != null
                     ? pp.OrderBy(p => p.date).LastOrDefault()
-                    : new AnnualValue3 { date = "1990", value = 0, units = "USD" };
+                    : new AnnualValue { date = "1990", value = 0, units = "USD" };
             }
 
             return purchasingPower;

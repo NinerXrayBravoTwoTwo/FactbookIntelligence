@@ -19,8 +19,9 @@ namespace MergePowerData
 
         public void ElectricReport()
         {
+            var dv = "\t";
             Console.WriteLine(
-                "Country\tPopulation\tProduction TWh\tConsumption TWh\tKW per person\tkg Prod\tco2\tkWnuke\tkWhydro\tkWfossil\tkWrenew");
+               $"Country{dv}Population{dv}Production TWh{dv}Consumption TWh{dv}KW per person{dv}kg Prod{dv}co2{dv}kWnuke{dv}kWhydro{dv}kWfossil{dv}kWrenew");
 
             foreach (var item in _fact["countries"])
             foreach (var country in item)
@@ -41,7 +42,7 @@ namespace MergePowerData
                 if (e == null) continue;
 
                 Console.WriteLine(
-                    $"{name}\t{pop}\t{e.ProdTWh}\t{e.ConsTWh}\t{e.ProdKWh / pop}\t{e.ProdTWh * TWh2kg}\t{e.TtonCo2}\t{e.KWnuke}\t{e.KWhydro}\t{e.KWfossil}\t{e.KWrenew}");
+                    $"{name}{dv}{pop}{dv}{e.ProdTWh}{dv}{e.ConsTWh}{dv}{e.ProdKWh / pop}{dv}{e.ProdTWh * TWh2kg}{dv}{e.TtonCo2}{dv}{e.KWnuke}{dv}{e.KWhydro}{dv}{e.KWfossil}{dv}{e.KWrenew}");
             }
         }
     }
