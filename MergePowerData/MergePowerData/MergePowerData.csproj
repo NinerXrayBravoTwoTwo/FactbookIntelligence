@@ -63,6 +63,7 @@
     <Compile Include="Report\ElectricityReportHeader.cs" />
     <Compile Include="Report\PdfReportData.cs" />
     <Compile Include="Report\PdfReportEvents.cs" />
+    <Compile Include="Report\Statistic.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

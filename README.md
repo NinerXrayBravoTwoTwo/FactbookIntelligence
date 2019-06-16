@@ -103,7 +103,7 @@ AARS
 -
 ** June 15, 2019** Calculate kg of Uranium and exchange $growth for Purchasing_Power which is better correlated to CO2 emmissions.
 
-ekg|eFFkg|Nuclearkg|FuelMbl|NatGasGcm|Co2Tton|$PP|Country
+ekg|eFFkg|U235kg|FuelMbl|NatGasGcm|Co2Tton|$PP|Country
 ---:|---:|---:|---:|---:|---:|---:|---
 947.3|596.8|94600.0|96.26|3477.0|33620|127800|World
 235.6|146.1|7844.0|12.47|238.6|11670|23210|China
