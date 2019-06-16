@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using MergePowerData.CIAFdata;
 using MergePowerData.Report;
 
@@ -20,14 +21,15 @@ namespace MergePowerData
         private const double Kilo = 1.0e3;
 
         private const double kgU245perkWh = 24.0e6;
+
+        // CIAF is a collection of data by country.  To analyze a specific set of data into a report we must extract a relevant subset 
+        private readonly List<Country> _countries = new List<Country>();
+
         //private const double TwentyMtonTnt = 0.93106557; //
         //20 Mton_e = 0.93106557 kg, ~1 kg
         //private const double TWh2MTonTnt = 0.86042065; // TWh = 0.86042 M ton Tnt
         //private const double TWh2PJ = 3.6; // TWh = 3.6 PJ (Peta Joule's)
         private Country _world;
-
-        // CIAF is a collection of data by country.  To analyze a specific set of data into a report we must extract a relevant subset 
-        private readonly List<Country> _countries = new List<Country>();
 
         public void Add(string name, Electric electric, FossilFuelDetail ff, Gdp gdp, long pop)
         {
@@ -42,13 +44,13 @@ namespace MergePowerData
             var dv = "\t";
             // header
             Console.WriteLine(
-                 //"ProdTWh{dv}"-
-                 $"ekg{dv}"
-                 + $"eFFkg{dv}"
-                 + $"U235kg{dv}"
-                 + $"FuelMbl{dv}"
-                 + $"NatGasGcm{dv}"
-                 + $"Co2Tton{dv}"
+                //"ProdTWh{dv}"-
+                $"ekg{dv}"
+                + $"eFFkg{dv}"
+                + $"U235kg{dv}"
+                + $"FuelMbl{dv}"
+                + $"NatGasGcm{dv}"
+                + $"Co2Tton{dv}"
                 //+ "maxFF_kWh"
                 //+ "kw/pop{dv}"
                 //+ "pop_M{dv}"
@@ -56,19 +58,21 @@ namespace MergePowerData
                 //+ "Prod_FF_TWh{dv}"
                 //+ "Capacity_TWh/y{dv}"
                 //+ "$Growth{dv}"
-                + $"$PP{dv}"
+                + $"$G PP{dv}"
                 //+ "$PP/TWh{dv}"
-                + $"Country");
+                + "Country");
 
             var statEnergy = new Statistic();
             var statEmissions = new Statistic();
             var statFuel = new Statistic();
             var statGrowth = new Statistic();
-                
+            var statNatGas = new Statistic();
+            var statBurnFossilFuel = new Statistic();
 
             foreach (var c in _countries.OrderByDescending(d => d.Electric.ProdTWh))
             {
-                var kgEfossil = c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh * TWh2kg;
+                var kgEfossil = c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh *
+                                TWh2kg;
                 var wrldKgEfossil = _world.Electric.Electricity.by_source.fossil_fuels.percent / 100 *
                                     _world.Electric.ProdTWh * TWh2kg;
 
@@ -79,10 +83,16 @@ namespace MergePowerData
                 if (c.PurchasePower.value / Giga < 2000)
                     continue;
 
-                statEmissions.Add(c.Electric.TtonCo2, c.PurchasePower.value / Giga);
-                statEnergy.Add(c.Electric.ConsTWh * TWh2kg, c.PurchasePower.value / Giga);
-                statFuel.Add(x: c.FossilFuelDetail.RefinedPetroleum.Consumption.Value / Mega, y: c.PurchasePower.value / Giga);
-                statGrowth.Add(x: c.GrowthRate.value, y: c.PurchasePower.value / Giga);
+                if (!Regex.IsMatch(c.Name, @"world|European", RegexOptions.IgnoreCase))
+                {
+                    statEnergy.Add(c.Electric.ProdTWh * TWh2kg, c.PurchasePower.value / Giga);
+                    statFuel.Add(c.FossilFuelDetail.RefinedPetroleum.Consumption.Value / Mega,c.PurchasePower.value / Giga);
+                    statNatGas.Add(c.FossilFuelDetail.NaturalGas.Consumption.Value / Giga,c.PurchasePower.value / Giga);
+                    statBurnFossilFuel.Add(
+                        c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh * TWh2kg,c.PurchasePower.value/Giga);
+                    statEmissions.Add(c.Electric.TtonCo2, c.PurchasePower.value / Giga);
+                    statGrowth.Add(c.GrowthRate.value, c.PurchasePower.value / Giga);
+                }
 
 
                 // Note; Working on making sense of Economics relative to use of FF and electricity.
@@ -122,10 +132,12 @@ namespace MergePowerData
                     + $"{c.Name}");
             }
 
-            Console.WriteLine("Elec: " + statEnergy.ToString());
-            Console.WriteLine("Fuel: " + statFuel.ToString());
-            Console.WriteLine("CO2L: " + statEmissions.ToString());
-            Console.WriteLine("Growth: " + statGrowth.ToString()); // test, I expect no correlation
+            Console.WriteLine("ElecC: " + statEnergy);
+            Console.WriteLine("BrnFF: " + statBurnFossilFuel);
+            Console.WriteLine("Fuel: " + statFuel);
+            Console.WriteLine("NatGas: " + statNatGas);
+            Console.WriteLine("CO2: " + statEmissions);
+            Console.WriteLine("Growth: " + statGrowth); // test, I expect no correlation
         }
 
         public void PdfReport()
@@ -139,9 +151,6 @@ namespace MergePowerData
             pdf.Create(stream);
 
             Process.Start(path + "/EnergyUseReport.pdf");
-
         }
     }
-
-
 }
