@@ -101,6 +101,16 @@ Note: the Nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg 
 
 AARS
 -
+** June 16, 2019 ** Add my statistic class to project. Compute liner regressions on severl different numbers relative to GDP. Yes energy use is clearly related to GDP with a high correlation.
+
+```
+ElecC: N: 14 Mean: 48.68 Slp: 98.86  Cor: 0.9842 Qx: 18.567 Qy: 1865.048
+BrnFF: N: 14 Mean: 30.24 Slp: 150.12 Cor: 0.9878 Qx: 12.272 Qy: 1865.048
+Fuel:  N: 14 Mean: 4.40 Slp: 1152.18 Cor: 0.9113 Qx: 1.475 Qy: 1865.048
+NatGas:N: 14 Mean: 157.36 Slp: 19.96 Cor: 0.6239 Qx: 58.290 Qy: 1865.048
+CO2:   N: 14 Mean: 1931.45 Slp: 2.05 Cor: 0.9423 Qx: 859.299 Qy: 1865.048
+```
+
 ** June 15, 2019** Calculate kg of Uranium and exchange $growth for Purchasing_Power which is better correlated to CO2 emmissions.
 
 ekg|eFFkg|U235kg|FuelMbl|NatGasGcm|Co2Tton|$PP|Country
