@@ -46,12 +46,12 @@ namespace MergePowerData
             // header
             Console.WriteLine(
                 //"ProdTWh{dv}"-
-                //$"ekg{dv}"
-                //+ $"eFFkg{dv}"
-                //+ $"U235kg{dv}"
-                //+ $"FuelMbl{dv}"
-                //+ $"NatGasGcm{dv}"
-                //+ $"Co2Tton{dv}"
+                $"ekg{dv}"
+                + $"eFFkg{dv}"
+                + $"U235kg{dv}"
+                + $"FuelMbl{dv}"
+                + $"NatGasGcm{dv}"
+                + $"Co2Tton{dv}"
                 ////+ "maxFF_kWh"
                 ////+ "kw/pop{dv}"
                 ////+ "pop_M{dv}"
@@ -59,12 +59,13 @@ namespace MergePowerData
                 ////+ "Prod_FF_TWh{dv}"
                 ////+ "Capacity_TWh/y{dv}"
                 ////+ "$Growth{dv}"
-                //+ $"$G PP{dv}"
-                 $"WindMillRepl{dv}"
-                //+ "$PP/TWh{dv}"
+                + $"$G PP{dv}"
+                // $"WindMillRepl{dv}"
+                // + $"$PP/TWh{dv}"
                 + "Country");
 
-            var statEnergy = new Statistic();
+            var statEnergyP = new Statistic();
+            var statEnergyC = new Statistic();
             var statEmissions = new Statistic();
             var statFuel = new Statistic();
             var statGrowth = new Statistic();
@@ -82,12 +83,13 @@ namespace MergePowerData
                 var currentCap = igc.YearCapacityTWhr;
                 var futureCap50Y = igc.YearCapacityTWhr * 2;
 
-                if (c.PurchasePower.value / Giga < 1000)
+                if (c.PurchasePower.value / Giga < 400)
                     continue;
 
                 if (!Regex.IsMatch(c.Name, @"world|European", RegexOptions.IgnoreCase)) // do not add aggregation country entries to stats
                 {
-                    statEnergy.Add(c.Electric.ProdTWh * TWh2kg, c.PurchasePower.value / Giga);
+                    statEnergyP.Add(c.Electric.ProdTWh * TWh2kg, c.PurchasePower.value / Giga);
+                    statEnergyC.Add(c.Electric.ConsTWh * TWh2kg, c.PurchasePower.value / Giga);
                     statFuel.Add(c.FossilFuelDetail.RefinedPetroleum.Consumption.Value / Mega, c.PurchasePower.value / Giga);
                     statNatGas.Add(c.FossilFuelDetail.NaturalGas.Consumption.Value / Giga, c.PurchasePower.value / Giga);
                     statBurnFossilFuel.Add(
@@ -134,7 +136,8 @@ namespace MergePowerData
                     + $"{c.Name}");
             }
 
-            Console.WriteLine("ElecC: " + statEnergy);
+            Console.WriteLine("ElecP: " + statEnergyP);
+            Console.WriteLine("ElecC: " + statEnergyC);
             Console.WriteLine("BrnFF: " + statBurnFossilFuel);
             Console.WriteLine("Fuel: " + statFuel);
             Console.WriteLine("NatGas: " + statNatGas);
