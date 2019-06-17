@@ -74,10 +74,9 @@ namespace MergePowerData.CIAFdata
         public int global_rank { get; set; }
         public string date { get; set; }
 
-        public double YearCapacityTWhr()
-        {
-            return 365.242198781 * 24 * TW;
-        }
+        public static double HoursPerYear => 365.242198781 * 24;
+        public double YearCapacityTWhr =>  HoursPerYear * TW;
+        
     }
 
 
