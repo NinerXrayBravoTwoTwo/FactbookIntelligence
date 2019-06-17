@@ -101,7 +101,11 @@ Note: the Nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg 
 
 AARS
 -
-** June 16, 2019 ** Add my statistic class to project. Compute liner regressions on severl different numbers relative to GDP. Yes energy use is clearly related to GDP with a high correlation.
+** June 17, 2019 ** Need to report if a report item is outside standard deviation range for that variable.  Will and insight and understanding/intelligence to the report.
+
+e.g. if the value for world-ekg is 947.3 is that within expected SD range?
+
+** June 16, 2019 ** Add my statistic class to project. Compute liner regressions on several different numbers relative to GDP. Yes energy use is clearly related to GDP with a high correlation.
 
 ```
 ElecC: N: 14 Mean: 48.68 Slp: 98.86  Cor: 0.9842 Qx: 18.567 Qy: 1865.048
