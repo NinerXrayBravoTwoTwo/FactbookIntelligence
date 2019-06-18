@@ -102,6 +102,21 @@ Note: the Nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg 
 AARS
 -
 ** June 17, 2019 ** 
+
+kg|dev_e|eFFkg|dev_FF|FuelMbl|NatGasGcm|Co2Tton|$G PP|Country
+---:|---:|---:|-----:|------:|--------:|------:|----:|------
+947.3|28.154|596.8|31.231|96.26|3477.0|33620|127800|World
+235.6|0.739|146.1|0.366|12.47|238.6|11670|23210|China
+164.0|2.494|114.8|1.414|19.96|767.6|5242|19490|United States
+121.9|7.598|53.6|11.248|12.89|428.8|3475|20850|European Union
+55.5|3.440|39.4|2.994|4.52|55.4|2383|9474|India
+41.3|0.176|28.1|0.331|3.65|467.5|1847|4016|Russia
+39.6|1.265|28.1|0.948|3.89|127.2|1268|5443|Japan
+26.0|0.793|6.0|0.757|2.45|124.4|641|1774|Canada
+24.5|1.530|10.1|2.369|2.46|93.4|848|4199|Germany
+22.7|0.838|3.9|2.384|2.96|34.4|514|3248|Brazil
+
+
 b> Refactor statistics to provide statdard deviaion of value in table for electricProd / $PP and burning FF / $PP
 
 a> Need to report if a report item is outside standard deviation range for that variable.  Will and insight and understanding/intelligence to the report.

@@ -47,7 +47,7 @@ namespace MergePowerData
 
         public void CsvReport()
         {
-            var dv = "\t";
+            var dv = "|";
             // header
             Console.WriteLine(
                 //"ProdTWh{dv}"-
