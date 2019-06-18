@@ -47,7 +47,7 @@ namespace MergePowerData
 
         public void CsvReport()
         {
-            var dv = "|";
+            var dv = "\t";
             // header
             Console.WriteLine(
                 //"ProdTWh{dv}"-
@@ -168,7 +168,7 @@ namespace MergePowerData
 
         public double Stand(string statName, double xValue, double yValue)
         {
-            return Math.Abs(xValue - CalcX(statName, yValue)) / _stats[statName].Qx();
+            return (xValue - CalcX(statName, yValue)) / _stats[statName].Qx();
         }
 
         public void Add(Country c)
