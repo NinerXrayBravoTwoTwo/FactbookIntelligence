@@ -101,7 +101,10 @@ Note: the Nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg 
 
 AARS
 -
-** June 17, 2019 ** Need to report if a report item is outside standard deviation range for that variable.  Will and insight and understanding/intelligence to the report.
+** June 17, 2019 ** 
+b> Refactor statistics to provide statdard deviaion of value in table for electricProd / $PP and burning FF / $PP
+
+a> Need to report if a report item is outside standard deviation range for that variable.  Will and insight and understanding/intelligence to the report.
 
 e.g. if the value for world-ekg is 947.3 is that within expected SD range?
 
