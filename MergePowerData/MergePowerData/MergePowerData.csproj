@@ -64,6 +64,7 @@
     <Compile Include="Report\PdfReportData.cs" />
     <Compile Include="Report\PdfReportEvents.cs" />
     <Compile Include="Report\Statistic.cs" />
+    <Compile Include="Report\StatCollector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
