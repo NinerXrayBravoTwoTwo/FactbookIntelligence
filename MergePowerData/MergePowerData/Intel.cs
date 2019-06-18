@@ -26,7 +26,7 @@ namespace MergePowerData
 
         // CIAF is a collection of data by country.  To analyze a specific set of data into a report we must extract a relevant subset 
         protected readonly List<Country> _countries = new List<Country>();
-        protected StatCollector _stats = new StatCollector(1000);
+        protected StatCollector _stats = new StatCollector(300);
 
         protected const double TwentyMtonTnt = 0.93106557; //
                                                            // 20 Mton_e = 0.93106557 kg, ~1 kg
@@ -52,7 +52,8 @@ namespace MergePowerData
             Console.WriteLine(
                 //"ProdTWh{dv}"-
                 $"ekg{dv}"
-                + $"dev_e{dv}"
+                + $"GTR>avgE{dv}"
+                + $"LSS<avgE{dv}"
                 + $"eFFkg{dv}"
                 + $"dev_FF{dv}"
                 + $"FuelMbl{dv}"
@@ -83,14 +84,17 @@ namespace MergePowerData
 
                 if (c.PurchasePower.value / Giga < _stats.PLimit)
                     continue;
-                
+
+                var standElectricProd =
+                    _stats.Stand("elecprod", c.Electric.ProdTWh * TWh2kg, c.PurchasePower.value / Giga);
                 // Understanding Country wealth relative to use of FF and electricity.
                 Console.WriteLine(
                     // $"{c.Electric.ProdTWh}{dv}"
                     $"{c.Electric.ProdTWh * TWh2kg:F1}{dv}"
-                    //+ $"{_stats.Equation("elecprod", c.Electric.ProdTWh)}{dv}"
-//                    + $"{_stats.CalcX("elecprod", c.PurchasePower.value / Giga):F3}\t"
-                    + $"{_stats.Stand("elecprod", c.Electric.ProdTWh * TWh2kg, c.PurchasePower.value/Giga):F3}{dv}"
+                    //+ $"{_stats.Equation("elecprod", c.Electric.ProdTWh)}{dv}"`
+                    //+ $"{_stats.CalcX("elecprod", c.PurchasePower.value / Giga):F3}\t"
+                    + $"{(standElectricProd > 0 ? Math.Abs(standElectricProd) : 0):F3}{dv}"
+                    + $"{(standElectricProd <= 0 ? Math.Abs(standElectricProd) : 0):F3}{dv}"
                     + $"{c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh * TWh2kg:F1}{dv}"
                     + $"{_stats.Stand("ff", c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh * Intel.TWh2kg, c.PurchasePower.value / Giga):F3}{dv}"
 //                    + $"{c.Electric.Electricity.by_source.nuclear_fuels.percent / 100 * c.Electric.ProdKWh / kgU245perkWh * 1.6:F1}{dv}" // 1.6 is power xfer loss estimate
@@ -168,7 +172,7 @@ namespace MergePowerData
 
         public double Stand(string statName, double xValue, double yValue)
         {
-            return (xValue - CalcX(statName, yValue)) / _stats[statName].Qx();
+            return /**Math.Abs*/(xValue - CalcX(statName, yValue)) / _stats[statName].Qx();
         }
 
         public void Add(Country c)

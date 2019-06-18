@@ -101,6 +101,9 @@ Note: the Nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg 
 
 AARS
 -
+** June 18, 2019 **
+It is inequivical that country energy usage correlates directly to country GDP.  The remaining question is; Does greater than average energy use correlate to greater economic growth?  I can answer that question or determine if there is not enough fine grained data in CIAF.
+
 ** June 17, 2019 ** 
 
 kg|dev_e|eFFkg|dev_FF|FuelMbl|NatGasGcm|Co2Tton|$G PP|Country
