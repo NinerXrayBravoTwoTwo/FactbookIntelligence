@@ -46,6 +46,8 @@ namespace MergePowerData
             _stats = new StatCollector(minimumGdp);
         }
 
+        // These linear regressions showed that there is no correlation between gdp growth & countries diff from average energy / gdp 
+
         public Statistic DevRelativeToGrowth()
         {
             _energyDeviationRelativeToGrowth = new Statistic();
@@ -60,10 +62,10 @@ namespace MergePowerData
                 _energyDeviationRelativeToGrowth.Add(x, country.GrowthRate.value);
 
                 x = _stats.Stand("ff",
-                    country.Electric.Electricity.by_source.fossil_fuels.percent / 100 * country.Electric.ProdTWh *
-                    Intel.TWh2kg, country.PurchasePower.value / Giga);
+                    country.Electric.Electricity.by_source.fossil_fuels.percent / 100 * country.Electric.ProdTWh * Intel.TWh2kg,
+                    country.PurchasePower.value / Giga);
 
-                _ffDevRelativeToGrowth.Add(x, country.GrowthRate.value);
+                _ffDevRelativeToGrowth.Add( x, country.GrowthRate.value);
             }
 
             Console.WriteLine(_energyDeviationRelativeToGrowth);
@@ -71,7 +73,6 @@ namespace MergePowerData
 
             return _energyDeviationRelativeToGrowth;
         }
-
 
         /// <summary>
         /// Countries added here will be computed into the report.
@@ -134,25 +135,22 @@ namespace MergePowerData
 
                 var standElectricProd = _stats.Stand("elecprod", c.Electric.ProdTWh * TWh2kg, c.PurchasePower.value / Giga);
 
-                var s = _energyDeviationRelativeToGrowth;
-                var x = (c.GrowthRate.value) / s.Slope(); // calc x for y value
-                var stand = (standElectricProd - x) / s.Qx();
+                // calculate rate of change in Electric relative to gdp.growth ...
+                //var s = _energyDeviationRelativeToGrowth;
+                //var x = (c.GrowthRate.value) / s.Slope(); // calc x for y value
+                //var stand = (standElectricProd - x) / s.Qx();
 
                 // Understanding Country wealth relative to use of FF and electricity.
                 Console.WriteLine(
                     // $"{c.Electric.ProdTWh}{dv}"
                     $"{c.Electric.ProdTWh * TWh2kg:F1}{dv}"
-                    //+ $"{_stats.Equation("elecprod", c.Electric.ProdTWh)}{dv}"`
-                    //+ $"{_stats.CalcX("elecprod", c.PurchasePower.value / Giga):F3}\t"
-
+                 
                     + $"{(standElectricProd >= 0 ? Math.Abs(standElectricProd) : 0):F3}{dv}"
                     + $"{(standElectricProd <= 0 ? Math.Abs(standElectricProd) : 0):F3}{dv}"
 
-                    // + $"" // Calculate rate of change in Electric relative to gdp.growth ...
-                    + $"z:{stand:F1}\t"
 
                     + $"{c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh * TWh2kg:F1}{dv}"
-                    + $"{_stats.Stand("ff", c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh * Intel.TWh2kg, c.PurchasePower.value / Giga):F3}{dv}"
+                    + $"{_stats.Stand("elecffburn", c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh * Intel.TWh2kg, c.PurchasePower.value / Giga):F3}{dv}"
                     // + $"{c.Electric.Electricity.by_source.nuclear_fuels.percent / 100 * c.Electric.ProdKWh / kgU245perkWh * 1.6:F1}{dv}" // 1.6 is power xfer loss estimate
                     + $"{c.FossilFuelDetail.RefinedPetroleum.Consumption.Value / Mega:F2}{dv}"
                     + $"{c.FossilFuelDetail.NaturalGas.Consumption.Value / Giga:F1}{dv}"
