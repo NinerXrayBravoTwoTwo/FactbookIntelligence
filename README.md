@@ -101,6 +101,42 @@ Note: the Nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg 
 
 AARS
 -
+
+** June 19, 2019 **
+
+
+
+The test to compute linear regressions using standard deviations of other variables showed that no such relation can be found. It's equivelent to taking a second integration of the data and other dimentions would have to be used to find a correlation.  We simply do not have the data for that complicated a model.  The new structure of the classes is better but I can delete the extranious code for the computations.  Next plan is to improve the report format as a pdf and look at integrating PD map models and graphics so I don;t need to import the data to excell for graphics.
+
+-----
+The linear regressions  (LR) I calculated for CIAF (CIA Factbook) data have the following values,
+
+ Eact LR is bivariate, X / Y  where X is the item in question and Y is the GDP - Purchase Power Parity for each country
+```
+MergePowerData.Report.StatCollector
+
+Electric Production - High Correlation
+elecprod: N: 14 Mean: 48.68 Slp: 98.86 Cor: 0.9842 Qx: 18.567 Qy: 1865.048 Y: 1409.83768051239
+
+Electric consumption - High correlation
+eleccons: N: 14 Mean: 45.11 Slp: 103.76 Cor: 0.9816 Qx: 17.645 Qy: 1865.048 Y: 1541.89389252972
+
+Refined Fuel consumption - Good correlation
+fuel: N: 14 Mean: 4.40 Slp: 1152.18 Cor: 0.9113 Qx: 1.475 Qy: 1865.048 Y: 1153.10754020737
+
+Natural Gas consumption - Correlation Not so good
+natgas: N: 14 Mean: 157.36 Slp: 19.96 Cor: 0.6239 Qx: 58.290 Qy: 1865.048 Y: 3081.13951583579
+
+Fossil Fuel burning to generate Electric - Highest correlation
+ff: N: 14 Mean: 30.24 Slp: 150.12 Cor: 0.9878 Qx: 12.272 Qy: 1865.048 Y: 1682.88703120591
+
+CO2 Emissions - Good correlation
+emission: N: 14 Mean: 1931.45 Slp: 2.05 Cor: 0.9423 Qx: 859.299 Qy: 1865.048 Y: 2272.11573250234
+
+GDP to GDP Growth rate - Very low correlation
+growth: N: 14 Mean: 3.26 Slp: 1072.37 Cor: 0.3594 Qx: 0.625 Qy: 1865.048 Y: 2729.416922744
+```
+
 ** June 18, 2019 **
 
 b> Computed linear regressions for;
@@ -112,7 +148,6 @@ The results show no correlation at this level of data resolution.  Clearly the r
 ```
 N: 14 Mean: -0.77 Slp: -0.60 Cor: -0.1739 Qx: 0.180 Qy: 0.625 Y: 2.79266010063874
 N: 14 Mean: -0.91 Slp: -0.65 Cor: -0.1649 Qx: 0.158 Qy: 0.625 Y: 2.66011841105497
-ek
 ```
 a> It is inequivical that country energy usage correlates directly to country GDP.  The remaining question is; Does greater than average energy use correlate to greater economic growth?  I can answer that question or determine if there is not enough fine grained data in CIAF.
 
