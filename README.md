@@ -106,7 +106,11 @@ AARS
 
 
 
-The test to compute linear regressions using standard deviations of other variables showed that no such relation can be found. It's equivelent to taking a second integration of the data and other dimentions would have to be used to find a correlation.  We simply do not have the data for that complicated a model.  The new structure of the classes is better but I can delete the extranious code for the computations.  Next plan is to improve the report format as a pdf and look at integrating PD map models and graphics so I don;t need to import the data to excell for graphics.
+The test to compute linear regressions using standard deviations of other variables showed that no such relation can be found. It's equivelent to taking a second integration of the data and other dimentions would have to be used to find a correlation.  We simply do not have the data for that complicated a model.  
+
+Software Design; The new structure of the classes is better but I can delete the now extranious code for the new standard deviation vs Growth computations.  
+
+Next; improve the report format as a pdf and look at integrating PD map models and graphics so I don;t need to import the data to excell for graphics.
 
 -----
 The linear regressions  (LR) I calculated for CIAF (CIA Factbook) data have the following values,
