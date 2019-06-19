@@ -102,7 +102,19 @@ Note: the Nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg 
 AARS
 -
 ** June 18, 2019 **
-It is inequivical that country energy usage correlates directly to country GDP.  The remaining question is; Does greater than average energy use correlate to greater economic growth?  I can answer that question or determine if there is not enough fine grained data in CIAF.
+
+b> Computed linear regressions for;
+	*1> electric prod deviation / gdp.growth; 
+	*2> ff consumption deviation / gdp.growth
+
+The results show no correlation at this level of data resolution.  Clearly the rate of electric growth is related to growth of certain industries but not for entire countries where there are other finacial factors.
+
+```
+N: 14 Mean: -0.77 Slp: -0.60 Cor: -0.1739 Qx: 0.180 Qy: 0.625 Y: 2.79266010063874
+N: 14 Mean: -0.91 Slp: -0.65 Cor: -0.1649 Qx: 0.158 Qy: 0.625 Y: 2.66011841105497
+ek
+```
+a> It is inequivical that country energy usage correlates directly to country GDP.  The remaining question is; Does greater than average energy use correlate to greater economic growth?  I can answer that question or determine if there is not enough fine grained data in CIAF.
 
 ** June 17, 2019 ** 
 

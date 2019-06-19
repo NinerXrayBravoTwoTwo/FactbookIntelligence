@@ -31,14 +31,13 @@ namespace MergePowerData.Report
 
         public double Stand(string statName, double xValue, double yValue)
         {
-            return /**Math.Abs*/(xValue - CalcX(statName, yValue)) / _stats[statName].Qx();
+            return (xValue - CalcX(statName, yValue)) / _stats[statName].Qx();
         }
 
         public void Add(Country c)
         {
             //947.3   N: 46 slope: 104.516 Yint: 540.545
-            if (c.PurchasePower.value / Intel.Giga < PLimit)
-                return;
+            if (c.PurchasePower.value / Intel.Giga < PLimit) return;
 
             // do not add aggregation country entries to stats
             if (Regex.IsMatch(c.Name, @"world|European", RegexOptions.IgnoreCase))

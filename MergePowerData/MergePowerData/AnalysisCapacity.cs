@@ -16,7 +16,7 @@ namespace MergePowerData
 
         public void ElectricReport()
         {
-            var intel = new Intel();
+            var intel = new Intel( 2000);
 
             foreach (var item in _fact["countries"])
             foreach (var country in item)
@@ -36,6 +36,8 @@ namespace MergePowerData
                 intel.Add(name, electric, ff, Gdp(data), Population(data));
             }
 
+            // Calculate statistic for Electric Qx / $Growth
+            intel.DevRelativeToGrowth();
             intel.CsvReport();
         }
 

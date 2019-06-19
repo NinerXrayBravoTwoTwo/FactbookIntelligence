@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using MergePowerData.CIAFdata;
 using MergePowerData.Report;
 
@@ -12,32 +13,82 @@ namespace MergePowerData
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class Intel
     {
+        public double MinimumGdp { get; set; }
+
+
+        // Report constant and conversion factors
         public const double Tera = 1.0e12;
         public const double Giga = 1.0e9;
         public const double Mega = 1.0e6;
         public const double Kilo = 1.0e3;
 
-        protected const double kgU245perkWh = 24.0e6;
+        public const double kgU245perkWh = 24.0e6;
 
         public const double TWh2kg = 0.040055402; // TWh = 0.040055402 kg
         public static double windMillTWh = 2.0e-6 * InstalledGeneratingCapacity.HoursPerYear * 0.4;  // 2MW wind mill 40% eff
 
         // CIAF is a collection of data by country.  To analyze a specific set of data into a report we must extract a relevant subset 
         protected readonly List<Country> _countries = new List<Country>();
-        protected StatCollector _stats = new StatCollector(300);
+        protected StatCollector _stats;
+
 
         protected const double TwentyMtonTnt = 0.93106557; //
                                                            // 20 Mton_e = 0.93106557 kg, ~1 kg
         protected const double TWh2MTonTnt = 0.86042065; // TWh = 0.86042 M ton Tnt
         protected const double TWh2PJ = 3.6; // TWh = 3.6 PJ (Peta Joule's)
         protected Country _world;
+        protected Statistic _energyDeviationRelativeToGrowth;
+        protected Statistic _ffDevRelativeToGrowth;
 
+        public Intel(double minimumGdp)
+        {
+            MinimumGdp = minimumGdp;
+            _stats = new StatCollector(minimumGdp);
+        }
+
+        public Statistic DevRelativeToGrowth()
+        {
+            _energyDeviationRelativeToGrowth = new Statistic();
+            _ffDevRelativeToGrowth = new Statistic();
+
+            foreach (var country in _countries)
+            {
+                // do not add aggregation country entries to stats
+                if (Regex.IsMatch(country.Name, @"world|european", RegexOptions.IgnoreCase)) continue;
+
+                var x = _stats.Stand("elecprod", country.Electric.ProdTWh * TWh2kg, country.PurchasePower.value / Giga);
+                _energyDeviationRelativeToGrowth.Add(x, country.GrowthRate.value);
+
+                x = _stats.Stand("ff",
+                    country.Electric.Electricity.by_source.fossil_fuels.percent / 100 * country.Electric.ProdTWh *
+                    Intel.TWh2kg, country.PurchasePower.value / Giga);
+
+                _ffDevRelativeToGrowth.Add(x, country.GrowthRate.value);
+            }
+
+            Console.WriteLine(_energyDeviationRelativeToGrowth);
+            Console.WriteLine(_ffDevRelativeToGrowth);
+
+            return _energyDeviationRelativeToGrowth;
+        }
+
+
+        /// <summary>
+        /// Countries added here will be computed into the report.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="electric"></param>
+        /// <param name="ff"></param>
+        /// <param name="gdp"></param>
+        /// <param name="pop"></param>
         public void Add(string name, Electric electric, FossilFuelDetail ff, Gdp gdp, long pop)
         {
             if (name.Equals("World"))
                 _world = new Country(name, electric, ff, gdp, pop);
 
             var country = new Country(name, electric, ff, gdp, pop);
+
+            if (country.PurchasePower.value / Giga < _stats.PLimit) return;
 
             _countries.Add(country);
             _stats.Add(country);
@@ -46,6 +97,7 @@ namespace MergePowerData
         public void CsvReport()
         {
             var dv = "\t";
+
             // header
             Console.WriteLine(
                 //"ProdTWh{dv}"-
@@ -80,25 +132,28 @@ namespace MergePowerData
                 var currentCap = igc.YearCapacityTWhr;
                 var futureCap50Y = igc.YearCapacityTWhr * 2;
 
-                if (c.PurchasePower.value / Giga < _stats.PLimit)
-                    continue;
+                var standElectricProd = _stats.Stand("elecprod", c.Electric.ProdTWh * TWh2kg, c.PurchasePower.value / Giga);
 
-                var standElectricProd =
-                    _stats.Stand("elecprod", c.Electric.ProdTWh * TWh2kg, c.PurchasePower.value / Giga);
+                var s = _energyDeviationRelativeToGrowth;
+                var x = (c.GrowthRate.value) / s.Slope(); // calc x for y value
+                var stand = (standElectricProd - x) / s.Qx();
+
                 // Understanding Country wealth relative to use of FF and electricity.
                 Console.WriteLine(
                     // $"{c.Electric.ProdTWh}{dv}"
                     $"{c.Electric.ProdTWh * TWh2kg:F1}{dv}"
                     //+ $"{_stats.Equation("elecprod", c.Electric.ProdTWh)}{dv}"`
                     //+ $"{_stats.CalcX("elecprod", c.PurchasePower.value / Giga):F3}\t"
-                    
-                    // + $"" // Calculate rate of change in Electric relative to gdp.growth ...
 
-                    + $"{(standElectricProd > 0 ? Math.Abs(standElectricProd) : 0):F3}{dv}"
+                    + $"{(standElectricProd >= 0 ? Math.Abs(standElectricProd) : 0):F3}{dv}"
                     + $"{(standElectricProd <= 0 ? Math.Abs(standElectricProd) : 0):F3}{dv}"
+
+                    // + $"" // Calculate rate of change in Electric relative to gdp.growth ...
+                    + $"z:{stand:F1}\t"
+
                     + $"{c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh * TWh2kg:F1}{dv}"
                     + $"{_stats.Stand("ff", c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh * Intel.TWh2kg, c.PurchasePower.value / Giga):F3}{dv}"
-//                    + $"{c.Electric.Electricity.by_source.nuclear_fuels.percent / 100 * c.Electric.ProdKWh / kgU245perkWh * 1.6:F1}{dv}" // 1.6 is power xfer loss estimate
+                    // + $"{c.Electric.Electricity.by_source.nuclear_fuels.percent / 100 * c.Electric.ProdKWh / kgU245perkWh * 1.6:F1}{dv}" // 1.6 is power xfer loss estimate
                     + $"{c.FossilFuelDetail.RefinedPetroleum.Consumption.Value / Mega:F2}{dv}"
                     + $"{c.FossilFuelDetail.NaturalGas.Consumption.Value / Giga:F1}{dv}"
                     //+ $"{c.Pop / 1e6:F0}{dv}"
