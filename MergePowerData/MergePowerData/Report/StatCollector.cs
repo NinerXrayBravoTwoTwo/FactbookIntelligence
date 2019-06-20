@@ -25,12 +25,12 @@ namespace MergePowerData.Report
 
         public double CalcX(string statName, double yValue)
         {
-            return yValue / _stats[statName].Slope();
+            return yValue / _stats[statName].Slope(); //+ _stats[statName].YIntercept();
         }
 
         public double Stand(string statName, double xValue, double yValue)
         {
-            return (xValue - CalcX(statName, yValue)) / _stats[statName].Qx();
+            return ((xValue - CalcX(statName, yValue)) / _stats[statName].Qx());
         }
 
         public void Add(Country c)

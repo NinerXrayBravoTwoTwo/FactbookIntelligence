@@ -104,8 +104,6 @@ AARS
 
 ** June 19, 2019 **
 
-
-
 The test to compute linear regressions using standard deviations of other variables showed that no such relation can be found. It's equivelent to taking a second integration of the data and other dimentions would have to be used to find a correlation.  We simply do not have the data for that complicated a model.  
 
 Software Design; The new structure of the classes is better but I can delete the now extranious code for the new standard deviation vs Growth computations.  
@@ -115,7 +113,7 @@ Next; improve the report format as a pdf and look at integrating PD map models a
 -----
 The linear regressions  (LR) I calculated for CIAF (CIA Factbook) data have the following values,
 
- Eact LR is bivariate, X / Y  where X is the item in question and Y is the GDP - Purchase Power Parity for each country
+ Each LR is bivariate, X / Y  where X is the item in question and Y is the GDP - Purchase Power Parity for each country
 ```
 MergePowerData.Report.StatCollector
 

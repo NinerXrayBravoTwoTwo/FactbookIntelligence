@@ -20,9 +20,20 @@ namespace MergePowerData.Report
 
             var header = new ElectricityReportHeader(_reportData);
 
-           // var table = header.TopRow(document, _pageCount, _reportData.PageEstimate());
+            var table = header.TopRow(document, _pageCount);
 
-           // table.WriteSelectedRows(0, -1, document.LeftMargin, document.PageSize.Height - 10, writer.DirectContent);
+            table.WriteSelectedRows(0, -1, document.LeftMargin, document.PageSize.Height - 10, writer.DirectContent);
         }
+
+        //public override void OnStartPage(PdfWriter writer, Document document)
+        //{
+        //    _pageCount++;
+
+        //    var header = new CertificateHeader(_certData);
+
+        //    var table = header.TopRow(document, _pageCount, _certData.PageEstimate());
+
+        //    table.WriteSelectedRows(0, -1, document.LeftMargin, document.PageSize.Height - 10, writer.DirectContent);
+        //}
     }
 }

@@ -14,7 +14,7 @@ namespace MergePowerData.Report
 
         public PdfReportData(
             Country world,
-            Country countries)
+            List<Country> countries)
         {
 
         }
