@@ -102,8 +102,7 @@ Note: the Nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg 
 
 # AARS
 
-
-** June 19, 2019 **
+## June 19, 2019
 
 The test to compute linear regressions using standard deviations of other variables showed that no such relation can be found. It's equivelent to taking a second integration of the data and other dimentions would have to be used to find a correlation.  We simply do not have the data for that complicated a model.  
 
@@ -141,7 +140,7 @@ GDP to GDP Growth rate - Very low correlation
 growth: N: 14 Mean: 3.26 Slp: 1072.37 Cor: 0.3594 Qx: 0.625 Qy: 1865.048 Y: 2729.416922744
 ```
 
-** June 18, 2019 **
+## June 18, 2019
 
 b> Computed linear regressions for;
 	*1> electric prod deviation / gdp.growth; 
@@ -155,7 +154,7 @@ N: 14 Mean: -0.91 Slp: -0.65 Cor: -0.1649 Qx: 0.158 Qy: 0.625 Y: 2.6601184110549
 ```
 a> It is inequivical that country energy usage correlates directly to country GDP.  The remaining question is; Does greater than average energy use correlate to greater economic growth?  I can answer that question or determine if there is not enough fine grained data in CIAF.
 
-** June 17, 2019 ** 
+## June 17, 2019
 
 kg|dev_e|eFFkg|dev_FF|FuelMbl|NatGasGcm|Co2Tton|$G PP|Country
 ---:|---:|---:|-----:|------:|--------:|------:|----:|------
@@ -177,7 +176,9 @@ a> Need to report if a report item is outside standard deviation range for that 
 
 e.g. if the value for world-ekg is 947.3 is that within expected SD range?
 
-** June 16, 2019 ** Add my statistic class to project. Compute liner regressions on several different numbers relative to GDP. Yes energy use is clearly related to GDP with a high correlation.
+## June 16, 2019
+
+Add my statistic class to project. Compute liner regressions on several different numbers relative to GDP. Yes energy use is clearly related to GDP with a high correlation.
 
 ```
 ElecC: N: 14 Mean: 48.68 Slp: 98.86  Cor: 0.9842 Qx: 18.567 Qy: 1865.048
@@ -187,7 +188,8 @@ NatGas:N: 14 Mean: 157.36 Slp: 19.96 Cor: 0.6239 Qx: 58.290 Qy: 1865.048
 CO2:   N: 14 Mean: 1931.45 Slp: 2.05 Cor: 0.9423 Qx: 859.299 Qy: 1865.048
 ```
 
-** June 15, 2019** Calculate kg of Uranium and exchange $growth for Purchasing_Power which is better correlated to CO2 emmissions.
+## June 15, 2019
+Calculate kg of Uranium and exchange $growth for Purchasing_Power which is better correlated to CO2 emmissions.
 
 ekg|eFFkg|U235kg|FuelMbl|NatGasGcm|Co2Tton|$PP|Country
 ---:|---:|---:|---:|---:|---:|---:|---
@@ -207,13 +209,18 @@ ekg|eFFkg|U235kg|FuelMbl|NatGasGcm|Co2Tton|$PP|Country
 12.7|6.4|1909.2|1.58|79.2|424|2925|United Kingdom
 
 
-**June 15, 2019;** It should be possible to calculate the U235 equivelent burned in generating electric power.  Equation (%nuclear * ElectricProd / kgU235tokWh).  The conversion factor is 24 mega kWh per kg, which should provide an estimate for Uranium used to compare (Excluding military applications). 
+## June 15, 2019
 
-**June 15, 2019;** Beside Coal also missing from the data are Uranium / Thorium mining for reactor fuel.  Significant today and more important every year.
+It should be possible to calculate the U235 equivelent burned in generating electric power.  Equation (%nuclear * ElectricProd / kgU235tokWh).  The conversion factor is 24 mega kWh per kg, which should provide an estimate for Uranium used to compare (Excluding military applications). 
+
+## June 15, 2019
+Beside Coal also missing from the data are Uranium / Thorium mining for reactor fuel.  Significant today and more important every year.
 
 *8 kWh of heat can be generated from 1 kg of coal, approx. 12 kWh from 1 kg of mineral oil and around 24,000,000 kWh from 1 kg of uranium-235. Related to one kilogram, uranium-235 contains two to three million times the energy equivalent of oil or coal. The illustration shows how much coal, oil or natural uranium is required for a certain quantity of electricity. Thus, 1 kg natural uranium - following a corresponding enrichment and used for power generation in light water reactors - corresponds to nearly 10,000 kg of mineral oil or 14,000 kg of coal and enables the generation of 45,000 kWh of electricity.*
 
-**June 15, 2019;** Relating data in energy sectors to Econ growth.
+## June 15, 2019
+
+Relating data in energy sectors to Econ growth.
 ```
 $ ./MergePowerData
 ```
@@ -228,12 +235,12 @@ ekg|eFF_kg|Fuel_Mbbl|NatGas_Gcm|Co2Tton|$Growth|Country
 Switch back to kg of energy from Tera watt's because it is eaiser to compare/understand and for ordinary humans to relate too.  Add in fuel and natGas to table.
 Problems;  There is no value for Coal consumption.  It is mixed into FF electric BUT there is no separate statistic for other uses of coal such as direct coal steal making industry, paper, heading, steam production, steam powered trains (china/VN) etc.  Not all coal is consumed in electric generation.
 
-**June 14, 2019;** Reduced all the data concepts into a single story/question; “How is country economics related to CO2 emissions.  Many ways to go with this; Am currently testing three views, 1> FF Electric Production, 2> CO2 Emissions, 3> Economic growth.
+## June 14, 2019
+
+Reduced all the data concepts into a single story/question; “How is country economics related to CO2 emissions.  Many ways to go with this; Am currently testing three views, 1> FF Electric Production, 2> CO2 Emissions, 3> Economic growth.
 
 Some problems; a> Only the top 40 or so countries by total Power production have an economy b> Some countries are in growth decline or collapse due to war (Venezuela, Syria, Saudi Arabia, Iran, Iraq)
 
-**June 11, 2019;** Processed a series of pie charts detailing crude oil, refined oil, electric production, and CO2 emissions.  Converted some of this data into color coded world maps. Interesting results.  Each graph poses more experiments and questions. Am considering changes to output graphs directly instead of post processing the data in Excel.
+## June 11, 2019
 
-Published the results on twitter and did not receive much feedback. I’m wonder if it needs to be packaged better. Where else could I publish this intelligence?  Who needs this intelligence?
-
-
+Processed a series of pie charts detailing crude oil, refined oil, electric production, and CO2 emissions.  Converted some of this data into color coded world maps. Interesting results.  Each graph poses more experiments and questions. Am considering changes to output graphs directly instead of post processing the data in Excel.
