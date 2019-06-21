@@ -9,8 +9,7 @@ This project parses "CIA Factbook" (CIAF) data and attempts to turn some of it i
 
 ## Purpose/Hypothesis
 
-
-My motive is simple; To understand the economic realities and facts of the "Climate Change" narrative in order to determine their voracity and motivations.
+To understand the economic realities and facts of the "Climate Change" narrative in order to determine their voracity and motivations.
 
 This project represents a starting point for our improvement of perception of the world. We start with a preconceived notion of how things are.  If intelligence is practiced correctly, we will always find aspects of our preconceptions that are in error.  When we learn the facts and their context they will not agree with your friends, the media, your professors, generally accepted theories, or ourselves.  Often reality crystallizes into truths that are so profound it may take years before we accept them let alone are able to convince others. Look at AE's work for example.  It took him years to understand and accept some of the implications of his early work.  He never did fully believe the implications of quantum mechanics.  And today, 100 years later, most of the human race still does not even partially believe/understand it. 
 
@@ -20,7 +19,7 @@ Always consider the source and motives of intelligence. For example, "Journalism
 
 Every search starts someplace; I have started with physics and general relativity. This perspective allows me to understand the energies expended in the earths/sun/space climate system and comprehend these energies.  Note; Nagasaki bomb released 1g of energy (see note at end of this file for more or reference my Mass-Energy GitHub project.)
 
-To keep everything in context I occasionally pop out to the 10 AU view (~1.4 hours distance from sun, twice as far as Jupiter’s orbit.)  From here it is easier to remember that, we and everything are in space, that the earth is very close to our star, which is incredibly hot and bright, surrounded by nothing at all for light years in every direction. Our arguments about climate change are insignificant relative to the reality in which we actually exist.
+To keep everything in context I occasionally pop out to the 10 AU view (~1.4 hours distance from sun, twice as far as Jupiterâ€™s orbit.)  From here it is easier to remember that, we and everything are in space, that the earth is very close to our star, which is incredibly hot and bright, surrounded by nothing at all for light years in every direction. Our arguments about climate change are insignificant relative to the reality in which we actually exist.
 
 #### Theory of Intelligence 
 
@@ -28,7 +27,7 @@ This project represents the practice of a science.  A STEM of journalism and per
 
 #### Boyd and OODA
 
-The "Scientific Method (SM)" is the basis of turning data into intelligence, however we have no time for formal review, publishing, peer review, that may take a lifetime.  Instead we MUST use a more intense version of SM; Boydes’ OODA loop.
+The "Scientific Method (SM)" is the basis of turning data into intelligence, however we have no time for formal review, publishing, peer review, that may take a lifetime.  Instead we MUST use a more intense version of SM; Boydesâ€™ OODA loop.
 
 In summary; (O) Take raw data -> (O orient) Huh? what is this -> (D decide) Create Testable hypothesis -> (A) Act/Test -> push feedback into start. (AAR, after action review)
 
@@ -119,9 +118,9 @@ Time is not a special unit; it is part of space and should be measured in meters
 
 When you substitute s=300 Mm into Newtonian physics, energy and mass become the same thing. A kg is 89.9 Peta J or 25 Tera watt hrs.  This might take 186k miles to absorb.
 
-Note: In AE’s e=mc^2, c^2 is just a conversion factor, ergs to grams. The speed of light, c=1 after all.
+Note: In AEâ€™s e=mc^2, c^2 is just a conversion factor, ergs to grams. The speed of light, c=1 after all.
 
-Our star radiates 385 yotta watts about 0.1 x the mass of Mt Everest per hour or 15,000 trillion Nagasaki’s per hr.
+Our star radiates 385 yotta watts about 0.1 x the mass of Mt Everest per hour or 15,000 trillion Nagasakiâ€™s per hr.
 (yotta = trillion trillion)
 
 How much energy the earth absorbs and radiates per day seems to be a closely guarded secret.  Clearly, absorption and radiation are in equilibrium because the earth is not getting warmer or cooler within any margin of error we can currently measure.
@@ -267,7 +266,7 @@ Problems;  There is no value for Coal consumption.  It is mixed into FF electric
 
 ## June 14, 2019
 
-Reduced all the data concepts into a single story/question; “How is country economics related to CO2 emissions.  Many ways to go with this; Am currently testing three views, 1> FF Electric Production, 2> CO2 Emissions, 3> Economic growth.
+Reduced all the data concepts into a single story/question; â€œHow is country economics related to CO2 emissions.  Many ways to go with this; Am currently testing three views, 1> FF Electric Production, 2> CO2 Emissions, 3> Economic growth.
 
 Some problems; a> Only the top 40 or so countries by total Power production have an economy b> Some countries are in growth decline or collapse due to war (Venezuela, Syria, Saudi Arabia, Iran, Iraq)
 
