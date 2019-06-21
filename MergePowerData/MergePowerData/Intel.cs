@@ -5,6 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using MergePowerData.CIAFdata;
 using MergePowerData.Report;
 
@@ -198,6 +199,8 @@ namespace MergePowerData
             var stream = new FileStream(path + "/EnergyUseReport.pdf", FileMode.Create);
 
             pdf.Create(stream);
+
+            Thread.Sleep(1000); // file needs to close before I kick off reader
 
             Process.Start(path + "/EnergyUseReport.pdf");
         }

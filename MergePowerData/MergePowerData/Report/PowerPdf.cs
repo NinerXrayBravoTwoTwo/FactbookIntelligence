@@ -20,7 +20,6 @@ namespace MergePowerData.Report
 
         public PowerPdf(Country world, List<Country> countries)
         {
-
             _reportData = new PdfReportData(world, countries);
         }
 
@@ -32,12 +31,12 @@ namespace MergePowerData.Report
             var headerEvents = new PdfReportEvents(_reportData);
 
             var doc = new Document(PageSize.A4.Rotate(), margin, margin, marginTop, margin);
-            doc.AddAuthor("Boo:");
-            doc.AddTitle("boohoo");
+            doc.AddAuthor("Jillian England:");
+            doc.AddTitle("MergePower.CIAF");
             doc.AddCreationDate();
 
             var writer = PdfWriter.GetInstance(doc, stream);
-            // writer.PageEvent = headerEvents;
+             writer.PageEvent = headerEvents;
 
             doc.Open();
 
@@ -48,7 +47,6 @@ namespace MergePowerData.Report
 
         protected void Document<T>(Document doc, T stream, PdfWriter writer) where T : Stream
         {
-
             doc.Add(BodyRow(doc));
 
             doc.Add(new Phrase(Chunk.NEWLINE)
@@ -80,7 +78,8 @@ namespace MergePowerData.Report
                 HorizontalAlignment = Element.ALIGN_LEFT
             };
 
-            table.AddCell(new PdfPCell(NumberCell(111)) { BorderWidth = 0 });
+            table.AddCell(new PdfPCell(NumberCell(111
+            )) { BorderWidth = 0 });
             table.AddCell(new PdfPCell(NumberCell(222)) { BorderWidth = 0 });
             table.AddCell(new PdfPCell(NumberCell(333)) { BorderWidth = 0 });
             table.AddCell(new PdfPCell(NumberCell(444)) { BorderWidth = 0 });

@@ -1,10 +1,26 @@
 # Factbook Intelligence
 
-What is the difference between intelligence and data?
+Intelligence Or/Vs Data?
 -
 This project parses "CIA Factbook" (CIAF) data and attempts to turn some of it into "intelligence".
 
 "Data and algorithms are not technology, they are artifacts of technology." -- Quote from myself in 1992
+
+
+Purpose/Hypothesis
+-
+
+My motive is simple; To understand the economic realities and facts of the "Climate Change" narrative in order to determine their voracity and motivations.
+
+This project represents a starting point for our improvement of perception of the world. We start with a preconceived notion of how things are.  If intelligence is practiced correctly, we will always find aspects of our preconceptions that are in error.  When we learn the facts and their context they will not agree with your friends, the media, your professors, generally accepted theories, or ourselves.  Often reality crystallizes into truths that are so profound it may take years before we accept them let alone are able to convince others. Look at AE's work for example.  It took him years to understand and accept some of the implications of his early work.  He never did fully believe the implications of quantum mechanics.  And today, 100 years later, most of the human race still does not even partially believe/understand it. 
+
+Always consider the source and motives of intelligence. For example, "Journalism" usually starts from the story the editor wants to tell and works backwards to find "evidence/facts" that support that narrative.  If the journalist and editor have integrity, they will change their story to reflect facts and not ignore facts that don't support their story. This is a reason ACTUAL intelligence is often a secret, in order to figure out what is going on away from political influences. 
+
+Method
+-
+Every search starts someplace; I have started with physics and general relativity. This perspective allows me to understand the energies expended in the earths/sun/space climate system and comprehend these energies.  Note; Nagasaki bomb released 1g of energy (see note at end of this file for more or reference my Mass-Energy GitHub project.)
+
+To keep everything in context I occasionally pop out to the 10 AU view (~1.4 hours distance from sun, twice as far as Jupiter’s orbit.)  From here it is easier to remember that, we and everything are in space, that the earth is very close to our star, which is incredibly hot and bright, surrounded by nothing at all for light years in every direction. Our arguments about climate change are insignificant relative to the reality in which we actually exist.
 
 Theory of Intelligence 
 -
@@ -60,21 +76,6 @@ Note however that Electricity from Fossil fuels statistic includes electric prod
 "Electricity - from fossil fuels Electricity - from fossil fuels field listing 
 This entry measures the capacity of plants that generate electricity by burning fossil fuels (such as coal, petroleum products, and natural gas), expressed as a share of the country's total generating capacity."
 
-Purpose/Hypothesis
--
-
-My motive is simple; To understand the economic realities and facts of the "Climate Change" narrative in order to determine their voracity and motivations.
-
-This project represents a starting point for our improvement of perception of the world. We start with a preconceived notion of how things are.  If intelligence is practiced correctly, we will always find aspects of our preconceptions that are in error.  When we learn the facts and their context they will not agree with your friends, the media, your professors, generally accepted theories, or ourselves.  Often reality crystallizes into truths that are so profound it may take years before we accept them let alone are able to convince others. Look at AE's work for example.  It took him years to understand and accept some of the implications of his early work.  He never did fully believe the implications of quantum mechanics.  And today, 100 years later, most of the human race still does not even partially believe/understand it. 
-
-Always consider the source and motives of intelligence. For example, "Journalism" usually starts from the story the editor wants to tell and works backwards to find "evidence/facts" that support that narrative.  If the journalist and editor have integrity, they will change their story to reflect facts and not ignore facts that don't support their story. This is a reason ACTUAL intelligence is often a secret, in order to figure out what is going on away from political influences. 
-
-Method
--
-Every search starts someplace; I have started with physics and general relativity. This perspective allows me to understand the energies expended in the earths/sun/space climate system and comprehend these energies.  Note; Nagasaki bomb released 1g of energy (see note at end of this file for more or reference my Mass-Energy GitHub project.)
-
-To keep everything in context I occasionally pop out to the 10 AU view (~1.4 hours distance from sun, twice as far as Jupiter’s orbit.)  From here it is easier to remember that, we and everything are in space, that the earth is very close to our star, which is incredibly hot and bright, surrounded by nothing at all for light years in every direction. Our arguments about climate change are insignificant relative to the reality in which we actually exist.
-
 Procedures
 -
 
@@ -111,6 +112,7 @@ Software Design; The new structure of the classes is better but I can delete the
 Next; improve the report format as a pdf and look at integrating PD map models and graphics so I don;t need to import the data to excell for graphics.
 
 -----
+
 The linear regressions  (LR) I calculated for CIAF (CIA Factbook) data have the following values,
 
  Each LR is bivariate, X / Y  where X is the item in question and Y is the GDP - Purchase Power Parity for each country

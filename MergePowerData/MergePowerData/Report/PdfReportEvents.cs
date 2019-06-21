@@ -17,12 +17,9 @@ namespace MergePowerData.Report
         public override void OnStartPage(PdfWriter writer, Document document)
         {
             _pageCount++;
-
             var header = new ElectricityReportHeader(_reportData);
-
             var table = header.TopRow(document, _pageCount);
-
             table.WriteSelectedRows(0, -1, document.LeftMargin, document.PageSize.Height - 10, writer.DirectContent);
         }
-        }
+    }
 }

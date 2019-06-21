@@ -13,23 +13,24 @@ namespace MergePowerData.Report
         }
 
         public PdfReportData ReportData { get; set; }
-
+        
         private PdfPCell ReportTitle()
         {
-            var phrase = new Phrase { Font = FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD) };
+            var phrase = new Phrase { Font = FontFactory.GetFont(FontFactory.HELVETICA, 10, Font.BOLD, BaseColor.BLUE) };
 
             phrase.Add(new Chunk("Energy Intelligence Report"));
-
+            phrase.Add(new Chunk(" "));
+            phrase.Add(new Chunk(content: "PDF Testing"));
             var result = new PdfPCell(phrase)
             {
                 BorderWidth = 0,
-                HorizontalAlignment = Element.ALIGN_LEFT
+                HorizontalAlignment = Element.ALIGN_CENTER
             };
 
             return result;
         }
 
-        public PdfPTable TopRow(Document doc, int pagecount)
+        public PdfPTable TopRow(Document doc, int pageCount)
         {
             var result = new PdfPTable(new[] {1.0f})
             {

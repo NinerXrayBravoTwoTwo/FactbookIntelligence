@@ -35,7 +35,7 @@ namespace MergePowerData
             }
 
             intel.CsvReport();
-            //intel.PdfReport();
+            intel.PdfReport();
         }
 
         /// <summary>
