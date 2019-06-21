@@ -1,14 +1,14 @@
 # Factbook Intelligence
 
-Intelligence Or/Vs Data?
--
+##Intelligence Or/Vs Data?
+
 This project parses "CIA Factbook" (CIAF) data and attempts to turn some of it into "intelligence".
 
 "Data and algorithms are not technology, they are artifacts of technology." -- Quote from myself in 1992
 
 
-Purpose/Hypothesis
--
+##Purpose/Hypothesis
+
 
 My motive is simple; To understand the economic realities and facts of the "Climate Change" narrative in order to determine their voracity and motivations.
 
@@ -16,8 +16,8 @@ This project represents a starting point for our improvement of perception of th
 
 Always consider the source and motives of intelligence. For example, "Journalism" usually starts from the story the editor wants to tell and works backwards to find "evidence/facts" that support that narrative.  If the journalist and editor have integrity, they will change their story to reflect facts and not ignore facts that don't support their story. This is a reason ACTUAL intelligence is often a secret, in order to figure out what is going on away from political influences. 
 
-Method
--
+##Method
+
 Every search starts someplace; I have started with physics and general relativity. This perspective allows me to understand the energies expended in the earths/sun/space climate system and comprehend these energies.  Note; Nagasaki bomb released 1g of energy (see note at end of this file for more or reference my Mass-Energy GitHub project.)
 
 To keep everything in context I occasionally pop out to the 10 AU view (~1.4 hours distance from sun, twice as far as Jupiter’s orbit.)  From here it is easier to remember that, we and everything are in space, that the earth is very close to our star, which is incredibly hot and bright, surrounded by nothing at all for light years in every direction. Our arguments about climate change are insignificant relative to the reality in which we actually exist.
