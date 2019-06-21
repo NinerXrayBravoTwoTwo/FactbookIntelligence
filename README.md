@@ -22,11 +22,11 @@ Every search starts someplace; I have started with physics and general relativit
 
 To keep everything in context I occasionally pop out to the 10 AU view (~1.4 hours distance from sun, twice as far as Jupiter’s orbit.)  From here it is easier to remember that, we and everything are in space, that the earth is very close to our star, which is incredibly hot and bright, surrounded by nothing at all for light years in every direction. Our arguments about climate change are insignificant relative to the reality in which we actually exist.
 
-### Theory of Intelligence 
+#### Theory of Intelligence 
 
 This project represents the practice of a science.  A STEM of journalism and persuasion.  Most of all it is the art of finding actual truth, incorporating it in yourself, and accepting when your world view is discovered to be in error.  
 
-### Boyd and OODA
+#### Boyd and OODA
 
 The "Scientific Method (SM)" is the basis of turning data into intelligence, however we have no time for formal review, publishing, peer review, that may take a lifetime.  Instead we MUST use a more intense version of SM; Boydes’ OODA loop.
 
@@ -40,32 +40,32 @@ https://commons.wikimedia.org/wiki/File:OODA.Boyd.svg#/media/File:OODA.Boyd.svg
 
 After discovering OODA, we might think that this has nothing to do with "intelligence" science or understanding.  On the contrary this is essential and the core of ALL intelligence.  Without some variation of this process data might just as well be random drops in an ocean.  To organize and Act on them is what Intelligence is about. 
 
-### Factbook Data Source
+#### Factbook Data Source
 
 For parseable factbook data I am currently using Ian Coleman's project. As of now there is no API from the DOD that allows direct access to this data.  Ian's project is a python app that scans/mines the CIA-Factbook html pages for data.
 
 https://github.com/iancoleman/cia_world_factbook_api
 
-#### Factbook Data Quality
+##### Factbook Data Quality
 
 It is obvious to me that CIAF is a sanitized extraction of basic data that the DOD gathers continuously from around the world.  There is much I would like to know that is missing, but then If I were privy to such information, I couldn't talk about it, so this situation is fine.
 
 This CIAF data set is very small.  It is a 15 MB Json data file which compresses to only 3 MB with gzip when the redundancies are removed (See Entropy (Information Theory on why this is a significant measure).  Therefore, I maintain this is only a pitifully small atom of data the DOD collects.  I'm not sure what their purpose(s) in providing this data is(are).
 
-#### Testing Data Quality
+##### Testing Data Quality
 
 Sources of errors in factbook may be either by commission or omission;
 attributable to; Intentional propaganda by DOD or data manipulation by third parties (foreign & domestic),  
 Data collection and reporting errors,
 Data aggregation errors
 
-#### Detectable Aggregation Errors
+##### Detectable Aggregation Errors
 
 Some of the data for a country is expressed as percent of a whole.  If the sum of a set of percentages is not 100 then we can identify a simple aggregation error and work with it.
 
 CIAF has a world summary for all country data.  This can be used to find gross aggregation errors.  There are also sub countries such as "EU" which are composite of their members
 
-### Third Party Data Sources
+#### Third Party Data Sources
 
 Not easy but it is possible to gather firsthand data that is more up to date than CIAF from internet and other pubic data sources.  This can be used to validate or supplement CIAF.
 
@@ -79,7 +79,37 @@ This entry measures the capacity of plants that generate electricity by burning 
 ## Procedures
 
 
-## Analysis
+## Analysis Summary
+
+Raw analis is collected in the After Action Review (AAR) list at the end of this file.
+
+### Summary of World Energy Findings
+
+#### Fossil Fuel burning to generate Electric - Highest correlation
+ff: N: 14 Mean: 30.24 Slp: 150.12 Cor: 0.9878 Qx: 12.272 Qy: 1865.048 Y: 1682
+
+#### Electric Production - High Correlation
+elecprod: N: 14 Mean: 48.68 Slp: 98.86 Cor: 0.9842 Qx: 18.567 Qy: 1865.048 Y: 1409
+
+#### Electric consumption - High correlation
+eleccons: N: 14 Mean: 45.11 Slp: 103.76 Cor: 0.9816 Qx: 17.645 Qy: 1865.048 Y: 1541
+
+#### Refined Fuel consumption - Good correlation
+fuel: N: 14 Mean: 4.40 Slp: 1152.18 Cor: 0.9113 Qx: 1.475 Qy: 1865.048 Y: 1153
+
+#### Natural Gas consumption - Correlation Not so good
+natgas: N: 14 Mean: 157.36 Slp: 19.96 Cor: 0.6239 Qx: 58.290 Qy: 1865.048 Y: 3081
+
+#### CO2 Emissions - Good correlation
+emission: N: 14 Mean: 1931.45 Slp: 2.05 Cor: 0.9423 Qx: 859.299 Qy: 1865.048 Y: 2272
+
+#### GDP to GDP Growth rate - Very low correlation
+growth: N: 14 Mean: 3.26 Slp: 1072.37 Cor: 0.3594 Qx: 0.625 Qy: 1865.048 Y: 2729
+There is no clear relation between a countries current GDP and that countries rate of growth.  i.e. This disproves the general assertion that "The rich get richer and the poor get poorer.
+
+#### Growth to non average energy production
+
+The experiment to compare contries growth rate to countries non average energy production ... showed no cooelation.  i.e. if a country generates more or less energy per GDP than average it does not noticable effect that countries growth rate.
 
 ## Brief Relativity Summary
 
