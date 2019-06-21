@@ -1,6 +1,6 @@
 # Factbook Intelligence
 
-## Intelligence Or/Vs Data?
+## Intelligence of Data?
 
 This project parses "CIA Factbook" (CIAF) data and attempts to turn some of it into "intelligence".
 
