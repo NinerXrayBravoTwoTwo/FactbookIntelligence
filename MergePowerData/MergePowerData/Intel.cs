@@ -109,9 +109,14 @@ namespace MergePowerData
             _countries.Add(country);
             _stats.Add(country);
         }
-
+        
+        /// <summary>
+        ///  Research report.  Many report lines are commented out and can be added back if that data becomes significant to the current analysis OODA loop 
+        /// </summary>
         public void CsvReport()
         {
+
+            Console.WriteLine($"Lower Limit on Gross Domestic product: Giga ${MinimumGdp} (billion)\n");
             var dv = "\t"; // For example; if you are documenting an .md format file for example the col seperator can be changed to '|'
 
             // header
@@ -198,9 +203,13 @@ namespace MergePowerData
                     + $"{c.Name}");
             }
 
+            Console.WriteLine(); // add blank line separation
             Console.WriteLine(_stats.ToString());
         }
 
+        /// <summary>
+        /// Generate a report in PDF format (Someday with graphs, a dashboard report )
+        /// </summary>
         public void PdfReport()
         {
             var pdf = new PowerPdf(_world, _countries);

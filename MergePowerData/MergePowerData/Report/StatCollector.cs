@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using MergePowerData.CIAFdata;
@@ -15,11 +16,17 @@ namespace MergePowerData.Report
         {
             PLimit = minGdpPp;
 
+            _stats.Add("elecimport", new Statistic());
+            _stats.Add("elecexport", new Statistic());
             _stats.Add("elecprod", new Statistic());
             _stats.Add("eleccons", new Statistic());
             _stats.Add("fuel", new Statistic());
-            _stats.Add("natgas", new Statistic());
+            _stats.Add("natgascons", new Statistic());
+            _stats.Add("natgasprod", new Statistic());
             _stats.Add("elecffburn", new Statistic());
+            _stats.Add("elecnukeburn", new Statistic());
+            _stats.Add("elechydroburn", new Statistic());
+            _stats.Add("elecrenewburn", new Statistic());
             _stats.Add("emission", new Statistic());
         }
 
@@ -43,19 +50,25 @@ namespace MergePowerData.Report
                 return;
 
             // TODO: Can I pump in a bunch of anon methods here so I can use anon methods to define actions and make this class more generic?
+            _stats["elecimport"].Add(c.Electric.Electricity.imports.TWh * Intel.TWh2kg * Intel.TWh2kg, c.PurchasePower.value / Intel.Giga);
+            _stats["elecexport"].Add(c.Electric.Electricity.exports.TWh * Intel.TWh2kg * Intel.TWh2kg, c.PurchasePower.value / Intel.Giga);
             _stats["elecprod"].Add(c.Electric.ProdTWh * Intel.TWh2kg, c.PurchasePower.value / Intel.Giga);
             _stats["eleccons"].Add(c.Electric.ConsTWh * Intel.TWh2kg, c.PurchasePower.value / Intel.Giga);
             _stats["fuel"].Add(c.FossilFuelDetail.RefinedPetroleum.Consumption.Value / Intel.Mega, c.PurchasePower.value / Intel.Giga);
-            _stats["natgas"].Add(c.FossilFuelDetail.NaturalGas.Consumption.Value / Intel.Giga, c.PurchasePower.value / Intel.Giga);
+            _stats["natgascons"].Add(c.FossilFuelDetail.NaturalGas.Consumption.Value / Intel.Giga, c.PurchasePower.value / Intel.Giga);
+            _stats["natgasprod"].Add(c.FossilFuelDetail.NaturalGas.Production.Value / Intel.Giga, c.PurchasePower.value / Intel.Giga);
             _stats["elecffburn"].Add(c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh * Intel.TWh2kg, c.PurchasePower.value / Intel.Giga);
+            _stats["elecnukeburn"].Add(c.Electric.Electricity.by_source.nuclear_fuels.percent / 100 * c.Electric.ProdTWh * Intel.TWh2kg, c.PurchasePower.value / Intel.Giga);
+            _stats["elechydroburn"].Add(c.Electric.Electricity.by_source.hydroelectric_plants.percent / 100 * c.Electric.ProdTWh * Intel.TWh2kg, c.PurchasePower.value / Intel.Giga);
+            _stats["elecrenewburn"].Add(c.Electric.Electricity.by_source.other_renewable_sources.percent / 100 * c.Electric.ProdTWh * Intel.TWh2kg, c.PurchasePower.value / Intel.Giga);
             _stats["emission"].Add(c.Electric.TtonCo2, c.PurchasePower.value / Intel.Giga);
         }
 
         public override string ToString()
         {
-            var result = new StringBuilder(base.ToString()+"\n");
+            var result = new StringBuilder(base.ToString() + "\n");
 
-            foreach (var item in _stats)
+            foreach (var item in _stats.OrderByDescending(r => r.Value.Correlation()))
                 result.Append($"{item.Key}: {item.Value}\n");
 
             return result.ToString();

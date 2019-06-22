@@ -293,7 +293,7 @@ namespace MergePowerData.Report
             try
             {
                 var  isInfin = double.IsPositiveInfinity(Slope());
-                result = isInfin ? "NaN" : $"N: {N} Mean: {MeanX():F2} Slp: {Slope():F2} Cor: {Correlation():F4} Qx: {Qx():F3} Qy: {Qy():F3} Y: {YIntercept():F3}";
+                result = isInfin ? "NaN" : $"Cor: {Correlation():F4} N: {N} Mean: {MeanX():F2} Slp: {Slope():F2} Qx: {Qx():F3} Qy: {Qy():F3} Yincpt: {YIntercept():F3}";
             }
             catch (InvalidOperationException)
             {
