@@ -82,25 +82,25 @@ Raw analysis is collected in the After-Action Review (AAR) list at the end of th
 
 ### Summary of World Energy Findings
 
-#### Fossil Fuel burning to generate Electric - Highest correlation
+#### Electric production with fossil fuels / GDP - Highest correlation
 ff: N: 14 Mean: 30.24 Slp: 150.12 **Cor: 0.9878** Qx: 12.272 Qy: 1865.048 Y: 1682
 
-#### Electric Production - High Correlation
+#### Electric Production / GDP - High Correlation
 elecprod: N: 14 Mean: 48.68 Slp: 98.86 **Cor: 0.9842** Qx: 18.567 Qy: 1865.048 Y: 1409
 
-#### Electric consumption - High correlation
+#### Electric consumption / GDP - High correlation
 eleccons: N: 14 Mean: 45.11 Slp: 103.76 **Cor: 0.9816** Qx: 17.645 Qy: 1865.048 Y: 1541
 
-#### Refined Fuel consumption - Good correlation
+#### Refined Fuel consumption / GDP- Good correlation
 fuel: N: 14 Mean: 4.40 Slp: 1152.18 **Cor: 0.9113** Qx: 1.475 Qy: 1865.048 Y: 1153
 
-#### Natural Gas consumption - Correlation Not so good
+#### Natural Gas consumption / GDP- Correlation Not so good
 natgas: N: 14 Mean: 157.36 Slp: 19.96 **Cor: 0.6239** Qx: 58.290 Qy: 1865.048 Y: 3081
 
-#### CO2 Emissions - Good correlation
+#### CO2 Emissions / GDP - Good correlation
 emission: N: 14 Mean: 1931.45 Slp: 2.05 **Cor: 0.9423** Qx: 859.299 Qy: 1865.048 Y: 2272
 
-#### GDP to GDP Growth rate - Very low correlation
+#### GDP / GDP Growth rate - Very low correlation
 growth: N: 14 Mean: 3.26 Slp: 1072.37 **Cor: 0.3594** Qx: 0.625 Qy: 1865.048 Y: 2729
 
 There is no clear relation between a countries current GDP and that countries rate of growth.  i.e. This disproves the general assertion that "The rich get richer and the poor get poorer."
