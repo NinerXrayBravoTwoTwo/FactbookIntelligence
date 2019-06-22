@@ -102,6 +102,7 @@ emission: N: 14 Mean: 1931.45 Slp: 2.05 **Cor: 0.9423** Qx: 859.299 Qy: 1865.048
 
 #### GDP to GDP Growth rate - Very low correlation
 growth: N: 14 Mean: 3.26 Slp: 1072.37 **Cor: 0.3594** Qx: 0.625 Qy: 1865.048 Y: 2729
+
 There is no clear relation between a countries current GDP and that countries rate of growth.  i.e. This disproves the general assertion that "The rich get richer and the poor get poorer."
 
 #### Growth to non-average energy production
@@ -116,7 +117,7 @@ Time is not a special unit; it is part of space and should be measured in meters
 
 When you substitute s=300 Mm into Newtonian physics, energy and mass become the same thing. A kg is 89.9 Peta J or 25 Tera watt hrs.  This might take 186k miles to absorb.
 
-Note: In AE’s e=mc^2, c^2 is just a conversion factor, ergs to grams. The speed of light, c=1 after all.
+Note: In AEs' famous "e=mc^2", c^2 is just a conversion factor, ergs to grams. The speed of light, c=1, 1 squared is still 1.
 
 Our star radiates 385 yotta watts about 0.1 x the mass of Mt Everest per hour or 15,000 trillion Nagasaki’s per hr.
 (yotta = trillion trillion)
