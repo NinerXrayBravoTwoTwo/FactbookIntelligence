@@ -81,7 +81,7 @@ This entry measures the capacity of plants that generate electricity by burning 
 
 ## Analysis Summary
 
-Raw analis is collected in the After Action Review (AAR) list at the end of this file.
+Raw analysis is collected in the After-Action Review (AAR) list at the end of this file.
 
 ### Summary of World Energy Findings
 
@@ -107,9 +107,9 @@ emission: N: 14 Mean: 1931.45 Slp: 2.05 Cor: 0.9423 Qx: 859.299 Qy: 1865.048 Y: 
 growth: N: 14 Mean: 3.26 Slp: 1072.37 Cor: 0.3594 Qx: 0.625 Qy: 1865.048 Y: 2729
 There is no clear relation between a countries current GDP and that countries rate of growth.  i.e. This disproves the general assertion that "The rich get richer and the poor get poorer.
 
-#### Growth to non average energy production
+#### Growth to non-average energy production
 
-The experiment to compare contries growth rate to countries non average energy production ... showed no cooelation.  i.e. if a country generates more or less energy per GDP than average it does not noticable effect that countries growth rate.
+The experiment to compare countries growth rate to countries non average energy production ... showed no correlation.  i.e. if a country generates more or less energy per GDP than average it does not noticeable effect that countries growth rate.
 
 ## Brief Relativity Summary
 
@@ -134,19 +134,19 @@ Note: the Nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg 
 
 ## June 19, 2019
 
-The test to compute linear regressions using standard deviations of other variables showed that no such relation can be found. It's equivelent to taking a second integration of the data and other dimentions would have to be used to find a correlation.  We simply do not have the data for that complicated a model.  
+The test to compute linear regressions using standard deviations of other variables showed that no such relation can be found. It's equivalent to taking a second integration of the data and other dimensions would have to be used to find a correlation.  We simply do not have the data for that complicated a model.  
 
-Software Design; The new structure of the classes is better but I can delete the now extranious code for the new standard deviation vs Growth computations.  
+Software Design; The new structure of the classes is better, but I can delete the now extraneous code for the new standard deviation vs Growth computations.  
 
-Next; improve the report format as a pdf and look at integrating PD map models and graphics so I don;t need to import the data to excell for graphics.
+Next; improve the report format as a pdf and look at integrating PD map models and graphics so I don’t need to import the data to excel for graphics.
 
 -----
 
-The linear regressions  (LR) I calculated for CIAF (CIA Factbook) data have the following values,
+The linear regressions (LR) I calculated for CIAF (CIA Factbook) data have the following values,
 
- Each LR is bivariate, X / Y  where X is the item in question and Y is the GDP - Purchase Power Parity for each country
+ Each LR is bivariate, X / Y where X is the item in question and Y is the GDP - Purchase Power Parity for each country
 ```
-MergePowerData.Report.StatCollector
+MergePowerData.Report. StatCollector
 
 Electric Production - High Correlation
 elecprod: N: 14 Mean: 48.68 Slp: 98.86 Cor: 0.9842 Qx: 18.567 Qy: 1865.048 Y: 1409.83768051239
@@ -176,13 +176,13 @@ b> Computed linear regressions for;
 	*1> electric prod deviation / gdp.growth; 
 	*2> ff consumption deviation / gdp.growth
 
-The results show no correlation at this level of data resolution.  Clearly the rate of electric growth is related to growth of certain industries but not for entire countries where there are other finacial factors.
+The results show no correlation at this level of data resolution.  Clearly the rate of electric growth is related to growth of certain industries but not for entire countries where there are other financial factors.
 
 ```
 N: 14 Mean: -0.77 Slp: -0.60 Cor: -0.1739 Qx: 0.180 Qy: 0.625 Y: 2.79266010063874
 N: 14 Mean: -0.91 Slp: -0.65 Cor: -0.1649 Qx: 0.158 Qy: 0.625 Y: 2.66011841105497
 ```
-a> It is inequivical that country energy usage correlates directly to country GDP.  The remaining question is; Does greater than average energy use correlate to greater economic growth?  I can answer that question or determine if there is not enough fine grained data in CIAF.
+a> It is unequivocal that country energy usage correlates directly to country GDP.  The remaining question is; Does greater than average energy use correlate to greater economic growth?  I can answer that question or determine if there is not enough fine-grained data in CIAF.
 
 ## June 17, 2019
 
@@ -200,7 +200,7 @@ kg|dev_e|eFFkg|dev_FF|FuelMbl|NatGasGcm|Co2Tton|$G PP|Country
 22.7|0.838|3.9|2.384|2.96|34.4|514|3248|Brazil
 
 
-b> Refactor statistics to provide statdard deviaion of value in table for electricProd / $PP and burning FF / $PP
+b> Refactor statistics to provide standard deviation of value in table for electric Prod / $PP and burning FF / $PP
 
 a> Need to report if a report item is outside standard deviation range for that variable.  Will and insight and understanding/intelligence to the report.
 
@@ -208,7 +208,7 @@ e.g. if the value for world-ekg is 947.3 is that within expected SD range?
 
 ## June 16, 2019
 
-Add my statistic class to project. Compute liner regressions on several different numbers relative to GDP. Yes energy use is clearly related to GDP with a high correlation.
+Add my statistic class to project. Compute liner regressions on several different numbers relative to GDP. Yes, energy use is clearly related to GDP with a high correlation.
 
 ```
 ElecC: N: 14 Mean: 48.68 Slp: 98.86  Cor: 0.9842 Qx: 18.567 Qy: 1865.048
@@ -219,7 +219,7 @@ CO2:   N: 14 Mean: 1931.45 Slp: 2.05 Cor: 0.9423 Qx: 859.299 Qy: 1865.048
 ```
 
 ## June 15, 2019
-Calculate kg of Uranium and exchange $growth for Purchasing_Power which is better correlated to CO2 emmissions.
+Calculate kg of Uranium and exchange $growth for Purchasing Power which is better correlated to CO2 emissions.
 
 ekg|eFFkg|U235kg|FuelMbl|NatGasGcm|Co2Tton|$PP|Country
 ---:|---:|---:|---:|---:|---:|---:|---
@@ -241,12 +241,12 @@ ekg|eFFkg|U235kg|FuelMbl|NatGasGcm|Co2Tton|$PP|Country
 
 ## June 15, 2019
 
-It should be possible to calculate the U235 equivelent burned in generating electric power.  Equation (%nuclear * ElectricProd / kgU235tokWh).  The conversion factor is 24 mega kWh per kg, which should provide an estimate for Uranium used to compare (Excluding military applications). 
+It should be possible to calculate the U235 equivalent burned in generating electric power.  Equation (%nuclear * ElectricProd / kgU235tokWh).  The conversion factor is 24 mega kWh per kg, which should provide an estimate for Uranium used to compare (Excluding military applications). 
 
 ## June 15, 2019
 Beside Coal also missing from the data are Uranium / Thorium mining for reactor fuel.  Significant today and more important every year.
 
-*8 kWh of heat can be generated from 1 kg of coal, approx. 12 kWh from 1 kg of mineral oil and around 24,000,000 kWh from 1 kg of uranium-235. Related to one kilogram, uranium-235 contains two to three million times the energy equivalent of oil or coal. The illustration shows how much coal, oil or natural uranium is required for a certain quantity of electricity. Thus, 1 kg natural uranium - following a corresponding enrichment and used for power generation in light water reactors - corresponds to nearly 10,000 kg of mineral oil or 14,000 kg of coal and enables the generation of 45,000 kWh of electricity.*
+*8 kWh of heat can be generated from 1 kg of coal, approx. 12 kWh from 1 kg of mineral oil and around 24,000,000 kWh from 1 kg of uranium-235. Related to one kilogram, uranium-235 contains two to three million times the energy equivalent of oil or coal. The illustration shows how much coal, oil or natural uranium is required for a certain quantity of electricity. Thus, 1 kg natural uranium - following a corresponding enrichment and used for power generation in light water reactors - corresponds to nearly 10,000 kg of mineral oil or 14,000 kg of coal and enables the generation of 45,000 kWh of electricity. *
 
 ## June 15, 2019
 
@@ -262,8 +262,8 @@ ekg|eFF_kg|Fuel_Mbbl|NatGas_Gcm|Co2Tton|$Growth|Country
 121.9|53.6|12.89|428.8|3475|2.3|European Union
 55.5|39.4|4.52|55.4|2383|6.7|India
 
-Switch back to kg of energy from Tera watt's because it is eaiser to compare/understand and for ordinary humans to relate too.  Add in fuel and natGas to table.
-Problems;  There is no value for Coal consumption.  It is mixed into FF electric BUT there is no separate statistic for other uses of coal such as direct coal steal making industry, paper, heading, steam production, steam powered trains (china/VN) etc.  Not all coal is consumed in electric generation.
+Switch back to kg of energy from Tera watt's because it is easier to compare/understand and for ordinary humans to relate too.  Add in fuel and natGas to table.
+Problems; There is no value for Coal consumption.  It is mixed into FF electric BUT there is no separate statistic for other uses of coal such as direct coal steal making industry, paper, heading, steam production, steam powered trains (china/VN) etc.  Not all coal is consumed in electric generation.
 
 ## June 14, 2019
 
@@ -274,3 +274,5 @@ Some problems; a> Only the top 40 or so countries by total Power production have
 ## June 11, 2019
 
 Processed a series of pie charts detailing crude oil, refined oil, electric production, and CO2 emissions.  Converted some of this data into color coded world maps. Interesting results.  Each graph poses more experiments and questions. Am considering changes to output graphs directly instead of post processing the data in Excel.
+
+
