@@ -8,7 +8,7 @@
             // https://github.com/iancoleman/cia_world_factbook_api
 
             var report = new AnalysisCapacity("../../../../../cia_world_factbook_api/data/" + "factbook.json");
-            report.ElectricReport(1000);  // GDP in Billion $ ( Giga $)
+            report.ElectricReport(2000);  // GDP in Billion $ ( Giga $)
         }
     }
 }

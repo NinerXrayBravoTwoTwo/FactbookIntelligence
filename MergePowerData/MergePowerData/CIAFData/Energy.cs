@@ -1,5 +1,9 @@
 ﻿using System;
 
+/// <summary>
+/// The majority of this code was written by an online JSON to C# class generator.  
+/// Customization added for Installed generating capacity (which is why an interface was added)
+/// </summary>
 namespace MergePowerData.CIAFdata
 {
     public class PopulationWithoutElectricity

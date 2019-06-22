@@ -20,13 +20,22 @@ namespace MergePowerData.Report
             _stats.Add("elecexport", new Statistic());
             _stats.Add("elecprod", new Statistic());
             _stats.Add("eleccons", new Statistic());
-            _stats.Add("fuel", new Statistic());
+
+            _stats.Add("refinefuelcons", new Statistic());
+            _stats.Add("refinefuelprod", new Statistic());
+            _stats.Add("refinefuelexport", new Statistic());
+            _stats.Add("refinefuelimport", new Statistic());
+
             _stats.Add("natgascons", new Statistic());
             _stats.Add("natgasprod", new Statistic());
-            _stats.Add("elecffburn", new Statistic());
-            _stats.Add("elecnukeburn", new Statistic());
-            _stats.Add("elechydroburn", new Statistic());
-            _stats.Add("elecrenewburn", new Statistic());
+            _stats.Add("natgasexport", new Statistic());
+            _stats.Add("natgasimport", new Statistic());
+
+            _stats.Add("prcntelecff", new Statistic());
+            _stats.Add("prcntelecnuke", new Statistic());
+            _stats.Add("prcntelechydro", new Statistic());
+            _stats.Add("prcntelecrenew", new Statistic());
+
             _stats.Add("emission", new Statistic());
         }
 
@@ -50,17 +59,32 @@ namespace MergePowerData.Report
                 return;
 
             // TODO: Can I pump in a bunch of anon methods here so I can use anon methods to define actions and make this class more generic?
-            _stats["elecimport"].Add(c.Electric.Electricity.imports.TWh * Intel.TWh2kg * Intel.TWh2kg, c.PurchasePower.value / Intel.Giga);
-            _stats["elecexport"].Add(c.Electric.Electricity.exports.TWh * Intel.TWh2kg * Intel.TWh2kg, c.PurchasePower.value / Intel.Giga);
+            if (c.Electric.Electricity.exports != null)
+            {
+                _stats["elecimport"].Add(c.Electric.Electricity.imports.TWh * Intel.TWh2kg * Intel.TWh2kg,
+                    c.PurchasePower.value / Intel.Giga);
+                _stats["elecexport"].Add(c.Electric.Electricity.exports.TWh * Intel.TWh2kg * Intel.TWh2kg,
+                    c.PurchasePower.value / Intel.Giga);
+            }
+
             _stats["elecprod"].Add(c.Electric.ProdTWh * Intel.TWh2kg, c.PurchasePower.value / Intel.Giga);
             _stats["eleccons"].Add(c.Electric.ConsTWh * Intel.TWh2kg, c.PurchasePower.value / Intel.Giga);
-            _stats["fuel"].Add(c.FossilFuelDetail.RefinedPetroleum.Consumption.Value / Intel.Mega, c.PurchasePower.value / Intel.Giga);
+
+            _stats["refinefuelcons"].Add(c.FossilFuelDetail.RefinedPetroleum.Consumption.Value / Intel.Mega, c.PurchasePower.value / Intel.Giga);
+            _stats["refinefuelprod"].Add(c.FossilFuelDetail.RefinedPetroleum.Production.Value / Intel.Mega, c.PurchasePower.value / Intel.Giga);
+            _stats["refinefuelexport"].Add(c.FossilFuelDetail.RefinedPetroleum.Exports.Value / Intel.Mega, c.PurchasePower.value / Intel.Giga);
+            _stats["refinefuelimport"].Add(c.FossilFuelDetail.RefinedPetroleum.Imports.Value / Intel.Mega, c.PurchasePower.value / Intel.Giga);
+
             _stats["natgascons"].Add(c.FossilFuelDetail.NaturalGas.Consumption.Value / Intel.Giga, c.PurchasePower.value / Intel.Giga);
             _stats["natgasprod"].Add(c.FossilFuelDetail.NaturalGas.Production.Value / Intel.Giga, c.PurchasePower.value / Intel.Giga);
-            _stats["elecffburn"].Add(c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh * Intel.TWh2kg, c.PurchasePower.value / Intel.Giga);
-            _stats["elecnukeburn"].Add(c.Electric.Electricity.by_source.nuclear_fuels.percent / 100 * c.Electric.ProdTWh * Intel.TWh2kg, c.PurchasePower.value / Intel.Giga);
-            _stats["elechydroburn"].Add(c.Electric.Electricity.by_source.hydroelectric_plants.percent / 100 * c.Electric.ProdTWh * Intel.TWh2kg, c.PurchasePower.value / Intel.Giga);
-            _stats["elecrenewburn"].Add(c.Electric.Electricity.by_source.other_renewable_sources.percent / 100 * c.Electric.ProdTWh * Intel.TWh2kg, c.PurchasePower.value / Intel.Giga);
+            _stats["natgasexport"].Add(c.FossilFuelDetail.NaturalGas.Exports.Value / Intel.Giga, c.PurchasePower.value / Intel.Giga);
+            _stats["natgasimport"].Add(c.FossilFuelDetail.NaturalGas.Imports.Value / Intel.Giga, c.PurchasePower.value / Intel.Giga);
+
+            _stats["prcntelecff"].Add(c.Electric.Electricity.by_source.fossil_fuels.KWh(c.Electric.Electricity.installed_generating_capacity), c.PurchasePower.value / Intel.Giga);
+            _stats["prcntelecnuke"].Add(c.Electric.Electricity.by_source.nuclear_fuels.KWh(c.Electric.Electricity.installed_generating_capacity), c.PurchasePower.value / Intel.Giga);
+            _stats["prcntelechydro"].Add(c.Electric.Electricity.by_source.hydroelectric_plants.KWh(c.Electric.Electricity.installed_generating_capacity), c.PurchasePower.value / Intel.Giga);
+            _stats["prcntelecrenew"].Add(c.Electric.Electricity.by_source.other_renewable_sources.KWh(c.Electric.Electricity.installed_generating_capacity), c.PurchasePower.value / Intel.Giga);
+
             _stats["emission"].Add(c.Electric.TtonCo2, c.PurchasePower.value / Intel.Giga);
         }
 
