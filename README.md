@@ -55,14 +55,12 @@ This CIAF data set is very small.  It is a 15 MB Json data file which compresses
 
 Sources of errors in factbook may be either by commission or omission;
 attributable to; Intentional propaganda by DOD or data manipulation by third parties (foreign & domestic),  
-Data collection and reporting errors,
-Data aggregation errors
 
 ##### Detectable Aggregation Errors
 
 Some of the data for a country is expressed as percent of a whole.  If the sum of a set of percentages is not 100 then we can identify a simple aggregation error and work with it.
 
-CIAF has a world summary for all country data.  This can be used to find gross aggregation errors.  There are also sub countries such as "EU" which are composite of their members
+CIAF has a world summary for all country data.  This can be used to find gross aggregation errors.  There are also sub countries such as "EU" which are composite of their members.
 
 #### Third Party Data Sources
 
@@ -85,26 +83,26 @@ Raw analysis is collected in the After-Action Review (AAR) list at the end of th
 ### Summary of World Energy Findings
 
 #### Fossil Fuel burning to generate Electric - Highest correlation
-ff: N: 14 Mean: 30.24 Slp: 150.12 Cor: 0.9878 Qx: 12.272 Qy: 1865.048 Y: 1682
+ff: N: 14 Mean: 30.24 Slp: 150.12 **Cor: 0.9878** Qx: 12.272 Qy: 1865.048 Y: 1682
 
 #### Electric Production - High Correlation
-elecprod: N: 14 Mean: 48.68 Slp: 98.86 Cor: 0.9842 Qx: 18.567 Qy: 1865.048 Y: 1409
+elecprod: N: 14 Mean: 48.68 Slp: 98.86 **Cor: 0.9842** Qx: 18.567 Qy: 1865.048 Y: 1409
 
 #### Electric consumption - High correlation
-eleccons: N: 14 Mean: 45.11 Slp: 103.76 Cor: 0.9816 Qx: 17.645 Qy: 1865.048 Y: 1541
+eleccons: N: 14 Mean: 45.11 Slp: 103.76 **Cor: 0.9816** Qx: 17.645 Qy: 1865.048 Y: 1541
 
 #### Refined Fuel consumption - Good correlation
-fuel: N: 14 Mean: 4.40 Slp: 1152.18 Cor: 0.9113 Qx: 1.475 Qy: 1865.048 Y: 1153
+fuel: N: 14 Mean: 4.40 Slp: 1152.18 **Cor: 0.9113** Qx: 1.475 Qy: 1865.048 Y: 1153
 
 #### Natural Gas consumption - Correlation Not so good
-natgas: N: 14 Mean: 157.36 Slp: 19.96 Cor: 0.6239 Qx: 58.290 Qy: 1865.048 Y: 3081
+natgas: N: 14 Mean: 157.36 Slp: 19.96 **Cor: 0.6239** Qx: 58.290 Qy: 1865.048 Y: 3081
 
 #### CO2 Emissions - Good correlation
-emission: N: 14 Mean: 1931.45 Slp: 2.05 Cor: 0.9423 Qx: 859.299 Qy: 1865.048 Y: 2272
+emission: N: 14 Mean: 1931.45 Slp: 2.05 **Cor: 0.9423** Qx: 859.299 Qy: 1865.048 Y: 2272
 
 #### GDP to GDP Growth rate - Very low correlation
-growth: N: 14 Mean: 3.26 Slp: 1072.37 Cor: 0.3594 Qx: 0.625 Qy: 1865.048 Y: 2729
-There is no clear relation between a countries current GDP and that countries rate of growth.  i.e. This disproves the general assertion that "The rich get richer and the poor get poorer.
+growth: N: 14 Mean: 3.26 Slp: 1072.37 **Cor: 0.3594** Qx: 0.625 Qy: 1865.048 Y: 2729
+There is no clear relation between a countries current GDP and that countries rate of growth.  i.e. This disproves the general assertion that "The rich get richer and the poor get poorer."
 
 #### Growth to non-average energy production
 
