@@ -20,7 +20,7 @@ namespace MergePowerData.Report
 
             phrase.Add(new Chunk("Energy Intelligence Report"));
             phrase.Add(new Chunk(" "));
-            phrase.Add(new Chunk(content: "PDF Testing"));
+            phrase.Add(new Chunk(content: "(PDF Testing)"));
             var result = new PdfPCell(phrase)
             {
                 BorderWidth = 0,

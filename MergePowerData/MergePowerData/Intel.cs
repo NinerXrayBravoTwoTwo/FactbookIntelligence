@@ -11,6 +11,9 @@ using MergePowerData.Report;
 
 namespace MergePowerData
 {
+    /*
+     * CIA Factbook; Acronym "CIAF".
+     */
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class Intel
     {
@@ -40,7 +43,11 @@ namespace MergePowerData
         protected Statistic _ffDevRelativeToGrowth;
         protected StatCollector _stats;
         protected Country _world;
-
+        
+        /// <summary>
+        /// Drive / Control CIAF data processing and filter based on minimum Gdp
+        /// </summary>
+        /// <param name="minimumGdp">Limit, in Billion $ (GIGA $) to filter out countries below a minimum GDP from report.</param>
         public Intel(double minimumGdp)
         {
             MinimumGdp = minimumGdp;
@@ -50,7 +57,11 @@ namespace MergePowerData
         public double MinimumGdp { get; set; }
 
         // These linear regressions showed that there is no correlation between gdp growth & countries diff from average energy / gdp 
-
+        /// <summary>
+        /// Temporary obsolete.  Interesting bit of code because it can perform linear regressions on the data from the completed LR's in the report
+        ///  Kind of like taking a second integral representation of the data.
+        /// </summary>
+        /// <returns></returns>
         public Statistic DevRelativeToGrowth()
         {
             _energyDeviationRelativeToGrowth = new Statistic();
@@ -101,7 +112,7 @@ namespace MergePowerData
 
         public void CsvReport()
         {
-            var dv = "\t";
+            var dv = "\t"; // For example; if you are documenting an .md format file for example the col seperator can be changed to '|'
 
             // header
             Console.WriteLine(
@@ -202,7 +213,7 @@ namespace MergePowerData
 
             Thread.Sleep(1000); // file needs to close before I kick off reader
 
-            Process.Start(path + "/EnergyUseReport.pdf");
+           // Process.Start(path + "/EnergyUseReport.pdf");
         }
     }
 }

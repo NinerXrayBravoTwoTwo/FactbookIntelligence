@@ -101,7 +101,7 @@ natgas: N: 14 Mean: 157.36 Slp: 19.96 **Cor: 0.6239** Qx: 58.290 Qy: 1865.048 Y:
 emission: N: 14 Mean: 1931.45 Slp: 2.05 **Cor: 0.9423** Qx: 859.299 Qy: 1865.048 Y: 2272
 
 #### GDP / GDP Growth rate - Very low correlation
-growth: N: 14 Mean: 3.26 Slp: 1072.37 **Cor: 0.3594** Qx: 0.625 Qy: 1865.048 Y: 2729
+growth: N: 14 Mean: 3.26 Slp: 1072.37 <span style="color:blue">**Cor: 0.3594**</span> Qx: 0.625 Qy: 1865.048 Y: 2729
 
 There is no clear relation between a countries current GDP and that countries rate of growth.  i.e. This disproves the general assertion that "The rich get richer and the poor get poorer."
 

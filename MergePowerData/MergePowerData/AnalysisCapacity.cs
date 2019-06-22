@@ -13,10 +13,16 @@ namespace MergePowerData
         {
             _fact = JObject.Parse(File.ReadAllText(fileName));
         }
-
-        public void ElectricReport()
+        /// <summary>
+        /// Produce report
+        /// </summary>
+        /// <param name="grossDomesticProductLowerLimit"></param>
+        public void ElectricReport( double grossDomesticProductLowerLimit)
         {
-            var intel = new Intel( 900);
+            /* * IMPORTANT; Key variable that limits how many countries are processed in Linear regressions AND included in report **/
+
+            var intel = new Intel(grossDomesticProductLowerLimit); 
+
 
             foreach (var item in _fact["countries"])
             foreach (var country in item)
