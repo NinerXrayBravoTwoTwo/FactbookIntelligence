@@ -80,7 +80,7 @@ This entry measures the capacity of plants that generate electricity by burning 
 
 ## Analysis Summary
 
-Raw analis is collected in the After Action Review (AAR) list at the end of this file.
+Raw analysis is collected in the After Action Review (AAR) list at the end of this file.
 
 ### Summary of World Energy Findings
 
