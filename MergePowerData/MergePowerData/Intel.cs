@@ -162,10 +162,6 @@ namespace MergePowerData
                 //var x = (c.GrowthRate.value) / s.Slope(); // calc x for y value
                 //var stand = (standElectricProd - x) / s.Qx();
 
-                var test =_stats.Stand("prcntelecff",
-                    igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.fossil_fuels.percent) * TWh2kg,
-                    c.PurchasePower.value / Giga);
-
                 // Understanding Country wealth relative to use of FF and electricity.
                 Console.WriteLine(
                     // $"{c.Electric.ProdTWh}{dv}"
