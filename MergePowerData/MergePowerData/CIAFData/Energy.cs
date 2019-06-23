@@ -73,14 +73,24 @@ namespace MergePowerData.CIAFdata
 
     public class InstalledGeneratingCapacity
     {
-        public double TW => kW / 1.0e9;
+        public static double HoursPerYear => 365.242198781 * 24;
+
         public double kW { get; set; }
         public int global_rank { get; set; }
         public string date { get; set; }
 
-        public static double HoursPerYear => 365.242198781 * 24;
-        public double YearCapacityTWhr =>  HoursPerYear * TW;
-        
+        public double TW => kW / 1.0e9;
+        public double YearCapacityTWhr => HoursPerYear * TW;
+
+        public double YearCapTWhrByPercent(double percent)
+        {
+            if (Math.Abs(percent) < 0.0000001 || double.IsNaN(percent))
+                return 0.0;
+
+            var p =  percent >= 1 ? percent / 100  : percent;
+
+            return YearCapacityTWhr * p;
+        }
     }
 
 

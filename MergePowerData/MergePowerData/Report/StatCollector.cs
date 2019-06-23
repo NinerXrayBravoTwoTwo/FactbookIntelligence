@@ -61,10 +61,8 @@ namespace MergePowerData.Report
             // TODO: Can I pump in a bunch of anon methods here so I can use anon methods to define actions and make this class more generic?
             if (c.Electric.Electricity.exports != null)
             {
-                _stats["elecimport"].Add(c.Electric.Electricity.imports.TWh * Intel.TWh2kg * Intel.TWh2kg,
-                    c.PurchasePower.value / Intel.Giga);
-                _stats["elecexport"].Add(c.Electric.Electricity.exports.TWh * Intel.TWh2kg * Intel.TWh2kg,
-                    c.PurchasePower.value / Intel.Giga);
+                _stats["elecimport"].Add(c.Electric.Electricity.imports.TWh * Intel.TWh2kg * Intel.TWh2kg,c.PurchasePower.value / Intel.Giga);
+                _stats["elecexport"].Add(c.Electric.Electricity.exports.TWh * Intel.TWh2kg * Intel.TWh2kg,c.PurchasePower.value / Intel.Giga);
             }
 
             _stats["elecprod"].Add(c.Electric.ProdTWh * Intel.TWh2kg, c.PurchasePower.value / Intel.Giga);
@@ -80,10 +78,12 @@ namespace MergePowerData.Report
             _stats["natgasexport"].Add(c.FossilFuelDetail.NaturalGas.Exports.Value / Intel.Giga, c.PurchasePower.value / Intel.Giga);
             _stats["natgasimport"].Add(c.FossilFuelDetail.NaturalGas.Imports.Value / Intel.Giga, c.PurchasePower.value / Intel.Giga);
 
-            _stats["prcntelecff"].Add(c.Electric.Electricity.by_source.fossil_fuels.KWh(c.Electric.Electricity.installed_generating_capacity), c.PurchasePower.value / Intel.Giga);
-            _stats["prcntelecnuke"].Add(c.Electric.Electricity.by_source.nuclear_fuels.KWh(c.Electric.Electricity.installed_generating_capacity), c.PurchasePower.value / Intel.Giga);
-            _stats["prcntelechydro"].Add(c.Electric.Electricity.by_source.hydroelectric_plants.KWh(c.Electric.Electricity.installed_generating_capacity), c.PurchasePower.value / Intel.Giga);
-            _stats["prcntelecrenew"].Add(c.Electric.Electricity.by_source.other_renewable_sources.KWh(c.Electric.Electricity.installed_generating_capacity), c.PurchasePower.value / Intel.Giga);
+            var igc = c.Electric.Electricity.installed_generating_capacity;
+
+            _stats["prcntelecff"].Add(igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.fossil_fuels.percent) *Intel.TWh2kg, c.PurchasePower.value / Intel.Giga);
+            _stats["prcntelecnuke"].Add(igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.nuclear_fuels.percent), c.PurchasePower.value / Intel.Giga);
+            _stats["prcntelechydro"].Add(igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.hydroelectric_plants.percent), c.PurchasePower.value / Intel.Giga);
+            _stats["prcntelecrenew"].Add(igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.other_renewable_sources.percent), c.PurchasePower.value / Intel.Giga);
 
             _stats["emission"].Add(c.Electric.TtonCo2, c.PurchasePower.value / Intel.Giga);
         }

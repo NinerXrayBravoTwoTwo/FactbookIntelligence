@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
@@ -43,7 +42,7 @@ namespace MergePowerData
         protected Statistic _ffDevRelativeToGrowth;
         protected StatCollector _stats;
         protected Country _world;
-        
+
         /// <summary>
         /// Drive / Control CIAF data processing and filter based on minimum Gdp
         /// </summary>
@@ -109,14 +108,14 @@ namespace MergePowerData
             _countries.Add(country);
             _stats.Add(country);
         }
-        
+
         /// <summary>
         ///  Research report.  Many report lines are commented out and can be added back if that data becomes significant to the current analysis OODA loop 
         /// </summary>
         public void CsvReport()
         {
 
-            Console.WriteLine($"Lower Limit on Gross Domestic product: Giga ${MinimumGdp} (billion)\n");
+            Console.WriteLine($"Gross Domestic product greater than: Giga ${MinimumGdp} (billion)\n");
             var dv = "\t"; // For example; if you are documenting an .md format file for example the col seperator can be changed to '|'
 
             // header
@@ -125,7 +124,7 @@ namespace MergePowerData
                 $"ekg{dv}"
                 + $"GTR>avgE{dv}"
                 + $"LSS<avgE{dv}"
-                + $"eFFkg{dv}"
+                + $"ffGenCap/Y kg{dv}"
                 + $"dev_FF{dv}"
                 + $"FuelMbl{dv}"
                 + $"NatGasGcm{dv}"
@@ -163,14 +162,20 @@ namespace MergePowerData
                 //var x = (c.GrowthRate.value) / s.Slope(); // calc x for y value
                 //var stand = (standElectricProd - x) / s.Qx();
 
+                var test =_stats.Stand("prcntelecff",
+                    igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.fossil_fuels.percent) * TWh2kg,
+                    c.PurchasePower.value / Giga);
+
                 // Understanding Country wealth relative to use of FF and electricity.
                 Console.WriteLine(
                     // $"{c.Electric.ProdTWh}{dv}"
                     $"{c.Electric.ProdTWh * TWh2kg:F1}{dv}"
                     + $"{(standElectricProd >= 0 ? Math.Abs(standElectricProd) : 0):F3}{dv}"
                     + $"{(standElectricProd <= 0 ? Math.Abs(standElectricProd) : 0):F3}{dv}"
-                    + $"{c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh * TWh2kg:F1}{dv}"
-                    + $"{_stats.Stand("prcntelecff", c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh * TWh2kg, c.PurchasePower.value / Giga):F3}{dv}"
+                    // + $"igc: {igc.YearCapacityTWhr * TWh2kg:F2}\t"
+                    //+ $"Xcalc: {_stats.CalcX("prcntelecff", c.PurchasePower.value/Giga):F3}{dv}"
+                    + $"{igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.fossil_fuels.percent) * TWh2kg:F1}{dv}"
+                    + $"{_stats.Stand("prcntelecff", igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.fossil_fuels.percent) * TWh2kg, c.PurchasePower.value / Giga):F3}{dv}"
                     // + $"{c.Electric.Electricity.by_source.nuclear_fuels.percent / 100 * c.Electric.ProdKWh / kgU245perkWh * 1.6:F1}{dv}" // 1.6 is power xfer loss estimate
                     + $"{c.FossilFuelDetail.RefinedPetroleum.Consumption.Value / Mega:F2}{dv}"
                     + $"{c.FossilFuelDetail.NaturalGas.Consumption.Value / Giga:F1}{dv}"
@@ -222,7 +227,7 @@ namespace MergePowerData
 
             Thread.Sleep(1000); // file needs to close before I kick off reader
 
-           // Process.Start(path + "/EnergyUseReport.pdf");
+            // Process.Start(path + "/EnergyUseReport.pdf");
         }
     }
 }
