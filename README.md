@@ -129,7 +129,11 @@ Note: Mass is not matter; it is an attribute of matter.
 Note: the Nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg of energy, 1000 x Nagasaki.  Annual world electricity production is about 24,000 TWh or 947 kg (947,000 Nagasaki sized bombs. I am aware of the rounding error here but am trying to communicate not get lost in the weeds. One Nagasaki is actually 1.0242 g)
 
 # AARS
+## June 24, 2019
+Dramatically expanded linear regression testing to evaluate all data attributes against all other data attribues.  This has shown some suprising results.  Woring on adding other attributes just for the comparison.
 
+
+Started moving PDF report to iText 7 from iSharp
 ## June 19, 2019
 
 The test to compute linear regressions using standard deviations of other variables showed that no such relation can be found. It's equivalent to taking a second integration of the data and other dimensions would have to be used to find a correlation.  We simply do not have the data for that complicated a model.  

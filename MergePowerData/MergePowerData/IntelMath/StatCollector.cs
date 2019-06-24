@@ -63,10 +63,15 @@ namespace MergePowerData.IntelMath
         {
             IDictionary<string, int> exclude = new Dictionary<string, int>();
 
-            string[] x = { "eprod", "econs", "eimport", "eexport", "pcff", "pcnuke", "pchydro", "pcrenew", "frefineprod", "frefinecons", "gdp", "growth", "pop", "emission" };
+            string[] x = { "eprod", "econs", "eimport", "eexport", "pcff", "pcnuke", "pchydro", "pcrenew",
+                    "ffrefineprod", "ffrefinecons","ffrefineimport","ffrefineexport",
+                    "ffnatgasprod","ffnatgascons","ffnatgasimport","ffnatgasexport","ffnatgasreserv",
+                    "ffcrudereserv","ffcrudeprod","ffcrudeimport","ffcrudeexport",
+                    "gdp", "growth",
+                    "emission", "pop" };
 
-            for (int a = 0; a < x.Length - 1; a++)
-                for (int b = 0; b < x.Length - 1; b++)
+            for (int a = 0; a < x.Length; a++)
+                for (int b = 0; b < x.Length; b++)
                     if (a != b)
                     {
                         var statName = $"{x[a]}_{x[b]}";
@@ -82,8 +87,11 @@ namespace MergePowerData.IntelMath
                                 _stats.Add(statName, new Statistic());
                                 Console.WriteLine($"AddStat: {statName}");
                             }
-                            if (m != double.NaN && n != double.NaN)
+
+                            if (!(m is double.NaN || n is double.NaN))
                                 _stats[statName].Add(m, n);
+                            // Console.WriteLine($"No Data for country: {c.Name} - {statName}");
+
 
                             exclude.Add(reverse, 0);
                         }
@@ -95,18 +103,18 @@ namespace MergePowerData.IntelMath
             double result;
 
             var igc = c.Electric.Electricity.installed_generating_capacity;
+            var elcity = c.Electric.Electricity;
 
             switch (name)
             {
                 case "emission": result = c.Electric.TtonCo2; break;
-                case "gdp":
-                    result = c.PurchasePower.value / Intel.Giga; break;
+                case "gdp": result = c.PurchasePower.value / Intel.Giga; break;
                 case "growth": result = c.GrowthRate.value; break;
                 case "pop": result = c.Pop / Intel.Mega; break;
                 case "eprod": result = c.Electric.ProdTWh * Intel.TWh2kg; break;
                 case "econs": result = c.Electric.ConsTWh * Intel.TWh2kg; break;
-                case "eimport": result = c.Electric.Electricity.imports.TWh * Intel.TWh2kg; break;
-                case "eexport": result = c.Electric.Electricity.exports.TWh * Intel.TWh2kg; break;
+                case "eimport": result = elcity.imports != null ? elcity.imports.TWh * Intel.TWh2kg : double.NaN; break;
+                case "eexport": result = elcity.exports != null ? elcity.exports.TWh * Intel.TWh2kg : double.NaN; break;
                 case "pcff":
                     result = igc != null ? (igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.fossil_fuels.percent) * Intel.TWh2kg) : double.NaN;
                     break;
@@ -119,8 +127,21 @@ namespace MergePowerData.IntelMath
                 case "pcrenew":
                     result = igc != null ? (igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.other_renewable_sources.percent) * Intel.TWh2kg) : double.NaN;
                     break;
-                case "frefineprod": result = c.FossilFuelDetail.RefinedPetroleum.Production.Value / Intel.Mega; break;
-                case "frefinecons": result = c.FossilFuelDetail.RefinedPetroleum.Consumption.Value / Intel.Mega; break;
+                case "ffrefineprod": result = c.FossilFuelDetail.RefinedPetroleum.Production.Value / Intel.Mega; break;
+                case "ffrefinecons": result = c.FossilFuelDetail.RefinedPetroleum.Consumption.Value / Intel.Mega; break;
+                case "ffrefineimport": result = c.FossilFuelDetail.RefinedPetroleum.Imports.Value / Intel.Mega; break;
+                case "ffrefineexport": result = c.FossilFuelDetail.RefinedPetroleum.Exports.Value / Intel.Mega; break;
+
+                case "ffnatgasprod": result = c.FossilFuelDetail.NaturalGas.Production.Value / Intel.Giga; break;
+                case "ffnatgascons": result = c.FossilFuelDetail.NaturalGas.Consumption.Value / Intel.Giga; break;
+                case "ffnatgasimport": result = c.FossilFuelDetail.NaturalGas.Imports.Value / Intel.Giga; break;
+                case "ffnatgasexport": result = c.FossilFuelDetail.NaturalGas.Exports.Value / Intel.Giga; break;
+                case "ffnatgasreserv": result = c.FossilFuelDetail.NaturalGas.ProvedReserves.Value / Intel.Giga; break;
+
+                case "ffcrudereserv": result = c.FossilFuelDetail.CrudeOil.ProvedReserves.Value / Intel.Giga; break;
+                case "ffcrudeprod": result = c.FossilFuelDetail.CrudeOil.Production.Value / Intel.Giga; break;
+                case "ffcrudeimport": result = c.FossilFuelDetail.CrudeOil.Imports.Value / Intel.Giga; break;
+                case "ffcrudeexport": result = c.FossilFuelDetail.CrudeOil.Exports.Value / Intel.Giga; break;
 
                 default:
                     throw new ArgumentException($"Undefined {name}");

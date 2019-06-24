@@ -14,7 +14,7 @@ namespace MergePowerData
             if (args.Length > 0)
             {
                 var argString = string.Join(" ", args);
-                var match = Regex.Match(argString, @"\s[-]*(mingdp|gdp|pp|dollar|\$)=(\d+)$", RegexOptions.IgnoreCase);
+                var match = Regex.Match(argString, @"[-]*(mingdp|gdp|pp|dollar|\$)=(\d+)$", RegexOptions.IgnoreCase);
 
                 if (match.Success)
                     gdpLowerLimit = double.Parse(match.Groups[2].Value);
