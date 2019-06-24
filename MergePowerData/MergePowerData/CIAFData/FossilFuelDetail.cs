@@ -16,7 +16,8 @@ namespace MergePowerData.CIAFdata
         }
     }
 
-    /*
+    /*  There is no coal section in CIAF did find the following note regarding this omission;
+
         Electricity - from fossil fuels Electricity - from fossil fuels field listing
         This entry measures the capacity of plants that generate electricity by burning fossil fuels 
         (such as coal, petroleum products, and natural gas), expressed as a share of the country's total generating capacity.
@@ -47,17 +48,16 @@ namespace MergePowerData.CIAFdata
             Imports = new ValueDate(token["imports"], "bbl_per_day");
             ProvedReserves = new ValueDate(token["proved_reserves"], "bbl");
 
-            // Console.WriteLine($"{token.ToString(Newtonsoft.Json.Formatting.Indented)}");
+            //System.Console.WriteLine($"{token.ToString(Newtonsoft.Json.Formatting.Indented)}");
         }
     }
 
     public class RefinedPetroleum
     {
+        public readonly ValueDate Production;
         public readonly ValueDate Consumption;
         public readonly ValueDate Exports;
         public readonly ValueDate Imports;
-
-        public readonly ValueDate Production;
 
         public RefinedPetroleum(JToken token)
         {
@@ -79,7 +79,6 @@ namespace MergePowerData.CIAFdata
             Exports = new ValueDate(token["exports"], "bbl_per_day");
         }
     }
-
 
     public class NaturalGas
     {

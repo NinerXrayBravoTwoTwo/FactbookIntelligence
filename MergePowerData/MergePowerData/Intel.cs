@@ -4,9 +4,8 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading;
 using MergePowerData.CIAFdata;
-using MergePowerData.Report;
+using MergePowerData.IntelMath;
 
 namespace MergePowerData
 {
@@ -23,11 +22,8 @@ namespace MergePowerData
         public const double Kilo = 1.0e3;
 
         public const double kgU245perkWh = 24.0e6;
-
         public const double TWh2kg = 0.040055402; // TWh = 0.040055402 kg
-
-
-        protected const double TwentyMtonTnt = 0.93106557; //
+        public const double TwentyMtonTnt = 0.93106557; //
 
         // 20 Mton_e = 0.93106557 kg, ~1 kg
         protected const double TWh2MTonTnt = 0.86042065; // TWh = 0.86042 M ton Tnt
@@ -71,10 +67,10 @@ namespace MergePowerData
                 // do not add aggregation country entries to stats
                 if (Regex.IsMatch(country.Name, @"world|european", RegexOptions.IgnoreCase)) continue;
 
-                var x = _stats.Stand("elecprod", country.Electric.ProdTWh * TWh2kg, country.PurchasePower.value / Giga);
+                var x = _stats.Stand("eprod_gdp", country.Electric.ProdTWh * TWh2kg, country.PurchasePower.value / Giga);
                 _energyDeviationRelativeToGrowth.Add(x, country.GrowthRate.value);
 
-                x = _stats.Stand("ff",
+                x = _stats.Stand("pcff_gdp",
                     country.Electric.Electricity.by_source.fossil_fuels.percent / 100 * country.Electric.ProdTWh *
                     TWh2kg,
                     country.PurchasePower.value / Giga);
@@ -114,7 +110,6 @@ namespace MergePowerData
         /// </summary>
         public void CsvReport()
         {
-
             Console.WriteLine($"Gross Domestic product greater than: Giga ${MinimumGdp} (billion)\n");
             var dv = "\t"; // For example; if you are documenting an .md format file for example the col seperator can be changed to '|'
 
@@ -155,52 +150,43 @@ namespace MergePowerData
                 var futureCap50Y = igc.YearCapacityTWhr * 2;
 
                 var standElectricProd =
-                    _stats.Stand("elecprod", c.Electric.ProdTWh * TWh2kg, c.PurchasePower.value / Giga);
-
-                // calculate rate of change in Electric relative to gdp.growth ...
-                //var s = _energyDeviationRelativeToGrowth;
-                //var x = (c.GrowthRate.value) / s.Slope(); // calc x for y value
-                //var stand = (standElectricProd - x) / s.Qx();
+                    _stats.Stand("eprod_gdp", c.Electric.ProdTWh * TWh2kg, c.PurchasePower.value / Giga);
 
                 // Understanding Country wealth relative to use of FF and electricity.
                 Console.WriteLine(
-                    // $"{c.Electric.ProdTWh}{dv}"
                     $"{c.Electric.ProdTWh * TWh2kg:F1}{dv}"
                     + $"{(standElectricProd >= 0 ? Math.Abs(standElectricProd) : 0):F3}{dv}"
                     + $"{(standElectricProd <= 0 ? Math.Abs(standElectricProd) : 0):F3}{dv}"
-                    // + $"igc: {igc.YearCapacityTWhr * TWh2kg:F2}\t"
-                    //+ $"Xcalc: {_stats.CalcX("prcntelecff", c.PurchasePower.value/Giga):F3}{dv}"
                     + $"{igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.fossil_fuels.percent) * TWh2kg:F1}{dv}"
-                    + $"{_stats.Stand("prcntelecff", igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.fossil_fuels.percent) * TWh2kg, c.PurchasePower.value / Giga):F3}{dv}"
+                    + $"{_stats.Stand("pcff_gdp", igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.fossil_fuels.percent) * TWh2kg, c.PurchasePower.value / Giga):F3}{dv}"
                     // + $"{c.Electric.Electricity.by_source.nuclear_fuels.percent / 100 * c.Electric.ProdKWh / kgU245perkWh * 1.6:F1}{dv}" // 1.6 is power xfer loss estimate
                     + $"{c.FossilFuelDetail.RefinedPetroleum.Consumption.Value / Mega:F2}{dv}"
                     + $"{c.FossilFuelDetail.NaturalGas.Consumption.Value / Giga:F1}{dv}"
+
                     //+ $"{c.Pop / 1e6:F0}{dv}"
                     //+ $"{c.Electric.ProdKWh / c.Pop:F0}{dv}"
                     //+ $"{c.Electric.ProdTWh / _world.Electric.ProdTWh:F3}{dv}"
                     //+ $"{kgEfossil / wrldKgEfossil:F3}{dv}"
-                    //$"{c.Electric.MtonCo2 / c.Pop:F2}{dv}"
-                    //$"{c.Electric.TtonCo2 / _world.Electric.TtonCo2:F3}{dv}" // want amtCo2 per TW consumed Fossil
-                    //  Emissions Co2
-                    + $"{c.Electric.TtonCo2:F0}{dv}"
                     //+ $"{c.Electric.Electricity.by_source.nuclear_fuels.percent}{dv}"
                     //+ $"{c.Electric.Electricity.by_source.hydroelectric_plants.percent}{dv}"
                     //+ $"{c.Electric.Electricity.by_source.fossil_fuels.percent}{dv}"
                     //+ $"{c.Electric.Electricity.by_source.other_renewable_sources.percent}{dv}"
                     //+ $"{igc.YearCapacityTWhr:F0}{dv}"
                     //+ $"{igc.YearCapacityTWhr / c.Electric.ProdTWh:F2}{dv}"
-                    + $"{c.PurchasePower.value / Giga:F0}{dv}"
                     //+ $"{c.GrowthRate.value:F1}{dv}"
                     //+ $"{c.GrowthRate.date}{dv}"
                     //+ $"{c.PurchasePower.value / _world.PurchasePower.value:F3}{dv}"
                     //+ $"{c.PurchasePower.value}{dv}"
                     //+ $"{c.PurchasePower.value / c.Electric.ProdTWh:F2}{dv}"
                     //+ $"{c.FossilFuelDetail.RefinedPetroleum.Consumption.Value:F0}{dv}"
-                    // + $"{c.FossilFuelDetail.RefinedPetroleum.Production.Value:F0}{dv}"
+                    //+ $"{c.FossilFuelDetail.RefinedPetroleum.Production.Value:F0}{dv}"
                     //+ $"{c.FossilFuelDetail.CrudeOil.Exports.Value / c.FossilFuelDetail.CrudeOil.Production.Value:F2}{dv}"
                     //+ $"{c.FossilFuelDetail.RefinedPetroleum.Consumption.Value / _world.FossilFuelDetail.RefinedPetroleum.Consumption.Value:F5}{dv}"
-                    //+$"{c.FossilFuelDetail.RefinedPetroleum.Consumption.Date}{dv}"
-                    // + $"{c.Electric.ProdTWh / windMillTWh:F0}\t"
+                    //+ $"{c.FossilFuelDetail.RefinedPetroleum.Consumption.Date}{dv}"
+                    //+ $"{c.Electric.ProdTWh / windMillTWh:F0}\t"
+
+                    + $"{c.Electric.TtonCo2:F0}{dv}"
+                    + $"{c.PurchasePower.value / Giga:F0}{dv}"
                     + $"{c.Name}");
             }
 
@@ -208,22 +194,6 @@ namespace MergePowerData
             Console.WriteLine(_stats.ToString());
         }
 
-        /// <summary>
-        /// Generate a report in PDF format (Someday with graphs, a dashboard report )
-        /// </summary>
-        public void PdfReport()
-        {
-            var pdf = new PowerPdf(_world, _countries);
-
-            var path = Environment.CurrentDirectory;
-
-            var stream = new FileStream(path + "/EnergyUseReport.pdf", FileMode.Create);
-
-            pdf.Create(stream);
-
-            Thread.Sleep(1000); // file needs to close before I kick off reader
-
-            // Process.Start(path + "/EnergyUseReport.pdf");
-        }
+  
     }
 }

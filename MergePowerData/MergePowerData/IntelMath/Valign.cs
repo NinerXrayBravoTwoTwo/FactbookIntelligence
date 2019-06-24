@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using iTextSharp.text;
 
-namespace MergePowerData.Report
+namespace MergePowerData.IntelMath
 {
     /// <summary>
     /// 

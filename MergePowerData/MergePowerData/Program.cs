@@ -14,12 +14,12 @@ namespace MergePowerData
             if (args.Length > 0)
             {
                 var argString = string.Join(" ", args);
-                var match = Regex.Match(argString, @"[-]*(mingdp|gdp|pp|dollar|\$)=(\d+)$", RegexOptions.IgnoreCase);
+                var match = Regex.Match(argString, @"\s[-]*(mingdp|gdp|pp|dollar|\$)=(\d+)$", RegexOptions.IgnoreCase);
 
                 if (match.Success)
                     gdpLowerLimit = double.Parse(match.Groups[2].Value);
 
-                match = Regex.Match(argString, @"(help|-help|-h)", RegexOptions.IgnoreCase);
+                match = Regex.Match(argString, @"[-]*(help|help|h)", RegexOptions.IgnoreCase);
                 if (match.Success)
                 {
                     Console.WriteLine("MinGdp=nn | dollar=nn | gdp=nn are all acceptable parameters.");

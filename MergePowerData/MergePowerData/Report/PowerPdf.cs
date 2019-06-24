@@ -6,6 +6,23 @@ using MergePowerData.CIAFdata;
 
 namespace MergePowerData.Report
 {
+    /*
+     
+              /// <summary>
+        /// Generate a report in PDF format (Someday with graphs, a dashboard report )
+        /// </summary>
+        public void PdfReport()
+        {
+            var pdf = new PowerPdf(_world, _countries);
+            var path = Environment.CurrentDirectory;
+            var stream = new FileStream(path + "/EnergyUseReport.pdf", FileMode.Create);
+
+            pdf.Create(stream);
+            
+            // Thread.Sleep(1000); // file needs to close before I kick off reader
+            // Process.Start(path + "/EnergyUseReport.pdf");
+        }
+     * */
 
     // <summary>
     //  I am a report in PDF format

@@ -1,6 +1,7 @@
 ﻿using System;
+using  Math = System.Math;
 
-namespace MergePowerData.Report
+namespace MergePowerData.IntelMath
 {
     /// <summary>
     ///     2D Statistic Generator (Bivariate)
@@ -114,7 +115,6 @@ namespace MergePowerData.Report
 
             MaxX = Math.Max(MaxX, other.MaxX);
             MinX = Math.Min(MinX, other.MinX);
-
         }
 
         /// <summary>
