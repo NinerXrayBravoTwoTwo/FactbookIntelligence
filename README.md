@@ -19,7 +19,7 @@ Always consider the source and motives of intelligence. For example, "Journalism
 
 Every search starts someplace; I have started with physics and general relativity. This perspective allows me to understand the energies expended in the earths/sun/space climate system and comprehend these energies.  Note; Nagasaki bomb released 1g of energy (see note at end of this file for more or reference my Mass-Energy GitHub project.)
 
-To keep everything in context I occasionally pop out to the 10 AU view (~1.4 hours distance from sun, twice as far as Jupiter’s orbit.)  From here it is easier to remember that, we and everything are in space, that the earth is very close to our star, which is incredibly hot and bright, surrounded by nothing at all for light years in every direction. Our arguments about climate change are insignificant relative to the reality in which we actually exist.
+To keep everything in context I occasionally pop out to the 10 AU view (~1.4 hours distance from sun, twice as far as Jupiterâ€™s orbit.)  From here it is easier to remember that, we and everything are in space, that the earth is very close to our star, which is incredibly hot and bright, surrounded by nothing at all for light years in every direction. Our arguments about climate change are insignificant relative to the reality in which we actually exist.
 
 #### Theory of Intelligence 
 
@@ -27,7 +27,7 @@ This project represents the practice of a science.  A STEM of journalism and per
 
 #### Boyd and OODA
 
-The "Scientific Method (SM)" is the basis of turning data into intelligence, however we have no time for formal review, publishing, peer review, that may take a lifetime.  Instead we MUST use a more intense version of SM; Boydes’ OODA loop.
+The "Scientific Method (SM)" is the basis of turning data into intelligence, however we have no time for formal review, publishing, peer review, that may take a lifetime.  Instead we MUST use a more intense version of SM; Boydesâ€™ OODA loop.
 
 In summary; (O) Take raw data -> (O orient) Huh? what is this -> (D decide) Create Testable hypothesis -> (A) Act/Test -> push feedback into start. (AAR, after action review)
 
@@ -110,15 +110,6 @@ Generating Capacity Fossil Fuel kg       vs FF Refined Consumed Mbbl|0.903
 FF Refined export Mbbl   vs FF Natural Gas Consumed Gcm|0.900
 Electric Consumption kg  vs FF Refined Consumed Mbbl|0.895
 Electric Production kg   vs FF Refined Consumed Mbbl|0.893
-FF Refined Produced Mbbl         vs Purchasing Parity Giga $|0.892
-FF Refined Consumed Mbbl         vs FF Oil Reserves Gbbl|0.891
-FF Natural Gas Import Gcm        vs FF Oil Reserves Gbbl|-0.304
-FF Natural Gas Import Gcm        vs FF Oil Reserves Gbbl|-0.322
-FF Oil Reserves Gbbl     vs Growth Rate|-0.349
-Growth Rate      vs kW per Population|-0.358
-FF Oil Reserves Gbbl     vs Growth Rate|-0.368
-FF Refined Import Mbbl   vs FF Natural Gas Reserves Gcm|-0.379
-FF Oil Reserves Gbbl     vs Growth Rate|-0.545
 
 #### Growth to non-average energy production
 
@@ -134,7 +125,7 @@ When you substitute s=300 Mm into Newtonian physics, energy and mass become the 
 
 Note: In AEs' famous "e=mc^2", c^2 is just a conversion factor, ergs to grams. The speed of light, c=1, 1 squared is still 1.
 
-Our star radiates 385 yotta watts about 0.1 x the mass of Mt Everest per hour or 15,000 trillion Nagasaki’s per hr.
+Our star radiates 385 yotta watts about 0.1 x the mass of Mt Everest per hour or 15,000 trillion Nagasakiâ€™s per hr.
 (yotta = trillion trillion)
 
 How much energy the earth absorbs and radiates per day seems to be a closely guarded secret.  Clearly, absorption and radiation are in equilibrium because the earth is not getting warmer or cooler within any margin of error we can currently measure.
@@ -155,7 +146,7 @@ The test to compute linear regressions using standard deviations of other variab
 
 Software Design; The new structure of the classes is better, but I can delete the now extraneous code for the new standard deviation vs Growth computations.  
 
-Next; improve the report format as a pdf and look at integrating PD map models and graphics so I don�t need to import the data to excel for graphics.
+Next; improve the report format as a pdf and look at integrating PD map models and graphics so I don’t need to import the data to excel for graphics.
 
 -----
 
@@ -284,7 +275,7 @@ Problems; There is no value for Coal consumption.  It is mixed into FF electric 
 
 ## June 14, 2019
 
-Reduced all the data concepts into a single story/question; “How is country economics related to CO2 emissions.  Many ways to go with this; Am currently testing three views, 1> FF Electric Production, 2> CO2 Emissions, 3> Economic growth.
+Reduced all the data concepts into a single story/question; â€œHow is country economics related to CO2 emissions.  Many ways to go with this; Am currently testing three views, 1> FF Electric Production, 2> CO2 Emissions, 3> Economic growth.
 
 Some problems; a> Only the top 40 or so countries by total Power production have an economy b> Some countries are in growth decline or collapse due to war (Venezuela, Syria, Saudi Arabia, Iran, Iraq)
 
