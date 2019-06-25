@@ -9,42 +9,28 @@ using Newtonsoft.Json;
 
 namespace MergePowerData.IntelMath
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class StatCollector
     {
-        private readonly IDictionary<string, Statistic> _stats = new Dictionary<string, Statistic>();
-
         public readonly double PLimit;
+        private static readonly string ConfigFile = Environment.CurrentDirectory + "/Columns.json";
 
-        //public List<string> ColumnNames = new List<string>(new[]
-        //{
-        //    "eprod", "econs", "eimport", "eexport", "pcff", "pcnuke", "pchydro", "pcrenew",
-        //    "ffrefineprod", "ffrefinecons", "ffrefineimport", "ffrefineexport",
-        //    "ffnatgasprod", "ffnatgascons", "ffnatgasimport", "ffnatgasexport", "ffnatgasreserv",
-        //    "ffcrudereserv", "ffcrudeprod", "ffcrudeimport", "ffcrudeexport",
-        //    "gdp", "growth",
-        //    "emission", "pop", "kwpop"
-        //});
+        public static Dictionary<string, ColumnConfig> ColumnConfigs =>
+            JsonConvert.DeserializeObject<Dictionary<string, ColumnConfig>>(File.ReadAllText(ConfigFile));
 
-        public readonly Dictionary<string, string> ColumnDescriptions = new Dictionary<string, string>();
-
+        public int Count => _stats.Count;
+        private readonly IDictionary<string, Statistic> _stats = new Dictionary<string, Statistic>();
 
         public StatCollector(double minGdpPp)
         {
             PLimit = minGdpPp;
-
-            var path = Environment.CurrentDirectory;
-            var stream = new FileStream(path + "/Columns.json", FileMode.Open, FileAccess.Read);
-
-            using (var streamReader = new StreamReader(stream, Encoding.ASCII))
-                ColumnDescriptions = JsonConvert.DeserializeObject<Dictionary<string, string>>(streamReader.ReadToEnd());
         }
-
-        public int Count => _stats.Count;
-
 
         public double CalcX(string statName, double yValue)
         {
-            return yValue / _stats[statName].Slope(); //+ _stats[statName].YIntercept();
+            return yValue / _stats[statName].Slope();
         }
 
         public double Stand(string statName, double xValue, double yValue)
@@ -62,6 +48,7 @@ namespace MergePowerData.IntelMath
 
             AddCrossTableRegressions(c);
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -70,7 +57,7 @@ namespace MergePowerData.IntelMath
         {
             IDictionary<string, int> exclude = new Dictionary<string, int>();
 
-            var x = ColumnDescriptions.Keys.ToArray();
+            var x = ColumnConfigs.Keys.ToArray();
 
             for (var a = 0; a < x.Length; a++)
                 for (var b = 0; b < x.Length; b++)
@@ -95,13 +82,14 @@ namespace MergePowerData.IntelMath
                         }
                     }
         }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="name"></param>
         /// <param name="c"></param>
         /// <returns></returns>
-        public double XValue(string name, Country c)
+        public static double XValue(string name, Country c)
         {
             double result;
 
@@ -111,26 +99,23 @@ namespace MergePowerData.IntelMath
             switch (name)
             {
                 case "emission":
-                    result = c.Electric.TtonCo2;
-                    break;
+                    result = c.Electric.TtonCo2; break;
                 case "gdp":
-                    result = c.PurchasePower.value / Intel.Giga;
-                    break;
+                    result = c.PurchasePower.value / Intel.Giga;break;
                 case "growth":
-                    result = c.GrowthRate.value;
-                    break;
+                    result = c.GrowthRate.value; break;
                 case "pop":
-                    result = c.Pop / Intel.Mega;
-                    break;
+                    result = c.Pop / Intel.Mega; break;
                 case "kwpop":
-                    result = c.Electric.ProdKWh / c.Pop;
-                    break;
+                    result = c.Electric.ProdKWh / c.Pop; break;
                 case "eprod":
-                    result = c.Electric.ProdTWh * Intel.TWh2kg;
-                    break;
+                    result = c.Electric.ProdTWh * Intel.TWh2kg; break;
                 case "econs":
-                    result = c.Electric.ConsTWh * Intel.TWh2kg;
-                    break;
+                    result = c.Electric.ConsTWh * Intel.TWh2kg; break;
+                case "eprodtw":
+                    result = c.Electric.ProdTWh; break;
+                case "econstw":
+                    result = c.Electric.ConsTWh; break;
                 case "eimport":
                     result = elcity.imports != null ? elcity.imports.TWh * Intel.TWh2kg : double.NaN;
                     break;
@@ -205,6 +190,7 @@ namespace MergePowerData.IntelMath
 
             return result;
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -219,21 +205,53 @@ namespace MergePowerData.IntelMath
             return result.ToString();
         }
 
-        public string ToReport(string sep, double gdpAbove, double gdpBelow)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dv"></param>
+        /// <param name="gdpAbove"></param>
+        /// <param name="gdpBelow"></param>
+        /// <returns></returns>
+        public string ToReport(string dv, double gdpAbove, double gdpBelow)
         {
-            var result = new StringBuilder($"Dependent(X) vs Independent(Y){sep}Correlation\n");
-
-            
+            var result = new StringBuilder($"Independent(X){dv}vs Dependent(Y){dv}Correlation{dv}MeanX{dv}Slope\n");
 
             foreach (var item in _stats.OrderByDescending(r => r.Value.Correlation()))
             {
-                string [] xy = item.Key.Split('_');
-                
+                var xy = item.Key.Split('_');
+
+                var stat = item.Value;
                 if (item.Value.Correlation() > gdpAbove || item.Value.Correlation() < gdpBelow)
-                    result.Append($"{ColumnDescriptions[xy[0]].Split('|')[0]}\t vs {ColumnDescriptions[xy[1]].Split('|')[0]}{sep}{item.Value.Correlation():F3}\n");
+                    result.Append($"{ColumnConfigs[xy[0]].Name}\tvs {ColumnConfigs[xy[1]].Name}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1}\n");
             }
 
             return result.ToString();
         }
+
+        public string ToReport(string dv, string filter)
+        {
+            var result = new StringBuilder($"Independent(X){dv}vs Dependent(Y){dv}Correlation{dv}MeanX{dv}Slope\n");
+
+            foreach (var item in _stats.OrderByDescending(r => r.Value.Correlation()))
+            {
+                var xy = item.Key.Split('_');
+
+                var stat = item.Value;
+                if (Regex.IsMatch(item.Key, filter, RegexOptions.IgnoreCase))
+                    result.Append($"{ColumnConfigs[xy[0]].Name}\tvs {ColumnConfigs[xy[1]].Name}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1}\n");
+            }
+
+            return result.ToString();
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class ColumnConfig
+    {
+        public string Short { get; set; }
+        public string Name { get; set; }
+        public string Format { get; set; }
     }
 }

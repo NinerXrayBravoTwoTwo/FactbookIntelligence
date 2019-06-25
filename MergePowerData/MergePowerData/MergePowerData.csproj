@@ -87,7 +87,6 @@
     <Compile Include="CIAFData\Energy.cs" />
     <Compile Include="AnalysisCapacity.cs" />
     <Compile Include="CIAFData\FossilFuelDetail.cs" />
-    <Compile Include="EnergyReport.cs" />
     <Compile Include="CIAFData\Gdp.cs" />
     <Compile Include="Intel.cs" />
     <Compile Include="Program.cs" />

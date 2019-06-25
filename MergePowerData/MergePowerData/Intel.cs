@@ -125,7 +125,7 @@ namespace MergePowerData
 
             foreach (var col in ReportColumns)
             {
-                headersb.Append(_stats.ColumnDescriptions[col].Split('|')[1]);
+                headersb.Append(StatCollector.ColumnConfigs[col].Short);
                 headersb.Append(dv);
 
                 if (col.Equals("eprod"))
@@ -173,22 +173,22 @@ namespace MergePowerData
                 var futureCap50Y = igc.YearCapacityTWhr * 2;
 
                 var standElectricProd =
-                    _stats.Stand("eprod_gdp", _stats.XValue("eprod",c), _stats.XValue("gdp", c));
+                    _stats.Stand("eprod_gdp", StatCollector.XValue("eprod",c), StatCollector.XValue("gdp", c));
                 //_stats.Stand("eprod_gdp", c.Electric.ProdTWh * TWh2kg, c.PurchasePower.value / Giga);
 
                 var rowSb = new StringBuilder();
 
                 foreach (var col in ReportColumns)
                 {
-                    switch (_stats.ColumnDescriptions[col].Split('|')[2])
+                    switch (StatCollector.ColumnConfigs[col].Format)
                     {
-                        case "1": rowSb.Append($"{_stats.XValue(col, c):F1}"); break;
-                        case "2": rowSb.Append($"{_stats.XValue(col, c):F2}"); break;
-                        case "3": rowSb.Append($"{_stats.XValue(col, c):F3}"); break;
-                        case "4": rowSb.Append($"{_stats.XValue(col, c):F4}"); break;
-                        case "5": rowSb.Append($"{_stats.XValue(col, c):F5}"); break;
+                        case "1": rowSb.Append($"{StatCollector.XValue(col, c):F1}"); break;
+                        case "2": rowSb.Append($"{StatCollector.XValue(col, c):F2}"); break;
+                        case "3": rowSb.Append($"{StatCollector.XValue(col, c):F3}"); break;
+                        case "4": rowSb.Append($"{StatCollector.XValue(col, c):F4}"); break;
+                        case "5": rowSb.Append($"{StatCollector.XValue(col, c):F5}"); break;
 
-                        default: rowSb.Append($"{_stats.XValue(col, c)}"); break;
+                        default: rowSb.Append($"{StatCollector.XValue(col, c)}"); break;
                     }
 
                     rowSb.Append(dv);
@@ -239,7 +239,11 @@ namespace MergePowerData
             Console.WriteLine(); // add blank line separation
 
             Console.WriteLine($"Statistic Count: {_stats.Count}\n");
-            Console.WriteLine(_stats.ToReport(dv, .890, -.290));
+            Console.WriteLine(_stats.ToReport(dv, .890, -.290) + "\n");
+
+            Console.WriteLine(_stats.ToReport(dv, "gdp") + "\n");
+            Console.WriteLine(_stats.ToReport(dv, "emission"));
+
 
         }
 
