@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using MergePowerData.CIAFdata;
 using MergePowerData.IntelMath;
@@ -111,30 +111,53 @@ namespace MergePowerData
         public void CsvReport()
         {
             Console.WriteLine($"Gross Domestic product greater than: Giga ${MinimumGdp} (billion)\n");
-            var dv = "\t"; // For example; if you are documenting an .md format file for example the col seperator can be changed to '|'
+            var dv = "\t"; // For example; if you are documenting an .md format file for example the col separator can be changed to '|'
 
-            // header
-            Console.WriteLine(
-                //"ProdTWh{dv}"-
-                $"ekg{dv}"
-                + $"GTR>avgE{dv}"
-                + $"LSS<avgE{dv}"
-                + $"ffGenCap/Y kg{dv}"
-                + $"dev_FF{dv}"
-                + $"FuelMbl{dv}"
-                + $"NatGasGcm{dv}"
-                + $"Co2Tton{dv}"
-                ////+ "maxFF_kWh"
-                ////+ "kw/pop{dv}"
-                ////+ "pop_M{dv}"
-                ////+ "kWh/pop{dv}"
-                ////+ "Prod_FF_TWh{dv}"
-                ////+ "Capacity_TWh/y{dv}"
-                ////+ "$Growth{dv}"
-                + $"$G PP{dv}"
-                // $"WindMillRepl{dv}"
-                // + $"$PP/TWh{dv}"
-                + "Country");
+            List<string> ReportColumns = new List<string>(new[]
+           {
+                "eprod",
+                "pcff",
+                "emission",
+                "gdp",
+                });
+
+            var headersb = new StringBuilder();
+
+            foreach (var col in ReportColumns)
+            {
+                headersb.Append(_stats.ColumnDescriptions[col].Split('|')[1]);
+                headersb.Append(dv);
+
+                if (col.Equals("eprod"))
+                    headersb.Append($"Qx{dv}");
+            }
+
+            headersb.Append($"Country{dv}");
+
+            Console.WriteLine(headersb);
+
+            //// header
+            //Console.WriteLine(
+            //        //"ProdTWh{dv}"-
+            //        $"ekg{dv}"
+            //        + $"GTR>avgE{dv}"
+            //        + $"LSS<avgE{dv}"
+            //        + $"ffGenCap/Y kg{dv}"
+            //        + $"dev_FF{dv}"
+            //        + $"FuelMbl{dv}"
+            //        + $"NatGasGcm{dv}"
+            //        + $"Co2Tton{dv}"
+            //        ////+ "maxFF_kWh"
+            //        ////+ "kw/pop{dv}"
+            //        ////+ "pop_M{dv}"
+            //        ////+ "kWh/pop{dv}"
+            //        ////+ "Prod_FF_TWh{dv}"
+            //        ////+ "Capacity_TWh/y{dv}"
+            //        ////+ "$Growth{dv}"
+            //        + $"$G PP{dv}"
+            //        // $"WindMillRepl{dv}"
+            //        // + $"$PP/TWh{dv}"
+            //        + "Country");
 
             foreach (var c in _countries.OrderByDescending(d => d.Electric.ProdTWh))
             {
@@ -150,51 +173,77 @@ namespace MergePowerData
                 var futureCap50Y = igc.YearCapacityTWhr * 2;
 
                 var standElectricProd =
-                    _stats.Stand("eprod_gdp", c.Electric.ProdTWh * TWh2kg, c.PurchasePower.value / Giga);
+                    _stats.Stand("eprod_gdp", _stats.XValue("eprod",c), _stats.XValue("gdp", c));
+                //_stats.Stand("eprod_gdp", c.Electric.ProdTWh * TWh2kg, c.PurchasePower.value / Giga);
 
+                var rowSb = new StringBuilder();
+
+                foreach (var col in ReportColumns)
+                {
+                    switch (_stats.ColumnDescriptions[col].Split('|')[2])
+                    {
+                        case "1": rowSb.Append($"{_stats.XValue(col, c):F1}"); break;
+                        case "2": rowSb.Append($"{_stats.XValue(col, c):F2}"); break;
+                        case "3": rowSb.Append($"{_stats.XValue(col, c):F3}"); break;
+                        case "4": rowSb.Append($"{_stats.XValue(col, c):F4}"); break;
+                        case "5": rowSb.Append($"{_stats.XValue(col, c):F5}"); break;
+
+                        default: rowSb.Append($"{_stats.XValue(col, c)}"); break;
+                    }
+
+                    rowSb.Append(dv);
+
+                    if (col.Equals("eprod"))
+                        rowSb.Append($"{Math.Abs(standElectricProd):F3}{dv}");
+                }
+
+                rowSb.Append($"{c.Name}");
+                Console.WriteLine(rowSb);
+
+                #region reference
+                /*
                 // Understanding Country wealth relative to use of FF and electricity.
-                Console.WriteLine(
-                    $"{c.Electric.ProdTWh * TWh2kg:F1}{dv}"
-                    + $"{(standElectricProd >= 0 ? Math.Abs(standElectricProd) : 0):F3}{dv}"
-                    + $"{(standElectricProd <= 0 ? Math.Abs(standElectricProd) : 0):F3}{dv}"
-                    + $"{igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.fossil_fuels.percent) * TWh2kg:F1}{dv}"
-                    + $"{_stats.Stand("pcff_gdp", igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.fossil_fuels.percent) * TWh2kg, c.PurchasePower.value / Giga):F3}{dv}"
-                    // + $"{c.Electric.Electricity.by_source.nuclear_fuels.percent / 100 * c.Electric.ProdKWh / kgU245perkWh * 1.6:F1}{dv}" // 1.6 is power xfer loss estimate
-                    + $"{c.FossilFuelDetail.RefinedPetroleum.Consumption.Value / Mega:F2}{dv}"
-                    + $"{c.FossilFuelDetail.NaturalGas.Consumption.Value / Giga:F1}{dv}"
+            //    Console.WriteLine(
+            //        $"{c.Electric.ProdTWh * TWh2kg:F1}{dv}"
+            //        + $"{(standElectricProd >= 0 ? Math.Abs(standElectricProd) : 0):F3}{dv}"
+            //        + $"{(standElectricProd <= 0 ? Math.Abs(standElectricProd) : 0):F3}{dv}"
+            //        + $"{igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.fossil_fuels.percent) * TWh2kg:F1}{dv}"
+            //        + $"{_stats.Stand("pcff_gdp", igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.fossil_fuels.percent) * TWh2kg, c.PurchasePower.value / Giga):F3}{dv}"
+            //        // + $"{c.Electric.Electricity.by_source.nuclear_fuels.percent / 100 * c.Electric.ProdKWh / kgU245perkWh * 1.6:F1}{dv}" // 1.6 is power xfer loss estimate
+            //        + $"{c.FossilFuelDetail.RefinedPetroleum.Consumption.Value / Mega:F2}{dv}"
+            //        + $"{c.FossilFuelDetail.NaturalGas.Consumption.Value / Giga:F1}{dv}"
 
-                    //+ $"{c.Pop / 1e6:F0}{dv}"
-                    //+ $"{c.Electric.ProdKWh / c.Pop:F0}{dv}"
-                    //+ $"{c.Electric.ProdTWh / _world.Electric.ProdTWh:F3}{dv}"
-                    //+ $"{kgEfossil / wrldKgEfossil:F3}{dv}"
-                    //+ $"{c.Electric.Electricity.by_source.nuclear_fuels.percent}{dv}"
-                    //+ $"{c.Electric.Electricity.by_source.hydroelectric_plants.percent}{dv}"
-                    //+ $"{c.Electric.Electricity.by_source.fossil_fuels.percent}{dv}"
-                    //+ $"{c.Electric.Electricity.by_source.other_renewable_sources.percent}{dv}"
-                    //+ $"{igc.YearCapacityTWhr:F0}{dv}"
-                    //+ $"{igc.YearCapacityTWhr / c.Electric.ProdTWh:F2}{dv}"
-                    //+ $"{c.GrowthRate.value:F1}{dv}"
-                    //+ $"{c.GrowthRate.date}{dv}"
-                    //+ $"{c.PurchasePower.value / _world.PurchasePower.value:F3}{dv}"
-                    //+ $"{c.PurchasePower.value}{dv}"
-                    //+ $"{c.PurchasePower.value / c.Electric.ProdTWh:F2}{dv}"
-                    //+ $"{c.FossilFuelDetail.RefinedPetroleum.Consumption.Value:F0}{dv}"
-                    //+ $"{c.FossilFuelDetail.RefinedPetroleum.Production.Value:F0}{dv}"
-                    //+ $"{c.FossilFuelDetail.CrudeOil.Exports.Value / c.FossilFuelDetail.CrudeOil.Production.Value:F2}{dv}"
-                    //+ $"{c.FossilFuelDetail.RefinedPetroleum.Consumption.Value / _world.FossilFuelDetail.RefinedPetroleum.Consumption.Value:F5}{dv}"
-                    //+ $"{c.FossilFuelDetail.RefinedPetroleum.Consumption.Date}{dv}"
-                    //+ $"{c.Electric.ProdTWh / windMillTWh:F0}\t"
-
-                    + $"{c.Electric.TtonCo2:F0}{dv}"
-                    + $"{c.PurchasePower.value / Giga:F0}{dv}"
-                    + $"{c.Name}");
+            //        //+ $"{c.Pop / 1e6:F0}{dv}"
+            //        //+ $"{c.Electric.ProdKWh / c.Pop:F0}{dv}"
+            //        //+ $"{c.Electric.ProdTWh / _world.Electric.ProdTWh:F3}{dv}"
+            //        //+ $"{kgEfossil / wrldKgEfossil:F3}{dv}"
+            //        //+ $"{c.Electric.Electricity.by_source.nuclear_fuels.percent}{dv}"
+            //        //+ $"{c.Electric.Electricity.by_source.hydroelectric_plants.percent}{dv}"
+            //        //+ $"{c.Electric.Electricity.by_source.fossil_fuels.percent}{dv}"
+            //        //+ $"{c.Electric.Electricity.by_source.other_renewable_sources.percent}{dv}"
+            //        //+ $"{igc.YearCapacityTWhr:F0}{dv}"
+            //        //+ $"{igc.YearCapacityTWhr / c.Electric.ProdTWh:F2}{dv}"
+            //        //+ $"{c.GrowthRate.value:F1}{dv}"
+            //        //+ $"{c.GrowthRate.date}{dv}"
+            //        //+ $"{c.PurchasePower.value / _world.PurchasePower.value:F3}{dv}"
+            //        //+ $"{c.PurchasePower.value}{dv}"
+            //        //+ $"{c.PurchasePower.value / c.Electric.ProdTWh:F2}{dv}"
+            //        //+ $"{c.FossilFuelDetail.RefinedPetroleum.Consumption.Value:F0}{dv}"
+            //        //+ $"{c.FossilFuelDetail.RefinedPetroleum.Production.Value:F0}{dv}"
+            //        //+ $"{c.FossilFuelDetail.CrudeOil.Exports.Value / c.FossilFuelDetail.CrudeOil.Production.Value:F2}{dv}"
+            //        //+
+    */
+                #endregion
             }
 
             Console.WriteLine(); // add blank line separation
-            Console.WriteLine(_stats.ToString());
+
+            Console.WriteLine($"Statistic Count: {_stats.Count}\n");
+            Console.WriteLine(_stats.ToReport(dv, .890, -.290));
+
         }
 
-  
+
     }
 
 }

@@ -82,28 +82,43 @@ Raw analysis is collected in the After-Action Review (AAR) list at the end of th
 
 ### Summary of World Energy Findings
 
-#### Electric production with fossil fuels / GDP - Highest correlation
-N: 14 **Cor: 0.9878** Mean: 30.24 Slp: 150.12 Qx: 12.272 Qy: 1865.048 Y: 1682
+Statistic Count: 325
 
-#### Electric Production / GDP - High Correlation
-N: 14 Mean: **Cor: 0.9842** 48.68 Slp: 98.86 Qx: 18.567 Qy: 1865.048 Y: 1409
-
-#### Electric consumption / GDP - High correlation
-N: 14 **Cor: 0.9816** Mean: 45.11 Slp: 103.76 Qx: 17.645 Qy: 1865.048 Y: 1541
-
-#### Refined Fuel consumption / GDP- Good correlation
-N: 14 **Cor: 0.9113** Mean: 4.40 Slp: 1152.18 Qx: 1.475 Qy: 1865.048 Y: 1153
-
-#### Natural Gas consumption / GDP- Correlation Not so good
-N: 14 **Cor: 0.6239** Mean: 157.36 Slp: 19.96 Qx: 58.290 Qy: 1865.048 Y: 3081
-
-#### CO2 Emissions / GDP - Good correlation
-N: 14 **Cor: 0.9423** Mean: 1931.45 Slp: 2.05 Qx: 859.299 Qy: 1865.048 Y: 2272
-
-#### GDP / GDP Growth rate - Very low correlation
-N: 14 **Cor: 0.3594** Mean: 3.26 Slp: 1072.37  Qx: 0.625 Qy: 1865.048 Y: 2729
-
-There is no clear relation between a countries current GDP and that countries rate of growth.  i.e. This disproves the general assertion that "The rich get richer and the poor get poorer."
+Dependent(X) vs Independent(Y)|Correlation
+:---------:| -----:
+Electric Production kg   vs Electric Consumption kg|0.999
+Electric Consumption kg  vs Generating Capacity Fossil Fuel kg|0.993
+Electric Production kg   vs Generating Capacity Fossil Fuel kg|0.992
+FF Refined Produced Mbbl         vs FF Refined Consumed Mbbl|0.988
+Generating Capacity Fossil Fuel kg       vs Purchasing Parity Giga $|0.984
+Electric Production kg   vs Purchasing Parity Giga $|0.982
+Electric Consumption kg  vs Purchasing Parity Giga $|0.980
+Electric Production kg   vs CO2 Emission Terra tons|0.977
+Electric Consumption kg  vs CO2 Emission Terra tons|0.976
+Generating Capacity Fossil Fuel kg       vs CO2 Emission Terra tons|0.969
+FF Natural Gas Produced Gcm      vs FF Natural Gas Consumed Gcm|0.955
+Purchasing Parity Giga $         vs CO2 Emission Terra tons|0.942
+Electric Consumption kg  vs Generating Capacity Renewable kg|0.934
+Electric Production kg   vs Generating Capacity Renewable kg|0.933
+Generating Capacity Renewable kg         vs CO2 Emission Terra tons|0.932
+Generating Capacity Renewable kg         vs Purchasing Parity Giga $|0.923
+Generating Capacity Fossil Fuel kg       vs Generating Capacity Renewable kg|0.921
+FF Refined Consumed Mbbl         vs Purchasing Parity Giga $|0.918
+FF Oil Reserves Gbbl     vs Purchasing Parity Giga $|0.914
+Generating Capacity Hydro kg     vs CO2 Emission Terra tons|0.909
+Generating Capacity Fossil Fuel kg       vs FF Refined Consumed Mbbl|0.903
+FF Refined export Mbbl   vs FF Natural Gas Consumed Gcm|0.900
+Electric Consumption kg  vs FF Refined Consumed Mbbl|0.895
+Electric Production kg   vs FF Refined Consumed Mbbl|0.893
+FF Refined Produced Mbbl         vs Purchasing Parity Giga $|0.892
+FF Refined Consumed Mbbl         vs FF Oil Reserves Gbbl|0.891
+FF Natural Gas Import Gcm        vs FF Oil Reserves Gbbl|-0.304
+FF Natural Gas Import Gcm        vs FF Oil Reserves Gbbl|-0.322
+FF Oil Reserves Gbbl     vs Growth Rate|-0.349
+Growth Rate      vs kW per Population|-0.358
+FF Oil Reserves Gbbl     vs Growth Rate|-0.368
+FF Refined Import Mbbl   vs FF Natural Gas Reserves Gcm|-0.379
+FF Oil Reserves Gbbl     vs Growth Rate|-0.545
 
 #### Growth to non-average energy production
 
