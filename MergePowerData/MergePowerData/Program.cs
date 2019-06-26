@@ -11,15 +11,26 @@ namespace MergePowerData
             // https://github.com/iancoleman/cia_world_factbook_api
 
             double gdpLowerLimit = 1000;
+            string filter = string.Empty;
+
             if (args.Length > 0)
             {
                 var argString = string.Join(" ", args);
-                var match = Regex.Match(argString, @"[-]*(mingdp|gdp|pp|dollar|\$)=(\d+)$", RegexOptions.IgnoreCase);
+                
+                //
+                var match = Regex.Match(argString, @"[-]*(mingdp|gdp|pp|dollar|\$)=(\d+)", RegexOptions.IgnoreCase);
 
                 if (match.Success)
                     gdpLowerLimit = double.Parse(match.Groups[2].Value);
 
-                match = Regex.Match(argString, @"[-]*(help|help|h)", RegexOptions.IgnoreCase);
+                //
+                 match = Regex.Match(argString, @"[-]*(filter)=(\w+)", RegexOptions.IgnoreCase);
+
+                if (match.Success)
+                    filter = match.Groups[2].Value;
+
+                //
+                match = Regex.Match(argString, @"[-]*(help)", RegexOptions.IgnoreCase);
                 if (match.Success)
                 {
                     Console.WriteLine("MinGdp=nn | dollar=nn | gdp=nn are all acceptable parameters.");
@@ -28,7 +39,7 @@ namespace MergePowerData
             }
 
             var report = new AnalysisCapacity("../../../../../cia_world_factbook_api/data/" + "factbook.json");
-            report.ElectricReport(gdpLowerLimit);  // GDP in Billion $ ( Giga $)
+            report.ElectricReport(gdpLowerLimit, filter);  // GDP in Billion $ ( Giga $)
         }
     }
 }

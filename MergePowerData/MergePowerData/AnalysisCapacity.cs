@@ -17,13 +17,12 @@ namespace MergePowerData
         /// Produce report
         /// </summary>
         /// <param name="grossDomesticProductLowerLimit"></param>
-        public void ElectricReport( double grossDomesticProductLowerLimit)
+        public void ElectricReport( double grossDomesticProductLowerLimit, string filter)
         {
             /* * IMPORTANT; Key variable that limits how many countries are processed in Linear regressions AND included in report **/
 
-            var intel = new Intel(grossDomesticProductLowerLimit); 
-
-
+            var intel = new Intel(grossDomesticProductLowerLimit, filter); 
+            
             foreach (var item in _fact["countries"])
             foreach (var country in item)
             {

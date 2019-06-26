@@ -101,7 +101,7 @@ namespace MergePowerData.IntelMath
                 case "emission":
                     result = c.Electric.TtonCo2; break;
                 case "gdp":
-                    result = c.PurchasePower.value / Intel.Giga;break;
+                    result = c.PurchasePower.value / Intel.Giga; break;
                 case "growth":
                     result = c.GrowthRate.value; break;
                 case "pop":
@@ -172,18 +172,21 @@ namespace MergePowerData.IntelMath
                     break;
 
                 case "ffcrudereserv":
-                    result = c.FossilFuelDetail.CrudeOil.ProvedReserves.Value / Intel.Giga;
+                    result = c.FossilFuelDetail.CrudeOil.ProvedReserves.Value / Intel.Mega;
                     break;
                 case "ffcrudeprod":
-                    result = c.FossilFuelDetail.CrudeOil.Production.Value / Intel.Giga;
+                    result = c.FossilFuelDetail.CrudeOil.Production.Value / Intel.Mega;
                     break;
                 case "ffcrudeimport":
-                    result = c.FossilFuelDetail.CrudeOil.Imports.Value / Intel.Giga;
+                    result = c.FossilFuelDetail.CrudeOil.Imports.Value / Intel.Mega;
                     break;
                 case "ffcrudeexport":
-                    result = c.FossilFuelDetail.CrudeOil.Exports.Value / Intel.Giga;
+                    result = c.FossilFuelDetail.CrudeOil.Exports.Value / Intel.Mega;
                     break;
-
+                case "pcoilgdp":
+                    result = (c.FossilFuelDetail.CrudeOil.Production.Value * 50 * 365.242198781) /
+                             c.PurchasePower.value;
+                    break;
                 default:
                     throw new ArgumentException($"Undefined {name}");
             }
@@ -230,6 +233,7 @@ namespace MergePowerData.IntelMath
 
         public string ToReport(string dv, string filter)
         {
+            Console.WriteLine($"Filter by: {filter}");
             var result = new StringBuilder($"Independent(X){dv}vs Dependent(Y){dv}Correlation{dv}MeanX{dv}Slope\n");
 
             foreach (var item in _stats.OrderByDescending(r => r.Value.Correlation()))

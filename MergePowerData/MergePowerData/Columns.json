@@ -90,18 +90,18 @@
     "Format": "1"
   },
   "ffcrudeprod": {
-    "Short": "FFOilProd Gbblv",
-    "Name": "FF Oil Production Gbbl",
+    "Short": "FFOilProd Mbbl",
+    "Name": "FF Oil Production Mbbl",
     "Format": "-1"
   },
   "ffcrudeimport": {
-    "Short": "FFOilImp Gbbl",
-    "Name": "FF Oil Import Gbbl",
+    "Short": "FFOilImp Mbbl",
+    "Name": "FF Oil Import Mbbl",
     "Format": "1"
   },
   "ffcrudeexport": {
-    "Short": "FFOilExp Gbbl",
-    "Name": "FF Oil Export Gbbl",
+    "Short": "FFOilExp Mbbl",
+    "Name": "FF Oil Export bbl",
     "Format": "1"
   },
   "gdp": {
@@ -114,19 +114,24 @@
     "Name": "Growth Rate",
     "Format": "1"
   },
+  "pcoilgdp": {
+    "Short": "oil%gdp",
+    "Name": "Oil % GDP",
+    "Format": 3
+  },
   "pop": {
-    "Short": "PopM",
-    "Name": "Population Millions",
-    "Format": "1"
-  },
-  "kwpop": {
-    "Short": "kW/pop",
-    "Name": "kW per Population",
-    "Format": "0"
-  },
-  "emission": {
-    "Short": "EmissionTT",
-    "Name": "CO2 Emission Terra tons",
-    "Format": "1"
+      "Short": "PopM",
+      "Name": "Population Millions",
+      "Format": "1"
+    },
+    "kwpop": {
+      "Short": "kW/pop",
+      "Name": "kW per Population",
+      "Format": "0"
+    },
+    "emission": {
+      "Short": "EmissionTT",
+      "Name": "CO2 Emission Terra tons",
+      "Format": "1"
+    }
   }
-}

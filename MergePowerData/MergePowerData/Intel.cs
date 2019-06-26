@@ -43,13 +43,17 @@ namespace MergePowerData
         /// Drive / Control CIAF data processing and filter based on minimum Gdp
         /// </summary>
         /// <param name="minimumGdp">Limit, in Billion $ (GIGA $) to filter out countries below a minimum GDP from report.</param>
-        public Intel(double minimumGdp)
+        /// <param name="filter"> </param>
+        public Intel(double minimumGdp, string filter)
         {
             MinimumGdp = minimumGdp;
+            Filter = filter;
+
             _stats = new StatCollector(minimumGdp);
         }
 
         public double MinimumGdp { get; set; }
+        public string Filter { get; set; }
 
         // These linear regressions showed that there is no correlation between gdp growth & countries diff from average energy / gdp 
         /// <summary>
@@ -118,6 +122,10 @@ namespace MergePowerData
                 "eprod",
                 "pcff",
                 "emission",
+                "ffcrudeprod",
+                "ffnatgasprod",
+                "pchydro",
+                "pcoilgdp",
                 "gdp",
                 });
 
@@ -173,7 +181,7 @@ namespace MergePowerData
                 var futureCap50Y = igc.YearCapacityTWhr * 2;
 
                 var standElectricProd =
-                    _stats.Stand("eprod_gdp", StatCollector.XValue("eprod",c), StatCollector.XValue("gdp", c));
+                    _stats.Stand("eprod_gdp", StatCollector.XValue("eprod", c), StatCollector.XValue("gdp", c));
                 //_stats.Stand("eprod_gdp", c.Electric.ProdTWh * TWh2kg, c.PurchasePower.value / Giga);
 
                 var rowSb = new StringBuilder();
@@ -242,12 +250,8 @@ namespace MergePowerData
             Console.WriteLine(_stats.ToReport(dv, .890, -.290) + "\n");
 
             Console.WriteLine(_stats.ToReport(dv, "gdp") + "\n");
-            Console.WriteLine(_stats.ToReport(dv, "emission"));
-
+            Console.WriteLine(_stats.ToReport(dv, Filter));
 
         }
-
-
     }
-
 }
