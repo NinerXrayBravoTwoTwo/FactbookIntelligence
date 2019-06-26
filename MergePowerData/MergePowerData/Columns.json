@@ -19,22 +19,22 @@
     "Name": "Electric Export kg",
     "Format": "1"
   },
-  "pcff": {
+  "capff": {
     "Short": "CapFF kg",
     "Name": "Generating Capacity Fossil Fuel kg",
     "Format": "3"
   },
-  "pcnuke": {
+  "capnuke": {
     "Short": "CapNuke kg",
     "Name": "Generating Capacity Nuclear kg",
     "Format": "1"
   },
-  "pchydro": {
+  "caphydro": {
     "Short": "CapHydro kg",
     "Name": "Generating Capacity Hydro kg",
     "Format": "1"
   },
-  "pcrenew": {
+  "caprenew": {
     "Short": "CapRenew kg",
     "Name": "Generating Capacity Renewable kg",
     "Format": "1"

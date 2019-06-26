@@ -74,7 +74,7 @@ namespace MergePowerData
                 var x = _stats.Stand("eprod_gdp", country.Electric.ProdTWh * TWh2kg, country.PurchasePower.value / Giga);
                 _energyDeviationRelativeToGrowth.Add(x, country.GrowthRate.value);
 
-                x = _stats.Stand("pcff_gdp",
+                x = _stats.Stand("capff_gdp",
                     country.Electric.Electricity.by_source.fossil_fuels.percent / 100 * country.Electric.ProdTWh *
                     TWh2kg,
                     country.PurchasePower.value / Giga);
@@ -115,16 +115,16 @@ namespace MergePowerData
         public void CsvReport()
         {
             Console.WriteLine($"Gross Domestic product greater than: Giga ${MinimumGdp} (billion)\n");
-            var dv = "\t"; // For example; if you are documenting an .md format file for example the col separator can be changed to '|'
+            var dv = "|"; // For example; if you are documenting an .md format file for example the col separator can be changed to '|'
 
-            List<string> ReportColumns = new List<string>(new[]
+            var ReportColumns = new List<string>(new[]
            {
                 "eprod",
-                "pcff",
+                "capff",
                 "emission",
                 "ffcrudeprod",
                 "ffnatgasprod",
-                "pchydro",
+                "caphydro",
                 "pcoilgdp",
                 "gdp",
                 });
@@ -136,7 +136,7 @@ namespace MergePowerData
                 headersb.Append(IntelCore.ColumnConfigs[col].Short);
                 headersb.Append(dv);
 
-                if (Regex.IsMatch(col, @"(eprod|pcff|pchydro)"))
+                if (Regex.IsMatch(col, @"(eprod|capff|caphydro)"))
                     headersb.Append($"Qx{dv}");
             }
 
@@ -180,7 +180,7 @@ namespace MergePowerData
 
                     rowSb.Append(dv);
 
-                    if (Regex.IsMatch(col, @"(eprod|pcff|pchydro)"))
+                    if (Regex.IsMatch(col, @"(eprod|capff|caphydro)"))
                         rowSb.Append($"{Math.Abs(standElectricProd):F3}{dv}");
                 }
 

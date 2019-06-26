@@ -82,34 +82,17 @@ Raw analysis is collected in the After-Action Review (AAR) list at the end of th
 
 ### Summary of World Energy Findings
 
-Statistic Count: 325
-
-Dependent(X) vs Independent(Y)|Correlation
-:---------:| -----:
-Electric Production kg   vs Electric Consumption kg|0.999
-Electric Consumption kg  vs Generating Capacity Fossil Fuel kg|0.993
-Electric Production kg   vs Generating Capacity Fossil Fuel kg|0.992
-FF Refined Produced Mbbl         vs FF Refined Consumed Mbbl|0.988
-Generating Capacity Fossil Fuel kg       vs Purchasing Parity Giga $|0.984
-Electric Production kg   vs Purchasing Parity Giga $|0.982
-Electric Consumption kg  vs Purchasing Parity Giga $|0.980
-Electric Production kg   vs CO2 Emission Terra tons|0.977
-Electric Consumption kg  vs CO2 Emission Terra tons|0.976
-Generating Capacity Fossil Fuel kg       vs CO2 Emission Terra tons|0.969
-FF Natural Gas Produced Gcm      vs FF Natural Gas Consumed Gcm|0.955
-Purchasing Parity Giga $         vs CO2 Emission Terra tons|0.942
-Electric Consumption kg  vs Generating Capacity Renewable kg|0.934
-Electric Production kg   vs Generating Capacity Renewable kg|0.933
-Generating Capacity Renewable kg         vs CO2 Emission Terra tons|0.932
-Generating Capacity Renewable kg         vs Purchasing Parity Giga $|0.923
-Generating Capacity Fossil Fuel kg       vs Generating Capacity Renewable kg|0.921
-FF Refined Consumed Mbbl         vs Purchasing Parity Giga $|0.918
-FF Oil Reserves Gbbl     vs Purchasing Parity Giga $|0.914
-Generating Capacity Hydro kg     vs CO2 Emission Terra tons|0.909
-Generating Capacity Fossil Fuel kg       vs FF Refined Consumed Mbbl|0.903
-FF Refined export Mbbl   vs FF Natural Gas Consumed Gcm|0.900
-Electric Consumption kg  vs FF Refined Consumed Mbbl|0.895
-Electric Production kg   vs FF Refined Consumed Mbbl|0.893
+Independent(X)|vs Dependent(Y)|Correlation|MeanX|Slope
+-------------:|:--------------|----------:|----:|----:
+Generating Capacity Fossil Fuel kg|vs GDP Giga $|0.984|46.9|64.8
+Electric Production kg|vs FF Refined Produced Mbbl|0.982|31.5|102.0
+Electric Consumption kg|vs FF Refined Consumed Mbbl|0.980|29.1|107.4
+FF Oil Reserves Gbbl|vs Oil % GDP|0.946|30974.6|0.0
+GDP Giga $|vs Oil % GDP|0.942|4090.6|0.4
+FF Oil Export bbl|vs Oil % GDP|0.927|0.9|1.3
+Generating Capacity Renewable kg|vs GDP Giga $|0.923|12.9|222.1
+FF Refined Consumed Mbbl|vs GDP Giga $|0.918|3.1|1193.9
+FF Oil Import Mbbl|vs GDP Giga $|0.914|1.5|2432.9
 
 #### Growth to non-average energy production
 

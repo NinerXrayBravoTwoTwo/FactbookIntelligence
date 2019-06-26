@@ -106,7 +106,8 @@ namespace MergePowerData.IntelMath
                 var stat = item.Value;
                 if (item.Value.Correlation() > gdpAbove || item.Value.Correlation() < gdpBelow)
                     result.Append(
-                        $"{xyNames[0]}\tvs {xyNames[1]}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1}\n");
+                        $"{xyNames[0]}{dv}vs {xyNames[1]}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1}\n"
+                        );
             }
 
             return result.ToString();
@@ -125,7 +126,7 @@ namespace MergePowerData.IntelMath
 
                 if (Regex.IsMatch(item.Key, filter, RegexOptions.IgnoreCase))
                     result.Append(
-                        $"{xyNames[0]}\tvs {xyNames[1]}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1}\n");
+                        $"{xyNames[0]}{dv}vs {xyNames[1]}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1}\n");
             }
 
             return result.ToString();

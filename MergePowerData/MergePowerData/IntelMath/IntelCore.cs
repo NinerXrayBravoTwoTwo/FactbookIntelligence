@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace MergePowerData.IntelMath
 {
-    public class IntelCore
+    public static class IntelCore
     {
         internal static readonly string ConfigFile = Environment.CurrentDirectory + "/Columns.json";
 
@@ -15,9 +15,10 @@ namespace MergePowerData.IntelMath
             JsonConvert.DeserializeObject<Dictionary<string, ColumnConfig>>(File.ReadAllText(ConfigFile));
 
         /// <summary>
+        /// Preforms primary column computation for a data element from CIAF
         /// </summary>
-        /// <param name="key"></param>
-        /// <param name="c"></param>
+        /// <param name="key">Identifying key for column configuration</param>
+        /// <param name="c">Country object with all related CIAF data</param>
         /// <returns></returns>
         public static double XValue(string key, Country c)
         {
@@ -61,24 +62,24 @@ namespace MergePowerData.IntelMath
                 case "eexport":
                     result = elcity.exports != null ? elcity.exports.TWh * Intel.TWh2kg : double.NaN;
                     break;
-                case "pcff":
+                case "capff":
                     result = igc != null
                         ? igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.fossil_fuels.percent) * Intel.TWh2kg
                         : double.NaN;
                     break;
-                case "pcnuke":
+                case "capnuke":
                     result = igc != null
                         ? igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.nuclear_fuels.percent) *
                           Intel.TWh2kg
                         : double.NaN;
                     break;
-                case "pchydro":
+                case "caphydro":
                     result = igc != null
                         ? igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.hydroelectric_plants.percent) *
                           Intel.TWh2kg
                         : double.NaN;
                     break;
-                case "pcrenew":
+                case "caprenew":
                     result = igc != null
                         ? igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.other_renewable_sources.percent) *
                           Intel.TWh2kg
@@ -151,7 +152,11 @@ namespace MergePowerData.IntelMath
 
             return result;
         }
-
+        /// <summary>
+        /// Returns the Long Name field from a column parameter.
+        /// </summary>
+        /// <param name="configKeys">List of column identifying keys</param>
+        /// <returns>List of LongNames </returns>
         public static string[] GetNames(string[] configKeys)
         {
             var names = new List<string>();
