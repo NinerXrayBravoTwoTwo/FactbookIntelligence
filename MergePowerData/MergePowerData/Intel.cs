@@ -182,7 +182,7 @@ namespace MergePowerData
                     rowSb.Append(dv);
 
                     if (Regex.IsMatch(col, @"(eprod|capff|caphydro)"))
-                        rowSb.Append($"{Math.Abs(standElectricProd):F3}{dv}");
+                        rowSb.Append($"{Math.Abs(standCapHydro):F3}{dv}");
                 }
 
                 rowSb.Append($"{c.Name}");
