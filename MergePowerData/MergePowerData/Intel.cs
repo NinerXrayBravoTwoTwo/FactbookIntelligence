@@ -21,7 +21,7 @@ namespace MergePowerData
         public const double Mega = 1.0e6;
         public const double Kilo = 1.0e3;
 
-        public const double kgU245perkWh = 24.0e6;
+        public const double kgU235perkWh = 24.0e6;
         public const double TWh2kg = 0.040055402; // TWh = 0.040055402 kg
         public const double TwentyMtonTnt = 0.93106557; //
 
@@ -133,39 +133,16 @@ namespace MergePowerData
 
             foreach (var col in ReportColumns)
             {
-                headersb.Append(StatCollector.ColumnConfigs[col].Short);
+                headersb.Append(IntelCore.ColumnConfigs[col].Short);
                 headersb.Append(dv);
 
-                if (col.Equals("eprod"))
+                if (Regex.IsMatch(col, @"(eprod|pcff|pchydro)"))
                     headersb.Append($"Qx{dv}");
             }
 
             headersb.Append($"Country{dv}");
 
             Console.WriteLine(headersb);
-
-            //// header
-            //Console.WriteLine(
-            //        //"ProdTWh{dv}"-
-            //        $"ekg{dv}"
-            //        + $"GTR>avgE{dv}"
-            //        + $"LSS<avgE{dv}"
-            //        + $"ffGenCap/Y kg{dv}"
-            //        + $"dev_FF{dv}"
-            //        + $"FuelMbl{dv}"
-            //        + $"NatGasGcm{dv}"
-            //        + $"Co2Tton{dv}"
-            //        ////+ "maxFF_kWh"
-            //        ////+ "kw/pop{dv}"
-            //        ////+ "pop_M{dv}"
-            //        ////+ "kWh/pop{dv}"
-            //        ////+ "Prod_FF_TWh{dv}"
-            //        ////+ "Capacity_TWh/y{dv}"
-            //        ////+ "$Growth{dv}"
-            //        + $"$G PP{dv}"
-            //        // $"WindMillRepl{dv}"
-            //        // + $"$PP/TWh{dv}"
-            //        + "Country");
 
             foreach (var c in _countries.OrderByDescending(d => d.Electric.ProdTWh))
             {
@@ -181,27 +158,29 @@ namespace MergePowerData
                 var futureCap50Y = igc.YearCapacityTWhr * 2;
 
                 var standElectricProd =
-                    _stats.Stand("eprod_gdp", StatCollector.XValue("eprod", c), StatCollector.XValue("gdp", c));
+                    _stats.Stand("eprod_gdp", IntelCore.XValue("eprod", c), IntelCore.XValue("gdp", c));
+
+                
                 //_stats.Stand("eprod_gdp", c.Electric.ProdTWh * TWh2kg, c.PurchasePower.value / Giga);
 
                 var rowSb = new StringBuilder();
 
                 foreach (var col in ReportColumns)
                 {
-                    switch (StatCollector.ColumnConfigs[col].Format)
+                    switch (IntelCore.ColumnConfigs[col].Format)
                     {
-                        case "1": rowSb.Append($"{StatCollector.XValue(col, c):F1}"); break;
-                        case "2": rowSb.Append($"{StatCollector.XValue(col, c):F2}"); break;
-                        case "3": rowSb.Append($"{StatCollector.XValue(col, c):F3}"); break;
-                        case "4": rowSb.Append($"{StatCollector.XValue(col, c):F4}"); break;
-                        case "5": rowSb.Append($"{StatCollector.XValue(col, c):F5}"); break;
+                        case "1": rowSb.Append($"{IntelCore.XValue(col, c):F1}"); break;
+                        case "2": rowSb.Append($"{IntelCore.XValue(col, c):F2}"); break;
+                        case "3": rowSb.Append($"{IntelCore.XValue(col, c):F3}"); break;
+                        case "4": rowSb.Append($"{IntelCore.XValue(col, c):F4}"); break;
+                        case "5": rowSb.Append($"{IntelCore.XValue(col, c):F5}"); break;
 
-                        default: rowSb.Append($"{StatCollector.XValue(col, c)}"); break;
+                        default: rowSb.Append($"{IntelCore.XValue(col, c)}"); break;
                     }
 
                     rowSb.Append(dv);
 
-                    if (col.Equals("eprod"))
+                    if (Regex.IsMatch(col, @"(eprod|pcff|pchydro)"))
                         rowSb.Append($"{Math.Abs(standElectricProd):F3}{dv}");
                 }
 

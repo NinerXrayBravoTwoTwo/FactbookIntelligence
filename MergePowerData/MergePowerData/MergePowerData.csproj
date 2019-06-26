@@ -89,6 +89,7 @@
     <Compile Include="CIAFData\FossilFuelDetail.cs" />
     <Compile Include="CIAFData\Gdp.cs" />
     <Compile Include="Intel.cs" />
+    <Compile Include="IntelMath\IntelCore.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IntelMath\Statistic.cs" />
