@@ -75,8 +75,7 @@ namespace MergePowerData
                 _energyDeviationRelativeToGrowth.Add(x, country.GrowthRate.value);
 
                 x = _stats.Stand("capff_gdp",
-                    country.Electric.Electricity.by_source.fossil_fuels.percent / 100 * country.Electric.ProdTWh *
-                    TWh2kg,
+                    country.Electric.Electricity.by_source.fossil_fuels.percent / 100 * country.Electric.ProdTWh * TWh2kg,
                     country.PurchasePower.value / Giga);
 
                 _ffDevRelativeToGrowth.Add(x, country.GrowthRate.value);
@@ -160,7 +159,9 @@ namespace MergePowerData
                 var standElectricProd =
                     _stats.Stand("eprod_gdp", IntelCore.XValue("eprod", c), IntelCore.XValue("gdp", c));
 
-                
+                var standCapHydro =
+                    _stats.Stand("caphydro_gdp", IntelCore.XValue("caphydro", c), IntelCore.XValue("gdp", c));
+
                 //_stats.Stand("eprod_gdp", c.Electric.ProdTWh * TWh2kg, c.PurchasePower.value / Giga);
 
                 var rowSb = new StringBuilder();
