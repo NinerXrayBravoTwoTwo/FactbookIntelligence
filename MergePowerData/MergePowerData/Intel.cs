@@ -159,6 +159,9 @@ namespace MergePowerData
                 var standElectricProd =
                     _stats.Stand("eprod_gdp", IntelCore.XValue("eprod", c), IntelCore.XValue("gdp", c));
 
+                var standCapFF =
+                    _stats.Stand("capff_gdp", IntelCore.XValue("capff", c), IntelCore.XValue("gdp", c));
+
                 var standCapHydro =
                     _stats.Stand("caphydro_gdp", IntelCore.XValue("caphydro", c), IntelCore.XValue("gdp", c));
 
@@ -181,8 +184,16 @@ namespace MergePowerData
 
                     rowSb.Append(dv);
 
-                    if (Regex.IsMatch(col, @"(eprod|capff|caphydro)"))
-                        rowSb.Append($"{Math.Abs(standCapHydro):F3}{dv}");
+                    var match = Regex.Match(col, @"(eprod|capff|caphydro)");
+
+                    if(match.Success)
+                        switch (match.Groups[1].Value)
+                        {
+                            case "eprod": rowSb.Append($"{standElectricProd:F3}{dv}"); break;
+                            case "capff": rowSb.Append($"{standCapFF:F3}{dv}"); break;
+                            case "caphydro": rowSb.Append($"{standCapHydro:F3}{dv}"); break;
+                        }
+                    
                 }
 
                 rowSb.Append($"{c.Name}");
