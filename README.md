@@ -115,7 +115,7 @@ ElecProd ekg|Qx ekg/G$|Qx ekg/TT|CapFF ekg|Qx ekg/G$|Qx ekg/TT|EmissionTT TT|GDP
 Statistic Count: 406
 
 Independent(X)|vs Dependent(Y)|Correlation|MeanX|Slope
----:|:--:|---:|---:|----:
+---:|:--|---:|---:|----:
 Electric Consumption|vs Generating Capacity Fossil Fuel|0.993|29.1|1.7 ekg/ekg
 Generating Capacity Fossil Fuel|vs GDP|0.984|46.9|64.8 ekg/G$
 Electric Production|vs GDP|0.982|31.5|102.0 ekg/G$
