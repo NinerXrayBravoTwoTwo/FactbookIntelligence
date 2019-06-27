@@ -134,10 +134,6 @@ Generating Capacity Fossil Fuel|vs CO2 Emission Terra tons|0.970|42.8|27.8 ekg/T
 FF Natural Gas Produced|vs FF Natural Gas Consumed|0.953|97.3|0.8 Gcm/Gcm
 FF Oil Export|vs Growth Rate|-0.531|0.8|-0.6 Mbbl/%
 
-#### Growth to non-average energy production
-
-The experiment to compare countries growth rate to countries non average energy production ... showed no correlation.  i.e. if a country generates more or less energy per GDP than average it does not noticeable effect that countries growth rate.
-
 ## Brief Relativity Summary
 
 Energy is very difficult for people to comprehend. We understand things we can hold, lift, and see.  If you knew that the USA consumed 3,902 tera watt hours in 2016 it seems incomprehensible.  What if I told you that this could be loaded into the back of your truck and would weigh 344.6 lbs.? (156.3 kg)

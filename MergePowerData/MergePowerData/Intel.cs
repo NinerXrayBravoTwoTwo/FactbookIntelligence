@@ -114,7 +114,7 @@ namespace MergePowerData
         public void CsvReport()
         {
             Console.WriteLine($"Gross Domestic product greater than: Giga ${MinimumGdp} (billion)\n");
-            var dv = "|"; // For example; if you are documenting an .md format file for example the col separator can be changed to '|'
+            var dv = "\t"; // For example; if you are documenting an .md format file for example the col separator can be changed to '|'
 
             var ReportColumns = new List<string>(new[]
            {
