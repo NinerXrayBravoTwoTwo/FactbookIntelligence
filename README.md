@@ -115,20 +115,30 @@ ElecProd ekg|Qx ekg/G$|Qx ekg/TT|CapFF ekg|Qx ekg/G$|Qx ekg/TT|EmissionTT TT|GDP
 Statistic Count: 406
 
 Independent(X)|vs Dependent(Y)|Correlation|MeanX|Slope
----:|:--|---:|---:|----:
+---:|:--:|---:|---:|----:
 Electric Consumption|vs Generating Capacity Fossil Fuel|0.993|29.1|1.7 ekg/ekg
-Electric Production|vs Generating Capacity Fossil Fuel|0.992|31.5|1.6 ekg/ekg
 Generating Capacity Fossil Fuel|vs GDP|0.984|46.9|64.8 ekg/G$
 Electric Production|vs GDP|0.982|31.5|102.0 ekg/G$
-Electric Consumption|vs GDP|0.980|29.1|107.4 ekg/G$
 Electric Production|vs CO2 Emission Terra tons|0.977|31.5|44.3 ekg/TT
 Generating Capacity Fossil Fuel|vs CO2 Emission Terra tons|0.969|46.9|27.8 ekg/TT
+FF Natural Gas Produced|vs FF Natural Gas Consumed|0.955|102.8|0.8 Gcm/Gcm
 FF Oil Reserves|vs Oil % GDP|0.946|30974.6|0.0 Gbbl/%
 GDP|vs CO2 Emission Terra tons|0.942|4090.6|0.4 G$/TT
 Electric Consumption|vs Generating Capacity Renewable|0.934|29.1|0.4 ekg/ekg
-Electric Production|vs Generating Capacity Renewable|0.933|31.5|0.4 ekg/ekg
 Generating Capacity Renewable|vs CO2 Emission Terra tons|0.932|12.9|97.9 ekg/TT
 FF Oil Export|vs Oil % GDP|0.927|0.9|1.3 Mbbl/%
+Generating Capacity Renewable|vs GDP|0.923|12.9|222.1 ekg/G$
+Generating Capacity Fossil Fuel|vs Generating Capacity Renewable|0.921|46.9|0.3 ekg/ekg
+FF Refined Consumed|vs GDP|0.918|3.1|1193.9 Mbbl/G$
+FF Oil Import|vs GDP|0.914|1.5|2432.9 Mbbl/G$
+Generating Capacity Hydro|vs CO2 Emission Terra tons|0.909|11.4|101.5 ekg/TT
+Generating Capacity Fossil Fuel|vs FF Refined Consumed|0.903|46.9|0.0 ekg/Mbbl
+FF Refined export|vs FF Natural Gas Consumed|0.900|0.8|132.7 Mbbl/Gcm
+Electric Consumption|vs FF Refined Consumed|0.895|29.1|0.1 ekg/Mbbl
+Electric Production|vs FF Refined Consumed|0.893|31.5|0.1 ekg/Mbbl
+FF Refined Produced|vs GDP|0.892|2.9|1132.5 Mbbl/G$
+Generating Capacity Fossil Fuel|vs FF Oil Import|0.889|46.9|0.0 ekg/Mbbl
+FF Refined Produced|vs FF Natural Gas Consumed|0.883|2.9|33.6 Mbbl/Gcm
 FF Oil Export|vs Growth Rate|-0.545|0.9|-0.6 Mbbl/%
 
 ## Brief Relativity Summary
