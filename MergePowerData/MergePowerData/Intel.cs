@@ -114,26 +114,28 @@ namespace MergePowerData
         public void CsvReport()
         {
             Console.WriteLine($"Gross Domestic product greater than: Giga ${MinimumGdp} (billion)\n");
-            var dv = "|"; // For example; if you are documenting an .md format file for example the col separator can be changed to '|'
+            var dv = "\t"; // For example; if you are documenting an .md format file for example the col separator can be changed to '|'
 
             var ReportColumns = new List<string>(new[]
            {
-                "eprod",
-                "capff",
-                "emission",
-                "ffcrudeprod",
-                "ffnatgasprod",
-                "caphydro",
-                "pcoilgdp",
-                "gdp",
+               "eprod",
+               "ratiocap2eprod",
+               "kwu235"
+                //"eprod",In
+                //"capff",
+                //"emission",
+                //"ffcrudeprod",
+                //"ffnatgasprod",
+                //"caphydro",
+                //"pcoilgdp",
+                //"gdp",
                 });
 
             var headersb = new StringBuilder();
 
             foreach (var col in ReportColumns)
             {
-                headersb.Append(IntelCore.ColumnConfigs[col].Short);
-                headersb.Append(dv);
+                headersb.Append($"{IntelCore.ColumnConfigs[col].Short} {IntelCore.ColumnConfigs[col].Unit}{dv}");
 
                 if (Regex.IsMatch(col, @"(eprod|capff|caphydro)"))
                     headersb.Append($"Qx{dv}");
@@ -186,14 +188,14 @@ namespace MergePowerData
 
                     var match = Regex.Match(col, @"(eprod|capff|caphydro)");
 
-                    if(match.Success)
+                    if (match.Success)
                         switch (match.Groups[1].Value)
                         {
                             case "eprod": rowSb.Append($"{standElectricProd:F3}{dv}"); break;
-                            case "capff": rowSb.Append($"{standCapFF:F3}{dv}"); break;
                             case "caphydro": rowSb.Append($"{standCapHydro:F3}{dv}"); break;
+                            case "capff": rowSb.Append($"{standCapFF:F3}{dv}"); break;
                         }
-                    
+
                 }
 
                 rowSb.Append($"{c.Name}");
@@ -221,10 +223,10 @@ namespace MergePowerData
             //        //+ $"{c.Electric.Electricity.by_source.fossil_fuels.percent}{dv}"
             //        //+ $"{c.Electric.Electricity.by_source.other_renewable_sources.percent}{dv}"
             //        //+ $"{igc.YearCapacityTWhr:F0}{dv}"
-            //        //+ $"{igc.YearCapacityTWhr / c.Electric.ProdTWh:F2}{dv}"
+            //        //+ $"{igc.YearCapacityTWhr / c.Electric.ProdTWh:F2}{dv}"// ratio capacity / ElecProd 
             //        //+ $"{c.GrowthRate.value:F1}{dv}"
             //        //+ $"{c.GrowthRate.date}{dv}"
-            //        //+ $"{c.PurchasePower.value / _world.PurchasePower.value:F3}{dv}"
+            //        //+ $"{c.PurchasePower.value / _world.PurchasePower.value:F3}{dv}" 
             //        //+ $"{c.PurchasePower.value}{dv}"
             //        //+ $"{c.PurchasePower.value / c.Electric.ProdTWh:F2}{dv}"
             //        //+ $"{c.FossilFuelDetail.RefinedPetroleum.Consumption.Value:F0}{dv}"
@@ -240,9 +242,8 @@ namespace MergePowerData
             Console.WriteLine($"Statistic Count: {_stats.Count}\n");
             Console.WriteLine(_stats.ToReport(dv, .890, -.290) + "\n");
 
-            Console.WriteLine(_stats.ToReport(dv, "gdp") + "\n");
-            Console.WriteLine(_stats.ToReport(dv, Filter));
-
+            if (!String.IsNullOrEmpty(Filter))
+                Console.WriteLine(_stats.ToReport(dv, Filter));
         }
     }
 }

@@ -102,12 +102,12 @@ namespace MergePowerData.IntelMath
             foreach (var item in _stats.OrderByDescending(r => r.Value.Correlation()))
             {
                 var xyNames = IntelCore.GetNames(item.Key.Split('_'));
+                var xyUnits = IntelCore.GetUnits(item.Key.Split('_'));
 
                 var stat = item.Value;
                 if (item.Value.Correlation() > gdpAbove || item.Value.Correlation() < gdpBelow)
                     result.Append(
-                        $"{xyNames[0]}{dv}vs {xyNames[1]}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1}\n"
-                        );
+                            $"{xyNames[0]}{dv}vs {xyNames[1]}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1} {xyUnits[0]}/{xyUnits[1]}\n");
             }
 
             return result.ToString();
@@ -121,12 +121,13 @@ namespace MergePowerData.IntelMath
             foreach (var item in _stats.OrderByDescending(r => r.Value.Correlation()))
             {
                 var xyNames = IntelCore.GetNames(item.Key.Split('_'));
+                var xyUnits = IntelCore.GetUnits(item.Key.Split('_'));
 
                 var stat = item.Value;
 
                 if (Regex.IsMatch(item.Key, filter, RegexOptions.IgnoreCase))
                     result.Append(
-                        $"{xyNames[0]}{dv}vs {xyNames[1]}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1}\n");
+                        $"{xyNames[0]}{dv}vs {xyNames[1]}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1} {xyUnits[0]}/{xyUnits[1]}\n");
             }
 
             return result.ToString();

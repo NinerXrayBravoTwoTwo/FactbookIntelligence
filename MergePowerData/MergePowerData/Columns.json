@@ -1,137 +1,176 @@
 ﻿{
   "eprod": {
-    "Short": "ElecProd kg",
-    "Name": "Electric Production kg",
-    "Format": "1"
+    "Short": "ElecProd",
+    "Name": "Electric Production",
+    "Format": "1",
+    "Unit": "ekg"
   },
   "econs": {
-    "Short": "ElecCons kg",
-    "Name": "Electric Consumption kg",
-    "Format": "1"
+    "Short": "ElecCons",
+    "Name": "Electric Consumption",
+    "Format": "1",
+    "Unit": "ekg"
   },
   "eimport": {
-    "Short": "ElecImp kg",
-    "Name": "Electric Import kg",
-    "Format": "1"
+    "Short": "ElecImp",
+    "Name": "Electric Import",
+    "Format": "1",
+    "Unit": "kg"
   },
   "eexport": {
-    "Short": "ElecExp kg",
-    "Name": "Electric Export kg",
-    "Format": "1"
+    "Short": "ElecExp",
+    "Name": "Electric Export",
+    "Format": "1",
+    "Unit": "ekg"
   },
   "capff": {
-    "Short": "CapFF kg",
-    "Name": "Generating Capacity Fossil Fuel kg",
-    "Format": "3"
+    "Short": "CapFF",
+    "Name": "Generating Capacity Fossil Fuel",
+    "Format": "3",
+    "Unit": "ekg"
   },
   "capnuke": {
-    "Short": "CapNuke kg",
-    "Name": "Generating Capacity Nuclear kg",
-    "Format": "1"
+    "Short": "CapNuke",
+    "Name": "Generating Capacity Nuclear",
+    "Format": "1",
+    "Unit": "ekg"
   },
   "caphydro": {
-    "Short": "CapHydro kg",
-    "Name": "Generating Capacity Hydro kg",
-    "Format": "1"
+    "Short": "CapHydro",
+    "Name": "Generating Capacity Hydro",
+    "Format": "1",
+    "Unit": "ekg"
   },
   "caprenew": {
-    "Short": "CapRenew kg",
-    "Name": "Generating Capacity Renewable kg",
-    "Format": "1"
+    "Short": "CapRenew",
+    "Name": "Generating Capacity Renewable",
+    "Format": "1",
+    "Unit": "ekg"
   },
   "ffrefineprod": {
-    "Short": "FFRefProd Mbbl",
-    "Name": "FF Refined Produced Mbbl",
-    "Format": "1"
+    "Short": "FFRefProd",
+    "Name": "FF Refined Produced",
+    "Format": "1",
+    "Unit": "Mbbl"
   },
   "ffrefinecons": {
-    "Short": "FFRefCons Mbbl",
-    "Name": "FF Refined Consumed Mbbl",
-    "Format": "1"
+    "Short": "FFRefCons",
+    "Name": "FF Refined Consumed",
+    "Format": "1",
+    "Unit": "Mbbl"
   },
   "ffrefineimport": {
-    "Short": "FFRefImp Mbbl",
-    "Name": "FF Refined Import Mbbl",
-    "Format": "1"
+    "Short": "FFRefImp",
+    "Name": "FF Refined Import",
+    "Format": "1",
+    "Unit": "Mbbl"
   },
   "ffrefineexport": {
-    "Short": "FFRefExp Mbbl",
-    "Name": "FF Refined export Mbbl",
-    "Format": "1"
+    "Short": "FFRefExp",
+    "Name": "FF Refined export",
+    "Format": "1",
+    "Unit": "Mbbl"
   },
   "ffnatgasprod": {
-    "Short": "FFNatGasProd Gcm",
-    "Name": "FF Natural Gas Produced Gcm",
-    "Format": "1"
+    "Short": "FFNatGasProd",
+    "Name": "FF Natural Gas Produced",
+    "Format": "1",
+    "Unit": "Gcm"
   },
   "ffnatgascons": {
-    "Short": "FFNatGasCons Gcm",
-    "Name": "FF Natural Gas Consumed Gcm",
-    "Format": "1"
+    "Short": "FFNatGasCons",
+    "Name": "FF Natural Gas Consumed",
+    "Format": "1",
+    "Unit": "Gcm"
   },
   "ffnatgasimport": {
-    "Short": "FFNatGasImp Gcm",
-    "Name": "FF Natural Gas Import Gcm",
-    "Format": "1"
+    "Short": "FFNatGasImp",
+    "Name": "FF Natural Gas Import",
+    "Format": "1",
+    "Unit": "Gcm"
   },
   "ffnatgasexport": {
-    "Short": "FFNatGasExp Gcm",
-    "Name": "FF Natural Gas Export Gcm",
-    "Format": "1"
+    "Short": "FFNatGasExp",
+    "Name": "FF Natural Gas Export",
+    "Format": "1",
+    "Unit": "Gcm"
   },
   "ffnatgasreserv": {
-    "Short": "FFNatGasRes Gcm",
-    "Name": "FF Natural Gas Reserves Gcm",
-    "Format": "1"
+    "Short": "FFNatGasRes",
+    "Name": "FF Natural Gas Reserves",
+    "Format": "1",
+    "Unit": "Gcm"
   },
   "ffcrudereserv": {
-    "Short": "FFOilRes Gbbl",
-    "Name": "FF Oil Reserves Gbbl",
-    "Format": "1"
+    "Short": "FFOilRes",
+    "Name": "FF Oil Reserves",
+    "Format": "1",
+    "Unit": "Gbbl"
   },
   "ffcrudeprod": {
-    "Short": "FFOilProd Mbbl",
-    "Name": "FF Oil Production Mbbl",
-    "Format": "-1"
+    "Short": "FFOilProd",
+    "Name": "FF Oil Production",
+    "Format": "-1",
+    "Unit": "Mbbl"
   },
   "ffcrudeimport": {
-    "Short": "FFOilImp Mbbl",
-    "Name": "FF Oil Import Mbbl",
-    "Format": "1"
+    "Short": "FFOilImp",
+    "Name": "FF Oil Import",
+    "Format": "1",
+    "Unit": "Mbbl"
   },
   "ffcrudeexport": {
-    "Short": "FFOilExp Mbbl",
-    "Name": "FF Oil Export bbl",
-    "Format": "1"
+    "Short": "FFOilExp",
+    "Name": "FF Oil Export",
+    "Format": "1",
+    "Unit": "Mbbl"
   },
   "gdp": {
-    "Short": "GDP G$",
-    "Name": "GDP Giga $",
-    "Format": "1"
+    "Short": "GDP",
+    "Name": "GDP",
+    "Format": "1",
+    "Unit": "G$"
   },
   "growth": {
     "Short": "$Growth",
     "Name": "Growth Rate",
-    "Format": "1"
+    "Format": "1",
+    "Unit": "%"
   },
   "pcoilgdp": {
     "Short": "oil%gdp",
     "Name": "Oil % GDP",
-    "Format": 3
+    "Format": 3,
+    "Unit": "%"
   },
   "pop": {
-      "Short": "PopM",
-      "Name": "Population Millions",
-      "Format": "1"
-    },
-    "kwpop": {
-      "Short": "kW/pop",
-      "Name": "kW per Population",
-      "Format": "0"
-    },
-    "emission": {
-      "Short": "EmissionTT",
-      "Name": "CO2 Emission Terra tons",
-      "Format": "1"
-    }
+    "Short": "PopM",
+    "Name": "Population Millions",
+    "Format": "1",
+    "Unit": "mil"
+  },
+  "kwpop": {
+    "Short": "kW/pop",
+    "Name": "kW per Population",
+    "Format": "0",
+    "Unit": "kW"
+  },
+  "emission": {
+    "Short": "EmissionTT",
+    "Name": "CO2 Emission Terra tons",
+    "Format": "1",
+    "Unit": "TT" // Trillion tons
+  },
+  "ratiocap2eprod": {
+    "Short": "Cap2Eprod",
+    "Name": "Capacity to Elec prod",
+    "Format": "1",
+    "Unit": "ratio" // Trillion tons
+  },
+  "kwu235": {
+    "Short": "U235",
+    "Name": "U235",
+    "Format": "1",
+    "Unit": "kg-y" // Trillion tons
   }
+}

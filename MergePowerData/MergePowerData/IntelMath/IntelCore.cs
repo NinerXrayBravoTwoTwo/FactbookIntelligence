@@ -126,13 +126,18 @@ namespace MergePowerData.IntelMath
                     result = c.FossilFuelDetail.CrudeOil.Exports.Value / Intel.Mega;
                     break;
                 case "pcoilgdp":
-                    result = c.FossilFuelDetail.CrudeOil.Production.Value * 50 * 365.242198781 / c.PurchasePower.value *
-                             100;
+                    result = c.FossilFuelDetail.CrudeOil.Production.Value * 50 * 365.242198781 / c.PurchasePower.value * 100;
                     break;
-
+                // ratio capacity / ElecProd
+                case "ratiocap2eprod":
+                    result = igc.YearCapacityTWhr / c.Electric.ProdTWh;
+                    break;
                 case "kwu235":
-                    result = igc?.YearCapTWhrByPercent(c.Electric.Electricity.by_source.nuclear_fuels.percent) /
-                             1.0e-09 * Intel.kgU235perkWh ?? double.NaN;
+                    result = c.Electric.Electricity.by_source.nuclear_fuels.percent / 100 * c.Electric.ProdKWh /
+                             Intel.kgU235perkWh;
+                    // result = igc?.YearCapTWhrByPercent(c.Electric.Electricity.by_source.nuclear_fuels.percent) 
+                               // / 1.0e+09 * Intel.kgU235perkWh 
+                             //?? double.NaN;
                     break;
                 default:
                     throw new ArgumentException($"Undefined {key}");
@@ -165,6 +170,15 @@ namespace MergePowerData.IntelMath
                 names.Add(item.Value.Name);
             return names.ToArray();
         }
+        public static string[] GetUnits(string[] configKeys)
+        {
+            var names = new List<string>();
+
+            foreach (var item in SelectConfigs(configKeys))
+                names.Add(item.Value.Unit);
+
+            return names.ToArray();
+        }
     }
 
     /// <summary>
@@ -174,5 +188,6 @@ namespace MergePowerData.IntelMath
         public string Short { get; set; }
         public string Name { get; set; }
         public string Format { get; set; }
+        public string Unit { get; set; }
     }
 }
