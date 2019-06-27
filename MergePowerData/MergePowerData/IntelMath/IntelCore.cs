@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 using MergePowerData.CIAFdata;
 using Newtonsoft.Json;
@@ -151,8 +152,13 @@ namespace MergePowerData.IntelMath
 
             var result = new Dictionary<string, ColumnConfig>();
             foreach (var item in ColumnConfigs)
-                if (Regex.IsMatch(item.Key, $"({match})", RegexOptions.IgnoreCase))
+            {
+                if (Regex.IsMatch(item.Key, $"^({match})$", RegexOptions.IgnoreCase))
                     result.Add(item.Key, item.Value);
+
+                if (result.Count >= configKeys.Length)
+                    break;
+            }
 
             return result;
         }
@@ -206,6 +212,28 @@ namespace MergePowerData.IntelMath
             WindMillTWh = 2.0e-6 * InstalledGeneratingCapacity.HoursPerYear * 0.4; // 2MW wind mill 40% eff
 
         #endregion
+
+        public static string GetXyUnits(string itemKey)
+        {
+            var units = GetUnits(itemKey.Split('_'));
+            return $"{units[0]}/{units[1]}";
+        }
+
+        public static string WriteDivider(int count)
+        {
+            var divider = new StringBuilder();
+
+            for (var i = 0; i <= count; i++)
+                if (i == 0)
+                    divider.Append("----:|");
+                else if (i != count)
+                    divider.Append($"---:|");
+                else
+                    divider.Append("----:");
+
+            return divider.ToString();
+        }
+
     }
 
     /// <summary>

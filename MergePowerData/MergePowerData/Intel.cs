@@ -97,7 +97,7 @@ namespace MergePowerData
         public void CsvReport()
         {
             Console.WriteLine($"Gross Domestic product greater than: Giga ${MinimumGdp} (billion)\n");
-            var dv = "\t"; // For example; if you are documenting an .md format file for example the col separator can be changed to '|'
+            var dv = "|"; // For example; if you are documenting an .md format file for example the col separator can be changed to '|'
 
             var ReportColumns = new List<string>(new[]
            {
@@ -113,13 +113,30 @@ namespace MergePowerData
             {
                 headersb.Append($"{IntelCore.ColumnConfigs[col].Short} {IntelCore.ColumnConfigs[col].Unit}{dv}");
 
-                if (Regex.IsMatch(col, @"(eprod|capff|caphydro)"))
-                    headersb.Append($"Qx{dv}");
+                var match = Regex.Match(col, @"(eprod|capff|caphydro)");
+                if (match.Success)
+                    switch (match.Groups[1].Value)
+                    {
+                        case "eprod":
+                            headersb.Append($"Qx {IntelCore.GetXyUnits("eprod_gdp")}{dv}");
+                            headersb.Append($"Qx {IntelCore.GetXyUnits("eprod_emission")}{dv}");
+                            break;
+                        case "caphydro": headersb.Append($"Qx {IntelCore.GetXyUnits("capff_gdp")}{dv}"); break;
+                        case "capff":
+                            headersb.Append($"Qx {IntelCore.GetXyUnits("caphydro_gdp")}{dv}");
+                            headersb.Append($"Qx {IntelCore.GetXyUnits("caphydro_emission")}{dv}");
+                            break;
+                    }
             }
 
-            headersb.Append($"Country{dv}");
+            headersb.Append($"Country");
+
 
             Console.WriteLine(headersb);
+
+
+            if (dv.Equals("\t"))
+                Console.WriteLine(IntelCore.WriteDivider(Regex.Matches(headersb.ToString(), @"\|").Count));
 
             foreach (var c in _countries.OrderByDescending(d => d.Electric.ProdTWh))
             {
@@ -132,13 +149,8 @@ namespace MergePowerData
 
                 var currentCap = igc.YearCapacityTWhr;
                 var futureCap50Y = igc.YearCapacityTWhr * 2;
-
-                var standElectricProd = _stats.Stand("eprod_gdp", c);
-                var standCapFF = _stats.Stand("capff_gdp", c);
-                var standCapHydro = _stats.Stand("caphydro_gdp", c);
-
                 var rowSb = new StringBuilder();
-                
+
                 foreach (var col in ReportColumns)
                 {
                     switch (IntelCore.ColumnConfigs[col].Format)
@@ -159,9 +171,17 @@ namespace MergePowerData
                     if (match.Success)
                         switch (match.Groups[1].Value)
                         {
-                            case "eprod": rowSb.Append($"{standElectricProd:F3}{dv}"); break;
-                            case "caphydro": rowSb.Append($"{standCapHydro:F3}{dv}"); break;
-                            case "capff": rowSb.Append($"{standCapFF:F3}{dv}"); break;
+                            case "eprod":
+                                rowSb.Append($"{_stats.Stand("eprod_gdp", c):F3}{dv}");
+                                rowSb.Append($"{_stats.Stand("eprod_emission", c):F3}{dv}");
+                                break;
+                            case "caphydro":
+                                rowSb.Append($"{_stats.Stand("caphydro_gdp", c):F3}{dv}");
+                                break;
+                            case "capff":
+                                rowSb.Append($"{_stats.Stand("capff_gdp", c):F3}{dv}");
+                                rowSb.Append($"{_stats.Stand("capff_emission", c):F3}{dv}");
+                                break;
                         }
                 }
 
@@ -177,5 +197,18 @@ namespace MergePowerData
             if (!string.IsNullOrEmpty(Filter))
                 Console.WriteLine(_stats.ToReport(dv, Filter));
         }
+
+        //public static void WriteDivider(int count)
+        //{
+        //    var divider = new StringBuilder();
+
+        //    for (var i = 0; i <= count; i++)
+        //        if (i != count)
+        //            divider.Append($"----|");
+        //        else
+        //            divider.Append("-----");
+
+        //    Console.WriteLine(divider);
+        //}
     }
 }

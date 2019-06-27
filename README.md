@@ -82,57 +82,54 @@ Raw analysis is collected in the After-Action Review (AAR) list at the end of th
 
 ### Summary of World Energy Findings
 
-
-ElecProd ekg|Qx|CapFF ekg|Qx|EmissionTT TT|GDP G$|Country|
-----:|---:|---:|---:|---:|---:|---:
-947.3|-30.646|1412.612|-35.554|33620.0|127800.0|World
-235.6|0.930|359.847|0.244|11670.0|23210.0|China
-164.0|-2.676|267.166|-2.066|5242.0|19490.0|United States
-121.9|-8.335|150.630|-10.979|3475.0|20850.0|European Union
-55.5|-3.774|91.690|-3.481|2383.0|9474.0|India
-41.3|0.214|58.472|-0.204|1847.0|4016.0|Russia
-39.6|-1.379|73.766|-0.632|1268.0|5443.0|Japan
-26.0|0.889|11.589|-1.014|640.6|1774.0|Canada
-24.5|-1.679|30.015|-2.232|847.6|4199.0|Germany
-22.7|-0.915|9.001|-2.649|513.8|3248.0|Brazil
-21.2|-0.682|7.807|-2.336|341.2|2856.0|France
-21.1|0.123|27.331|-0.252|778.4|2035.0|Korea, South
-13.0|-0.444|29.122|0.123|657.1|1775.0|Saudi Arabia
-12.7|-1.614|17.040|-1.806|424.0|2925.0|United Kingdom
-12.1|-1.217|18.089|-1.278|454.1|2463.0|Mexico
-11.0|-1.183|21.653|-0.901|351.0|2317.0|Italy
-10.9|-0.521|22.887|-0.147|638.3|1640.0|Iran
-10.5|-1.108|14.608|-1.228|379.5|2186.0|Turkey
-10.4|-0.714|17.476|-0.636|286.7|1778.0|Spain
-9.9|-0.178|13.736|-0.292|348.8|1189.0|Taiwan
-9.7|-0.250|16.574|-0.167|439.1|1248.0|Australia
-9.4|-2.277|18.334|-2.045|540.7|3250.0|Indonesia
-7.4|-0.450|14.417|-0.263|232.7|1204.0|Egypt
-7.3|-0.490|11.979|-0.453|355.0|1236.0|Thailand
-6.3|-0.481|10.571|-0.435|359.0|1126.0|Poland
-5.9|-0.324|9.038|-0.343|226.8|933.3|Malaysia
-5.3|-0.380|9.291|-0.315|203.7|922.1|Argentina
-4.4|-0.609|5.856|-0.676|179.5|1061.0|Pakistan
-4.4|-0.474|8.998|-0.336|250.2|924.4|Netherlands
-1.2|-0.997|2.955|-0.924|104.0|1121.0|Nigeria
+ElecProd ekg|Qx ekg/G$|Qx ekg/TT|CapFF ekg|Qx ekg/G$|Qx ekg/TT|EmissionTT TT|GDP G$|Country
+---:|---:|---:|---:|---:|---:|---:|---:|----:
+947.3|-28.154|17.312|1412.612|-32.698|11.967|33620.0|127800.0|World
+235.6|0.739|-2.564|359.847|0.085|-3.455|11670.0|23210.0|China
+164.0|-2.494|4.201|267.166|-1.970|4.601|5242.0|19490.0|United States
+121.9|-7.598|3.995|150.630|-9.990|1.506|3475.0|20850.0|European Union
+55.5|-3.440|0.157|91.690|-3.184|0.356|2383.0|9474.0|India
+41.3|0.176|-0.038|58.472|-0.206|-0.458|1847.0|4016.0|Russia
+39.6|-1.265|1.012|73.766|-0.599|1.646|1268.0|5443.0|Japan
+26.0|0.793|1.063|11.589|-0.922|-0.666|640.6|1774.0|Canada
+24.5|-1.530|0.497|30.015|-2.030|-0.025|847.6|4199.0|Germany
+22.7|-0.838|1.025|9.001|-2.400|-0.551|513.8|3248.0|Brazil
+21.2|-0.627|1.241|7.807|-2.116|-0.259|341.2|2856.0|France
+21.1|0.102|0.321|27.331|-0.239|-0.036|778.4|2035.0|Korea, South
+13.0|-0.407|-0.171|29.122|0.100|0.322|657.1|1775.0|Saudi Arabia
+12.7|-1.467|0.292|17.040|-1.640|0.106|424.0|2925.0|United Kingdom
+12.1|-1.107|0.172|18.089|-1.163|0.104|454.1|2463.0|Mexico
+11.0|-1.076|0.285|21.653|-0.824|0.528|351.0|2317.0|Italy
+10.9|-0.476|-0.323|22.887|-0.142|-0.002|638.3|1640.0|Iran
+10.5|-1.007|0.177|14.608|-1.116|0.057|379.5|2186.0|Turkey
+10.4|-0.651|0.357|17.476|-0.582|0.419|286.7|1778.0|Spain
+9.9|-0.166|0.182|13.736|-0.270|0.071|348.8|1189.0|Taiwan
+9.7|-0.231|-0.017|16.574|-0.157|0.047|439.1|1248.0|Australia
+9.4|-2.065|-0.256|18.334|-1.857|-0.063|540.7|3250.0|Indonesia
+7.4|-0.410|0.193|14.417|-0.243|0.353|232.7|1204.0|Egypt
+7.3|-0.446|-0.069|11.979|-0.414|-0.045|355.0|1236.0|Thailand
+6.3|-0.438|-0.168|10.571|-0.397|-0.135|359.0|1126.0|Poland
+4.4|-0.553|0.031|5.856|-0.614|-0.034|179.5|1061.0|Pakistan
+1.2|-0.903|-0.108|2.955|-0.837|-0.045|104.0|1121.0|Nigeria
 
 Statistic Count: 406
 
 Independent(X)|vs Dependent(Y)|Correlation|MeanX|Slope
----:|:-----|----:|----:|----:
-Electric Production|vs Electric Consumption|0.999|28.7|0.9 ekg/ekg
-Generating Capacity Nuclear|vs U235|0.997|3.9|459.0 ekg/kg-y
-Electric Consumption|vs Generating Capacity Fossil Fuel|0.993|26.5|1.7 ekg/ekg
-Electric Production|vs Generating Capacity Fossil Fuel|0.992|28.7|1.6 ekg/ekg
-FF Refined Produced|vs FF Refined Consumed|0.988|2.7|1.0 Mbbl/Mbbl
-Generating Capacity Fossil Fuel|vs GDP|0.984|42.8|65.2 ekg/G$
-Electric Production|vs FF Refined Produced|0.982|28.7|102.5 ekg/Mbbl
-Electric Consumption|vs FF Refined Consumed|0.980|26.5|108.0 ekg/Mbbl
-Electric Production|vs FF Refined Produced|0.977|28.7|44.1 ekg/Mbbl
-Electric Consumption|vs FF Refined Consumed|0.976|26.5|46.6 ekg/Mbbl
-Generating Capacity Fossil Fuel|vs CO2 Emission Terra tons|0.970|42.8|27.8 ekg/TT
-FF Natural Gas Produced|vs FF Natural Gas Consumed|0.953|97.3|0.8 Gcm/Gcm
-FF Oil Export|vs Growth Rate|-0.531|0.8|-0.6 Mbbl/%
+---:|:--|---:|---:|----:
+Electric Consumption|vs Generating Capacity Fossil Fuel|0.993|29.1|1.7 ekg/ekg
+Electric Production|vs Generating Capacity Fossil Fuel|0.992|31.5|1.6 ekg/ekg
+Generating Capacity Fossil Fuel|vs GDP|0.984|46.9|64.8 ekg/G$
+Electric Production|vs GDP|0.982|31.5|102.0 ekg/G$
+Electric Consumption|vs GDP|0.980|29.1|107.4 ekg/G$
+Electric Production|vs CO2 Emission Terra tons|0.977|31.5|44.3 ekg/TT
+Generating Capacity Fossil Fuel|vs CO2 Emission Terra tons|0.969|46.9|27.8 ekg/TT
+FF Oil Reserves|vs Oil % GDP|0.946|30974.6|0.0 Gbbl/%
+GDP|vs CO2 Emission Terra tons|0.942|4090.6|0.4 G$/TT
+Electric Consumption|vs Generating Capacity Renewable|0.934|29.1|0.4 ekg/ekg
+Electric Production|vs Generating Capacity Renewable|0.933|31.5|0.4 ekg/ekg
+Generating Capacity Renewable|vs CO2 Emission Terra tons|0.932|12.9|97.9 ekg/TT
+FF Oil Export|vs Oil % GDP|0.927|0.9|1.3 Mbbl/%
+FF Oil Export|vs Growth Rate|-0.545|0.9|-0.6 Mbbl/%
 
 ## Brief Relativity Summary
 

@@ -94,7 +94,7 @@ namespace MergePowerData.IntelMath
 
             return result.ToString();
         }
-    
+
 
         Dictionary<string, int> ReportSet = new Dictionary<string, int>();
 
@@ -107,6 +107,9 @@ namespace MergePowerData.IntelMath
         public string ToReport(string dv, double gdpAbove, double gdpBelow)
         {
             var result = new StringBuilder($"Independent(X){dv}vs Dependent(Y){dv}Correlation{dv}MeanX{dv}Slope\n");
+
+            if (dv.Equals("|"))
+                result.Append(IntelCore.WriteDivider(Regex.Matches(result.ToString(), @"\|").Count) + "\n");
 
             foreach (var item in _stats.OrderByDescending(r => r.Value.Correlation()))
             {
@@ -136,16 +139,17 @@ namespace MergePowerData.IntelMath
             Console.WriteLine($"Filter by: {filter}");
             var result = new StringBuilder($"Independent(X){dv}vs Dependent(Y){dv}Correlation{dv}MeanX{dv}Slope\n");
 
+            if (dv.Equals("|"))
+                result.Append(IntelCore.WriteDivider(Regex.Matches(result.ToString(), @"\|").Count) + "\n");
+
             foreach (var item in _stats.OrderByDescending(r => r.Value.Correlation()))
             {
                 var xyNames = IntelCore.GetNames(item.Key.Split('_'));
-                var xyUnits = IntelCore.GetUnits(item.Key.Split('_'));
-
                 var stat = item.Value;
 
                 if (Regex.IsMatch(item.Key, filter, RegexOptions.IgnoreCase))
                     result.Append(
-                        $"{xyNames[0]}{dv}vs {xyNames[1]}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1} {xyUnits[0]}/{xyUnits[1]}\n");
+                        $"{xyNames[0]}{dv}vs {xyNames[1]}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1} {IntelCore.GetXyUnits(item.Key)}\n");
             }
 
             return result.ToString();
