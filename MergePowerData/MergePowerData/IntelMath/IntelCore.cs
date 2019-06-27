@@ -15,7 +15,7 @@ namespace MergePowerData.IntelMath
             JsonConvert.DeserializeObject<Dictionary<string, ColumnConfig>>(File.ReadAllText(ConfigFile));
 
         /// <summary>
-        /// Preforms primary column computation for a data element from CIAF
+        ///     Preforms primary column computation for a data element from CIAF
         /// </summary>
         /// <param name="key">Identifying key for column configuration</param>
         /// <param name="c">Country object with all related CIAF data</param>
@@ -33,22 +33,22 @@ namespace MergePowerData.IntelMath
                     result = c.Electric.TtonCo2;
                     break;
                 case "gdp":
-                    result = c.PurchasePower.value / Intel.Giga;
+                    result = c.PurchasePower.value / Giga;
                     break;
                 case "growth":
                     result = c.GrowthRate.value;
                     break;
                 case "pop":
-                    result = c.Pop / Intel.Mega;
+                    result = c.Pop / Mega;
                     break;
                 case "kwpop":
                     result = c.Electric.ProdKWh / c.Pop;
                     break;
                 case "eprod":
-                    result = c.Electric.ProdTWh * Intel.TWh2kg;
+                    result = c.Electric.ProdTWh * TWh2Kg;
                     break;
                 case "econs":
-                    result = c.Electric.ConsTWh * Intel.TWh2kg;
+                    result = c.Electric.ConsTWh * TWh2Kg;
                     break;
                 case "eprodtw":
                     result = c.Electric.ProdTWh;
@@ -57,87 +57,86 @@ namespace MergePowerData.IntelMath
                     result = c.Electric.ConsTWh;
                     break;
                 case "eimport":
-                    result = elcity.imports != null ? elcity.imports.TWh * Intel.TWh2kg : double.NaN;
+                    result = elcity.imports?.TWh * TWh2Kg ?? double.NaN;
                     break;
                 case "eexport":
-                    result = elcity.exports != null ? elcity.exports.TWh * Intel.TWh2kg : double.NaN;
+                    result = elcity.exports?.TWh * TWh2Kg ?? double.NaN;
                     break;
                 case "capff":
-                    result = igc != null
-                        ? igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.fossil_fuels.percent) * Intel.TWh2kg
-                        : double.NaN;
+                    result = igc?.YearCapTWhrByPercent(c.Electric.Electricity.by_source.fossil_fuels.percent) * TWh2Kg
+                             ?? double.NaN;
                     break;
                 case "capnuke":
-                    result = igc != null
-                        ? igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.nuclear_fuels.percent) *
-                          Intel.TWh2kg
-                        : double.NaN;
+                    result = igc?.YearCapTWhrByPercent(c.Electric.Electricity.by_source.nuclear_fuels.percent) *
+                             TWh2Kg
+                             ?? double.NaN;
                     break;
                 case "caphydro":
-                    result = igc != null
-                        ? igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.hydroelectric_plants.percent) *
-                          Intel.TWh2kg
-                        : double.NaN;
+                    result = igc?.YearCapTWhrByPercent(c.Electric.Electricity.by_source.hydroelectric_plants.percent) *
+                             TWh2Kg
+                             ?? double.NaN;
                     break;
                 case "caprenew":
-                    result = igc != null
-                        ? igc.YearCapTWhrByPercent(c.Electric.Electricity.by_source.other_renewable_sources.percent) *
-                          Intel.TWh2kg
-                        : double.NaN;
+                    result =
+                        igc?.YearCapTWhrByPercent(c.Electric.Electricity.by_source.other_renewable_sources.percent) *
+                        TWh2Kg
+                        ?? double.NaN;
                     break;
                 case "ffrefineprod":
-                    result = c.FossilFuelDetail.RefinedPetroleum.Production.Value / Intel.Mega;
+                    result = c.FossilFuelDetail.RefinedPetroleum.Production.Value / Mega;
                     break;
                 case "ffrefinecons":
-                    result = c.FossilFuelDetail.RefinedPetroleum.Consumption.Value / Intel.Mega;
+                    result = c.FossilFuelDetail.RefinedPetroleum.Consumption.Value / Mega;
                     break;
                 case "ffrefineimport":
-                    result = c.FossilFuelDetail.RefinedPetroleum.Imports.Value / Intel.Mega;
+                    result = c.FossilFuelDetail.RefinedPetroleum.Imports.Value / Mega;
                     break;
                 case "ffrefineexport":
-                    result = c.FossilFuelDetail.RefinedPetroleum.Exports.Value / Intel.Mega;
+                    result = c.FossilFuelDetail.RefinedPetroleum.Exports.Value / Mega;
                     break;
 
                 case "ffnatgasprod":
-                    result = c.FossilFuelDetail.NaturalGas.Production.Value / Intel.Giga;
+                    result = c.FossilFuelDetail.NaturalGas.Production.Value / Giga;
                     break;
                 case "ffnatgascons":
-                    result = c.FossilFuelDetail.NaturalGas.Consumption.Value / Intel.Giga;
+                    result = c.FossilFuelDetail.NaturalGas.Consumption.Value / Giga;
                     break;
                 case "ffnatgasimport":
-                    result = c.FossilFuelDetail.NaturalGas.Imports.Value / Intel.Giga;
+                    result = c.FossilFuelDetail.NaturalGas.Imports.Value / Giga;
                     break;
                 case "ffnatgasexport":
-                    result = c.FossilFuelDetail.NaturalGas.Exports.Value / Intel.Giga;
+                    result = c.FossilFuelDetail.NaturalGas.Exports.Value / Giga;
                     break;
                 case "ffnatgasreserv":
-                    result = c.FossilFuelDetail.NaturalGas.ProvedReserves.Value / Intel.Giga;
+                    result = c.FossilFuelDetail.NaturalGas.ProvedReserves.Value / Giga;
                     break;
                 case "ffcrudereserv":
-                    result = c.FossilFuelDetail.CrudeOil.ProvedReserves.Value / Intel.Mega;
+                    result = c.FossilFuelDetail.CrudeOil.ProvedReserves.Value / Mega;
                     break;
                 case "ffcrudeprod":
-                    result = c.FossilFuelDetail.CrudeOil.Production.Value / Intel.Mega;
+                    result = c.FossilFuelDetail.CrudeOil.Production.Value / Mega;
                     break;
                 case "ffcrudeimport":
-                    result = c.FossilFuelDetail.CrudeOil.Imports.Value / Intel.Mega;
+                    result = c.FossilFuelDetail.CrudeOil.Imports.Value / Mega;
                     break;
                 case "ffcrudeexport":
-                    result = c.FossilFuelDetail.CrudeOil.Exports.Value / Intel.Mega;
+                    result = c.FossilFuelDetail.CrudeOil.Exports.Value / Mega;
                     break;
                 case "pcoilgdp":
-                    result = c.FossilFuelDetail.CrudeOil.Production.Value * 50 * 365.242198781 / c.PurchasePower.value * 100;
+                    result = c.FossilFuelDetail.CrudeOil.Production.Value * 50 * 365.242198781 / c.PurchasePower.value *
+                             100;
                     break;
                 // ratio capacity / ElecProd
                 case "ratiocap2eprod":
-                    result = igc.YearCapacityTWhr / c.Electric.ProdTWh;
+                    result = igc?.YearCapacityTWhr / c.Electric.ProdTWh ?? double.NaN;
                     break;
+
                 case "kwu235":
                     result = c.Electric.Electricity.by_source.nuclear_fuels.percent / 100 * c.Electric.ProdKWh /
-                             Intel.kgU235perkWh;
+                             KgU235PerkWh;
                     // result = igc?.YearCapTWhrByPercent(c.Electric.Electricity.by_source.nuclear_fuels.percent) 
-                               // / 1.0e+09 * Intel.kgU235perkWh 
-                             //?? double.NaN;
+                    // / 1.0e+09 * Intel.kgU235perkWh 
+                    //?? double.NaN;
                     break;
                 default:
                     throw new ArgumentException($"Undefined {key}");
@@ -157,8 +156,9 @@ namespace MergePowerData.IntelMath
 
             return result;
         }
+
         /// <summary>
-        /// Returns the Long Name field from a column parameter.
+        ///     Returns the Long Name field from a column parameter.
         /// </summary>
         /// <param name="configKeys">List of column identifying keys</param>
         /// <returns>List of LongNames </returns>
@@ -170,6 +170,7 @@ namespace MergePowerData.IntelMath
                 names.Add(item.Value.Name);
             return names.ToArray();
         }
+
         public static string[] GetUnits(string[] configKeys)
         {
             var names = new List<string>();
@@ -179,6 +180,32 @@ namespace MergePowerData.IntelMath
 
             return names.ToArray();
         }
+
+        #region Constants
+
+        // Report constant and conversion factors
+        public const double Tera = 1.0e12;
+        public const double Giga = 1.0e9;
+        public const double Mega = 1.0e6;
+        public const double Kilo = 1.0e3;
+
+        public const double KgU235PerkWh = 24.0e6;
+
+        // ReSharper disable once InconsistentNaming
+        public const double TWh2Kg = 0.040055402; // TWh = 0.040055402 kg
+        public const double TwentyMtonTnt = 0.93106557; //
+
+        // 20 Mton_e = 0.93106557 kg, ~1 kg
+        // ReSharper disable once InconsistentNaming
+        public const double TWh2MTonTnt = 0.86042065; // TWh = 0.86042 M ton Tnt
+
+        // ReSharper disable once InconsistentNaming
+        public const double TWh2PJ = 3.6; // TWh = 3.6 PJ (Peta Joule's)
+
+        public static double
+            WindMillTWh = 2.0e-6 * InstalledGeneratingCapacity.HoursPerYear * 0.4; // 2MW wind mill 40% eff
+
+        #endregion
     }
 
     /// <summary>

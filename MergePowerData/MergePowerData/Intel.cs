@@ -15,23 +15,6 @@ namespace MergePowerData
     [SuppressMessage("ReSharper", "InconsistentNaming")]
     public class Intel
     {
-        // Report constant and conversion factors
-        public const double Tera = 1.0e12;
-        public const double Giga = 1.0e9;
-        public const double Mega = 1.0e6;
-        public const double Kilo = 1.0e3;
-
-        public const double kgU235perkWh = 24.0e6;
-        public const double TWh2kg = 0.040055402; // TWh = 0.040055402 kg
-        public const double TwentyMtonTnt = 0.93106557; //
-
-        // 20 Mton_e = 0.93106557 kg, ~1 kg
-        protected const double TWh2MTonTnt = 0.86042065; // TWh = 0.86042 M ton Tnt
-        protected const double TWh2PJ = 3.6; // TWh = 3.6 PJ (Peta Joule's)
-
-        public static double
-            windMillTWh = 2.0e-6 * InstalledGeneratingCapacity.HoursPerYear * 0.4; // 2MW wind mill 40% eff
-
         // CIAF is a collection of data by country.  To analyze a specific set of data into a report we must extract a relevant subset 
         protected readonly List<Country> _countries = new List<Country>();
         protected Statistic _energyDeviationRelativeToGrowth;
@@ -71,12 +54,12 @@ namespace MergePowerData
                 // do not add aggregation country entries to stats
                 if (Regex.IsMatch(country.Name, @"world|european", RegexOptions.IgnoreCase)) continue;
 
-                var x = _stats.Stand("eprod_gdp", country.Electric.ProdTWh * TWh2kg, country.PurchasePower.value / Giga);
+                var x = _stats.Stand("eprod_gdp", country.Electric.ProdTWh * IntelCore.TWh2Kg, country.PurchasePower.value / IntelCore.Giga);
                 _energyDeviationRelativeToGrowth.Add(x, country.GrowthRate.value);
 
                 x = _stats.Stand("capff_gdp",
-                    country.Electric.Electricity.by_source.fossil_fuels.percent / 100 * country.Electric.ProdTWh * TWh2kg,
-                    country.PurchasePower.value / Giga);
+                    country.Electric.Electricity.by_source.fossil_fuels.percent / 100 * country.Electric.ProdTWh * IntelCore.TWh2Kg,
+                    country.PurchasePower.value / IntelCore.Giga);
 
                 _ffDevRelativeToGrowth.Add(x, country.GrowthRate.value);
             }
@@ -102,7 +85,7 @@ namespace MergePowerData
 
             var country = new Country(name, electric, ff, gdp, pop);
 
-            if (country.PurchasePower.value / Giga < _stats.PLimit) return;
+            if (country.PurchasePower.value / IntelCore.Giga < _stats.PLimit) return;
 
             _countries.Add(country);
             _stats.Add(country);
@@ -140,10 +123,9 @@ namespace MergePowerData
 
             foreach (var c in _countries.OrderByDescending(d => d.Electric.ProdTWh))
             {
-                var kgEfossil = c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh *
-                                TWh2kg;
+                var kgEfossil = c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh * IntelCore.TWh2Kg;
                 var wrldKgEfossil = _world.Electric.Electricity.by_source.fossil_fuels.percent / 100 *
-                                    _world.Electric.ProdTWh * TWh2kg;
+                                    _world.Electric.ProdTWh * IntelCore.TWh2Kg;
 
                 var igc = c.Electric.Electricity.installed_generating_capacity;
                 if (igc == null) continue;
@@ -151,19 +133,12 @@ namespace MergePowerData
                 var currentCap = igc.YearCapacityTWhr;
                 var futureCap50Y = igc.YearCapacityTWhr * 2;
 
-                var standElectricProd =
-                    _stats.Stand("eprod_gdp", IntelCore.XValue("eprod", c), IntelCore.XValue("gdp", c));
-
-                var standCapFF =
-                    _stats.Stand("capff_gdp", IntelCore.XValue("capff", c), IntelCore.XValue("gdp", c));
-
-                var standCapHydro =
-                    _stats.Stand("caphydro_gdp", IntelCore.XValue("caphydro", c), IntelCore.XValue("gdp", c));
-
-                //_stats.Stand("eprod_gdp", c.Electric.ProdTWh * TWh2kg, c.PurchasePower.value / Giga);
+                var standElectricProd = _stats.Stand("eprod_gdp", c);
+                var standCapFF = _stats.Stand("capff_gdp", c);
+                var standCapHydro = _stats.Stand("caphydro_gdp", c);
 
                 var rowSb = new StringBuilder();
-
+                
                 foreach (var col in ReportColumns)
                 {
                     switch (IntelCore.ColumnConfigs[col].Format)
@@ -197,7 +172,7 @@ namespace MergePowerData
             Console.WriteLine(); // add blank line separation
 
             Console.WriteLine($"Statistic Count: {_stats.Count}\n");
-            Console.WriteLine(_stats.ToReport(dv, .95, -.5) + "\n");
+            Console.WriteLine(_stats.ToReport(dv, .88, -.5) + "\n");
 
             if (!string.IsNullOrEmpty(Filter))
                 Console.WriteLine(_stats.ToReport(dv, Filter));

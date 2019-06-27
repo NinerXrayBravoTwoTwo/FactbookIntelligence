@@ -31,10 +31,16 @@ namespace MergePowerData.IntelMath
             return (xValue - CalcX(statName, yValue)) / _stats[statName].Qx();
         }
 
+        public double Stand(string statName, Country c)
+        {
+            var xy = statName.Split('_');
+            return Stand(statName, IntelCore.XValue(xy[0], c), IntelCore.XValue(xy[1], c));
+        }
+
         public void Add(Country c)
         {
             // Limit countries by minimum GDP
-            if (c.PurchasePower.value / Intel.Giga < PLimit) return;
+            if (c.PurchasePower.value / IntelCore.Giga < PLimit) return;
 
             //     do not add aggregation-country entries to stats
             if (Regex.IsMatch(c.Name, @"world|European", RegexOptions.IgnoreCase)) return;
@@ -88,6 +94,7 @@ namespace MergePowerData.IntelMath
 
             return result.ToString();
         }
+    
 
         Dictionary<string, int> ReportSet = new Dictionary<string, int>();
 
