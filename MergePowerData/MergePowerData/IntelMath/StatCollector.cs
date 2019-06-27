@@ -52,27 +52,27 @@ namespace MergePowerData.IntelMath
             var x = IntelCore.ColumnConfigs.Keys.ToArray();
 
             for (var a = 0; a < x.Length; a++)
-            for (var b = 0; b < x.Length; b++)
-                if (a != b)
-                {
-                    var statName = $"{x[a]}_{x[b]}";
-                    var reverse = $"{x[b]}_{x[a]}";
-
-                    if (!exclude.ContainsKey(statName))
+                for (var b = 0; b < x.Length; b++)
+                    if (a != b)
                     {
-                        var m = IntelCore.XValue(x[a], c);
-                        var n = IntelCore.XValue(x[b], c);
+                        var statName = $"{x[a]}_{x[b]}";
+                        var reverse = $"{x[b]}_{x[a]}";
 
-                        if (!_stats.ContainsKey(statName))
-                            _stats.Add(statName, new Statistic());
-                        //Console.WriteLine($"AddStat: {statName}");
+                        if (!exclude.ContainsKey(statName))
+                        {
+                            var m = IntelCore.XValue(x[a], c);
+                            var n = IntelCore.XValue(x[b], c);
 
-                        if (!(m is double.NaN || n is double.NaN))
-                            _stats[statName].Add(m, n);
+                            if (!_stats.ContainsKey(statName))
+                                _stats.Add(statName, new Statistic());
+                            //Console.WriteLine($"AddStat: {statName}");
 
-                        exclude.Add(reverse, 0);
+                            if (!(m is double.NaN || n is double.NaN))
+                                _stats[statName].Add(m, n);
+
+                            exclude.Add(reverse, 0);
+                        }
                     }
-                }
         }
 
 
@@ -89,6 +89,8 @@ namespace MergePowerData.IntelMath
             return result.ToString();
         }
 
+        Dictionary<string, int> ReportSet = new Dictionary<string, int>();
+
         /// <summary>
         /// </summary>
         /// <param name="dv"></param>
@@ -102,6 +104,14 @@ namespace MergePowerData.IntelMath
             foreach (var item in _stats.OrderByDescending(r => r.Value.Correlation()))
             {
                 var xyNames = IntelCore.GetNames(item.Key.Split('_'));
+
+                if (item.Value.Correlation() > .95)
+                    foreach (var key in item.Key.Split('_'))
+                        if (ReportSet.ContainsKey(key))
+                            ReportSet[key]++;
+                        else
+                            ReportSet.Add(key, 0);
+
                 var xyUnits = IntelCore.GetUnits(item.Key.Split('_'));
 
                 var stat = item.Value;
@@ -110,6 +120,7 @@ namespace MergePowerData.IntelMath
                             $"{xyNames[0]}{dv}vs {xyNames[1]}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1} {xyUnits[0]}/{xyUnits[1]}\n");
             }
 
+            //Console.WriteLine(string.Join(", ", ReportSet.Keys));
             return result.ToString();
         }
 
