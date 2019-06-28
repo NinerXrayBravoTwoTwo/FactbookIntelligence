@@ -121,7 +121,6 @@ namespace MergePowerData.IntelMath
                 case "ffrefineexport":
                     result = c.FossilFuelDetail.RefinedPetroleum.Exports.Value / Mega;
                     break;
-
                 case "ffnatgasprod":
                     result = c.FossilFuelDetail.NaturalGas.Production.Value / Giga;
                     break;
@@ -157,14 +156,11 @@ namespace MergePowerData.IntelMath
                 case "ratiocap2eprod":
                     result = igc?.YearCapacityTWhr / c.Electric.ProdTWh ?? double.NaN;
                     break;
-
                 case "kwu235":
                     result = c.Electric.Electricity.by_source.nuclear_fuels.percent / 100 * c.Electric.ProdKWh /
                              KgU235PerkWh;
-                    // result = igc?.YearCapTWhrByPercent(c.Electric.Electricity.by_source.nuclear_fuels.percent) 
-                    // / 1.0e+09 * Intel.kgU235perkWh 
-                    //?? double.NaN;
                     break;
+
                 default:
                     throw new ArgumentException($"Undefined {key}");
             }

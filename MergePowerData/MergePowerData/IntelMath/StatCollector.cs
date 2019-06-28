@@ -127,7 +127,7 @@ namespace MergePowerData.IntelMath
                 var stat = item.Value;
                 if (item.Value.Correlation() > gdpAbove || item.Value.Correlation() < gdpBelow)
                     result.Append(
-                            $"{xyNames[0]}{dv}vs {xyNames[1]}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1} {xyUnits[0]}/{xyUnits[1]}\n");
+                            $"{xyNames[0]}{dv}vs {xyNames[1]}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1} {IntelCore.GetXyUnits(item.Key)}\n");
             }
 
             //Console.WriteLine(string.Join(", ", ReportSet.Keys));
