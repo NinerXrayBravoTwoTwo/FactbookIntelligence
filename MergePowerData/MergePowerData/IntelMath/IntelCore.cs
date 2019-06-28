@@ -10,6 +10,32 @@ namespace MergePowerData.IntelMath
 {
     public static class IntelCore
     {
+        #region Constants
+
+        // Report constant and conversion factors
+        public const double Tera = 1.0e12;
+        public const double Giga = 1.0e9;
+        public const double Mega = 1.0e6;
+        public const double Kilo = 1.0e3;
+
+        public const double KgU235PerkWh = 24.0e6;
+
+        // ReSharper disable once InconsistentNaming
+        public const double TWh2Kg = 0.040055402; // TWh = 0.040055402 kg
+        public const double TwentyMtonTnt = 0.93106557; //
+
+        // 20 Mton_e = 0.93106557 kg, ~1 kg
+        // ReSharper disable once InconsistentNaming
+        public const double TWh2MTonTnt = 0.86042065; // TWh = 0.86042 M ton Tnt
+
+        // ReSharper disable once InconsistentNaming
+        public const double TWh2PJ = 3.6; // TWh = 3.6 PJ (Peta Joule's)
+
+        public static double
+            WindMillTWh = 2.0e-6 * InstalledGeneratingCapacity.HoursPerYear * 0.4; // 2MW wind mill 40% eff
+
+        #endregion
+
         internal static readonly string ConfigFile = Environment.CurrentDirectory + "/Columns.json";
 
         public static Dictionary<string, ColumnConfig> ColumnConfigs =>
@@ -186,37 +212,11 @@ namespace MergePowerData.IntelMath
 
             return names.ToArray();
         }
-
-        #region Constants
-
-        // Report constant and conversion factors
-        public const double Tera = 1.0e12;
-        public const double Giga = 1.0e9;
-        public const double Mega = 1.0e6;
-        public const double Kilo = 1.0e3;
-
-        public const double KgU235PerkWh = 24.0e6;
-
-        // ReSharper disable once InconsistentNaming
-        public const double TWh2Kg = 0.040055402; // TWh = 0.040055402 kg
-        public const double TwentyMtonTnt = 0.93106557; //
-
-        // 20 Mton_e = 0.93106557 kg, ~1 kg
-        // ReSharper disable once InconsistentNaming
-        public const double TWh2MTonTnt = 0.86042065; // TWh = 0.86042 M ton Tnt
-
-        // ReSharper disable once InconsistentNaming
-        public const double TWh2PJ = 3.6; // TWh = 3.6 PJ (Peta Joule's)
-
-        public static double
-            WindMillTWh = 2.0e-6 * InstalledGeneratingCapacity.HoursPerYear * 0.4; // 2MW wind mill 40% eff
-
-        #endregion
-
+        
         public static string GetXyUnits(string itemKey)
         {
             var units = GetUnits(itemKey.Split('_'));
-            return $"{units[0]}/{units[1]}";
+            return $"{units[1]}/{units[0]}"; // rise over run.  run is x - horizontal, rise is y - vertical
         }
 
         public static string WriteDivider(int count)
@@ -233,7 +233,6 @@ namespace MergePowerData.IntelMath
 
             return divider.ToString();
         }
-
     }
 
     /// <summary>

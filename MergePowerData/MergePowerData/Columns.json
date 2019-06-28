@@ -156,8 +156,8 @@
     "Unit": "kW"
   },
   "emission": {
-    "Short": "EmissionTT",
-    "Name": "CO2 Emission Terra tons",
+    "Short": "Emission",
+    "Name": "CO2 Emission",
     "Format": "1",
     "Unit": "TT" // Trillion tons
   },
