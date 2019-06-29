@@ -102,7 +102,7 @@ namespace MergePowerData
         {
             Console.WriteLine($"Gross Domestic product greater than: Giga ${MinimumGdp} (billion)\n");
             const string
-                dv = "\t"; // For example; if you are documenting an .md format file for example the col separator can be changed to '|'
+                dv = "|"; // For example; if you are documenting an .md format file for example the col separator can be changed to '|'
 
             var ReportColumns = new List<string>(new[]
             {
@@ -124,6 +124,8 @@ namespace MergePowerData
 
             if (!string.IsNullOrEmpty(Filter))
                 Console.WriteLine(_stats.ToReport(dv, Filter));
+
+            //Console.WriteLine(_stats);
         }
 
         private StringBuilder BuildReport(List<string> ReportColumns, string reportStats, string dv)
@@ -170,6 +172,7 @@ namespace MergePowerData
             {
                 var kgEfossil = c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh *
                                 IntelCore.TWh2Kg;
+
                 var wrldKgEfossil = _world.Electric.Electricity.by_source.fossil_fuels.percent / 100 *
                                     _world.Electric.ProdTWh * IntelCore.TWh2Kg;
 

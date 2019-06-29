@@ -77,10 +77,10 @@ namespace MergePowerData.IntelMath
                 case "econs":
                     result = c.Electric.ConsTWh * TWh2Kg;
                     break;
-                case "eprodtw":
+                case "eprodtwh":
                     result = c.Electric.ProdTWh;
                     break;
-                case "econstw":
+                case "econstwh":
                     result = c.Electric.ConsTWh;
                     break;
                 case "eimport":
@@ -91,6 +91,10 @@ namespace MergePowerData.IntelMath
                     break;
                 case "capff":
                     result = igc?.YearCapTWhrByPercent(c.Electric.Electricity.by_source.fossil_fuels.percent) * TWh2Kg
+                             ?? double.NaN;
+                    break;
+                case "capfftwh":
+                    result = igc?.YearCapTWhrByPercent(c.Electric.Electricity.by_source.fossil_fuels.percent) 
                              ?? double.NaN;
                     break;
                 case "capnuke":
@@ -107,6 +111,11 @@ namespace MergePowerData.IntelMath
                     result =
                         igc?.YearCapTWhrByPercent(c.Electric.Electricity.by_source.other_renewable_sources.percent) *
                         TWh2Kg
+                        ?? double.NaN;
+                    break;
+                case "caprenewtwh":
+                    result =
+                        igc?.YearCapTWhrByPercent(c.Electric.Electricity.by_source.other_renewable_sources.percent)
                         ?? double.NaN;
                     break;
                 case "ffrefineprod":

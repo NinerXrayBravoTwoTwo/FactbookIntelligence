@@ -106,7 +106,7 @@ namespace MergePowerData.IntelMath
         /// <returns></returns>
         public string ToReport(string dv, double gdpAbove, double gdpBelow)
         {
-            var result = new StringBuilder($"Independent(X){dv}vs Dependent(Y){dv}Correlation{dv}MeanX{dv}Slope\n");
+            var result = new StringBuilder($"Independent(X){dv}vs Dependent(Y){dv}N{dv}Correlation{dv}MeanX{dv}Slope\n");
 
             if (dv.Equals("|"))
                 result.Append(IntelCore.WriteDivider(Regex.Matches(result.ToString(), @"\|").Count) + "\n");
@@ -127,7 +127,7 @@ namespace MergePowerData.IntelMath
                 var stat = item.Value;
                 if (item.Value.Correlation() > gdpAbove || item.Value.Correlation() < gdpBelow)
                     result.Append(
-                            $"{xyNames[0]}{dv}vs {xyNames[1]}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1} {IntelCore.GetXyUnits(item.Key)}\n");
+                            $"{xyNames[0]}{dv}vs {xyNames[1]}{dv}{stat.Correlation():F3}{dv}{stat.N}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1} {IntelCore.GetXyUnits(item.Key)}\n");
             }
 
             //Console.WriteLine(string.Join(", ", ReportSet.Keys));
@@ -137,7 +137,7 @@ namespace MergePowerData.IntelMath
         public string ToReport(string dv, string filter)
         {
             Console.WriteLine($"Filter by: {filter}");
-            var result = new StringBuilder($"Independent(X){dv}vs Dependent(Y){dv}Correlation{dv}MeanX{dv}Slope\n");
+            var result = new StringBuilder($"Independent(X){dv}vs Dependent(Y){dv}N{dv}Correlation{dv}MeanX{dv}Slope\n");
 
             if (dv.Equals("|"))
                 result.Append(IntelCore.WriteDivider(Regex.Matches(result.ToString(), @"\|").Count) + "\n");
@@ -149,7 +149,7 @@ namespace MergePowerData.IntelMath
 
                 if (Regex.IsMatch(item.Key, filter, RegexOptions.IgnoreCase))
                     result.Append(
-                        $"{xyNames[0]}{dv}vs {xyNames[1]}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1} {IntelCore.GetXyUnits(item.Key)}\n");
+                        $"{xyNames[0]}{dv}vs {xyNames[1]}{dv}{stat.N}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1} {IntelCore.GetXyUnits(item.Key)}\n");
             }
 
             return result.ToString();

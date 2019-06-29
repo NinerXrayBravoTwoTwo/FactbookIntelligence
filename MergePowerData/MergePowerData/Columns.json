@@ -5,11 +5,23 @@
     "Format": "1",
     "Unit": "ekg"
   },
+  "eprodtwh": {
+    "Short": "ElecProd",
+    "Name": "Electric Production",
+    "Format": "1",
+    "Unit": "TWh"
+  },
   "econs": {
     "Short": "ElecCons",
     "Name": "Electric Consumption",
     "Format": "1",
     "Unit": "ekg"
+  },
+  "econstwh": {
+    "Short": "ElecCons",
+    "Name": "Electric Consumption",
+    "Format": "1",
+    "Unit": "TWh"
   },
   "eimport": {
     "Short": "ElecImp",
@@ -29,6 +41,13 @@
     "Format": "3",
     "Unit": "ekg"
   },
+  "capfftwh": {
+    "Short": "CapFF",
+    "Name": "Generating Capacity Fossil Fuel",
+    "Format": "3",
+    "Unit": "TWh"
+  },
+
   "capnuke": {
     "Short": "CapNuke",
     "Name": "Generating Capacity Nuclear",
@@ -46,6 +65,12 @@
     "Name": "Generating Capacity Renewable",
     "Format": "1",
     "Unit": "ekg"
+  },
+  "caprenewtwh": {
+    "Short": "CapRenew",
+    "Name": "Generating Capacity Renewable",
+    "Format": "1",
+    "Unit": "TWh"
   },
   "ffrefineprod": {
     "Short": "FFRefProd",
