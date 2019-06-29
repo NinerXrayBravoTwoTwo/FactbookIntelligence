@@ -4,8 +4,7 @@
 
 This project parses "CIA Factbook" (CIAF) data and attempts to turn some of it into "intelligence".
 
-"Data and algorithms are not technology, they are artifacts of technology." -- Quote from myself in 1992
-
+"The purpose of computing is insight, not numbers."
 
 ## Purpose/Hypothesis
 
