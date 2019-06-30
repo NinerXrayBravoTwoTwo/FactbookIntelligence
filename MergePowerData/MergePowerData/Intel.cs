@@ -144,6 +144,7 @@ namespace MergePowerData
             Console.WriteLine(WindMillCost(out replacementTme, costOfMoney: costOfMoney,
                 priceOfwindmill: 3.5 * IntelCore.Mega, efficiency: .33, utilizationPercent: 0.4));
 
+            Console.WriteLine( replacementTme );
             #endregion
         }
 
@@ -154,7 +155,7 @@ namespace MergePowerData
             // Covert stat to $ per kW hours, Since $ are in Billion dollars and energy is in TW divide both by a billion
 
             // priceOfwindmill KWh
-            var kWcostPerWindmill = priceOfwindmill / (costOfMoney - 1);
+            var kWcostPerWindmill = priceOfwindmill / (costOfMoney);
             var kWGenPerHr = 2.0 * IntelCore.Mega * efficiency * utilizationPercent / IntelCore.YearHours;
 
             var winmillPerhour = kWGenPerHr / kWcostPerWindmill;
@@ -164,7 +165,7 @@ namespace MergePowerData
                 $" Gen: {kWGenPerHr:F3} kW/hr, money: { costOfMoney:F3} $/kWh, installedCost$: {kWcostPerWindmill:F3} kWh/windmill, " +
                 $" windmillPerYear: { windmillPerYear:F3}, yearsPerWindmill: {1 / windmillPerYear:F3}");
 
-            replacementTme = new TimeSpan();
+            replacementTme = TimeSpan.FromHours( 1/ windmillPerYear);
 
             return string.Empty;
         }
