@@ -24,7 +24,7 @@ namespace MergePowerData
                     gdpLowerLimit = double.Parse(match.Groups[2].Value);
 
                 //
-                 match = Regex.Match(argString, @"[-]*(filter)=(\w+)", RegexOptions.IgnoreCase);
+                 match = Regex.Match(argString, @"[-]*(filter)=([\w|\|]+)", RegexOptions.IgnoreCase);
 
                 if (match.Success)
                     filter = match.Groups[2].Value;

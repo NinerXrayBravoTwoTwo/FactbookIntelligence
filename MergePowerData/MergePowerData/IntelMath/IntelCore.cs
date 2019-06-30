@@ -34,12 +34,15 @@ namespace MergePowerData.IntelMath
         public static double
             WindMillTWh = 2.0e-6 * InstalledGeneratingCapacity.HoursPerYear * 0.4; // 2MW wind mill 40% eff
 
+        public static double YearHours = 8765.8128;
+
         #endregion
 
         internal static readonly string ConfigFile = Environment.CurrentDirectory + "/Columns.json";
 
         public static Dictionary<string, ColumnConfig> ColumnConfigs =>
             JsonConvert.DeserializeObject<Dictionary<string, ColumnConfig>>(File.ReadAllText(ConfigFile));
+
 
         /// <summary>
         ///     Preforms primary column computation for a data element from CIAF

@@ -11,7 +11,7 @@ namespace MergePowerData.IntelMath
     /// </summary>
     public class StatCollector
     {
-        private readonly IDictionary<string, Statistic> _stats = new Dictionary<string, Statistic>();
+        public readonly IDictionary<string, Statistic> Stats = new Dictionary<string, Statistic>();
         public readonly double PLimit;
 
         public StatCollector(double minGdpPp)
@@ -19,16 +19,16 @@ namespace MergePowerData.IntelMath
             PLimit = minGdpPp;
         }
 
-        public int Count => _stats.Count;
+        public int Count => Stats.Count;
 
         public double CalcX(string statName, double yValue)
         {
-            return yValue / _stats[statName].Slope();
+            return yValue / Stats[statName].Slope();
         }
 
         public double Stand(string statName, double xValue, double yValue)
         {
-            return (xValue - CalcX(statName, yValue)) / _stats[statName].Qx();
+            return (xValue - CalcX(statName, yValue)) / Stats[statName].Qx();
         }
 
         public double Stand(string statName, Country c)
@@ -69,19 +69,18 @@ namespace MergePowerData.IntelMath
                             var m = IntelCore.XValue(x[a], c);
                             var n = IntelCore.XValue(x[b], c);
 
-                            if (!_stats.ContainsKey(statName))
-                                _stats.Add(statName, new Statistic());
+                            if (!Stats.ContainsKey(statName))
+                                Stats.Add(statName, new Statistic());
                             //Console.WriteLine($"AddStat: {statName}");
 
                             if (!(m is double.NaN || n is double.NaN))
-                                _stats[statName].Add(m, n);
+                                Stats[statName].Add(m, n);
 
                             exclude.Add(reverse, 0);
                         }
                     }
         }
-
-
+        
         /// <summary>
         /// </summary>
         /// <returns></returns>
@@ -89,14 +88,11 @@ namespace MergePowerData.IntelMath
         {
             var result = new StringBuilder(base.ToString() + "\n");
 
-            foreach (var item in _stats.OrderByDescending(r => r.Value.Correlation()))
+            foreach (var item in Stats.OrderByDescending(r => r.Value.Correlation()))
                 result.Append($"{item.Key}: {item.Value}\n");
 
             return result.ToString();
         }
-
-
-        Dictionary<string, int> ReportSet = new Dictionary<string, int>();
 
         /// <summary>
         /// </summary>
@@ -111,18 +107,9 @@ namespace MergePowerData.IntelMath
             if (dv.Equals("|"))
                 result.Append(IntelCore.WriteDivider(Regex.Matches(result.ToString(), @"\|").Count) + "\n");
 
-            foreach (var item in _stats.OrderByDescending(r => r.Value.Correlation()))
+            foreach (var item in Stats.OrderByDescending(r => r.Value.Correlation()))
             {
                 var xyNames = IntelCore.GetNames(item.Key.Split('_'));
-
-                if (item.Value.Correlation() > .95)
-                    foreach (var key in item.Key.Split('_'))
-                        if (ReportSet.ContainsKey(key))
-                            ReportSet[key]++;
-                        else
-                            ReportSet.Add(key, 0);
-
-                var xyUnits = IntelCore.GetUnits(item.Key.Split('_'));
 
                 var stat = item.Value;
                 if (item.Value.Correlation() > gdpAbove || item.Value.Correlation() < gdpBelow)
@@ -130,24 +117,26 @@ namespace MergePowerData.IntelMath
                             $"{xyNames[0]}{dv}vs {xyNames[1]}{dv}{stat.Correlation():F3}{dv}{stat.N}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1} {IntelCore.GetXyUnits(item.Key)}\n");
             }
 
-            //Console.WriteLine(string.Join(", ", ReportSet.Keys));
+
             return result.ToString();
         }
 
         public string ToReport(string dv, string filter)
         {
             Console.WriteLine($"Filter by: {filter}");
+            var regex = new Regex(filter, RegexOptions.IgnoreCase);
+
             var result = new StringBuilder($"Independent(X){dv}vs Dependent(Y){dv}N{dv}Correlation{dv}MeanX{dv}Slope\n");
 
             if (dv.Equals("|"))
                 result.Append(IntelCore.WriteDivider(Regex.Matches(result.ToString(), @"\|").Count) + "\n");
 
-            foreach (var item in _stats.OrderByDescending(r => r.Value.Correlation()))
+            foreach (var item in Stats.OrderByDescending(r => r.Value.Correlation()))
             {
                 var xyNames = IntelCore.GetNames(item.Key.Split('_'));
                 var stat = item.Value;
 
-                if (Regex.IsMatch(item.Key, filter, RegexOptions.IgnoreCase))
+                if (regex.IsMatch(item.Key))
                     result.Append(
                         $"{xyNames[0]}{dv}vs {xyNames[1]}{dv}{stat.N}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1} {IntelCore.GetXyUnits(item.Key)}\n");
             }

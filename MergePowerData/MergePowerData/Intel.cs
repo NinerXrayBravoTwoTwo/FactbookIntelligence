@@ -101,8 +101,11 @@ namespace MergePowerData
         public void CsvReport()
         {
             Console.WriteLine($"Gross Domestic product greater than: Giga ${MinimumGdp} (billion)\n");
-            const string
-                dv = "|"; // For example; if you are documenting an .md format file for example the col separator can be changed to '|'
+
+            // For example; if you are documenting an .md format file for example the col separator can be changed to '|'
+            const string dv = "\t";
+
+            #region Table Report
 
             var ReportColumns = new List<string>(new[]
             {
@@ -115,18 +118,57 @@ namespace MergePowerData
             var reportStats = @"(eprod|capff|caphydro|emission)";
 
             var reportSb = BuildReport(ReportColumns, reportStats, dv);
+            Console.WriteLine(reportSb + "\n");
 
-            Console.WriteLine(reportSb);
-            Console.WriteLine(); // add blank line separation
+            #endregion
+
+            #region Statistics report
 
             Console.WriteLine($"Statistic Count: {_stats.Count}\n");
-            Console.WriteLine(_stats.ToReport(dv, .88, -.5) + "\n");
+            //Console.WriteLine(_stats.ToReport(dv, .88, -.5) + "\n");
 
             if (!string.IsNullOrEmpty(Filter))
                 Console.WriteLine(_stats.ToReport(dv, Filter));
 
             //Console.WriteLine(_stats);
+
+            #endregion
+
+            #region Report Wind Mill cost in TW
+
+            // TODO: Verify that one axis is a GDP value and then determine if the gdp is X or Y (invert division)
+            // TODO: Verify that cost of money is $ / kWh; or G$ / TWh * 1.0e-9
+            var costOfMoney = _stats.Stats["eprodtwh_gdp"].Slope();
+            TimeSpan replacementTme;
+
+            Console.WriteLine(WindMillCost(out replacementTme, costOfMoney: costOfMoney,
+                priceOfwindmill: 3.5 * IntelCore.Mega, efficiency: .33, utilizationPercent: 0.4));
+
+            #endregion
         }
+
+
+        private static string WindMillCost(out TimeSpan replacementTme, double costOfMoney,
+            double priceOfwindmill, double efficiency, double utilizationPercent)
+        {
+            // Covert stat to $ per kW hours, Since $ are in Billion dollars and energy is in TW divide both by a billion
+
+            // priceOfwindmill KWh
+            var kWcostPerWindmill = priceOfwindmill / (costOfMoney - 1);
+            var kWGenPerHr = 2.0 * IntelCore.Mega * efficiency * utilizationPercent / IntelCore.YearHours;
+
+            var winmillPerhour = kWGenPerHr / kWcostPerWindmill;
+            var windmillPerYear = winmillPerhour * IntelCore.YearHours;
+
+            Console.WriteLine(
+                $" Gen: {kWGenPerHr:F3} kW/hr, money: { costOfMoney:F3} $/kWh, installedCost$: {kWcostPerWindmill:F3} kWh/windmill, " +
+                $" windmillPerYear: { windmillPerYear:F3}, yearsPerWindmill: {1 / windmillPerYear:F3}");
+
+            replacementTme = new TimeSpan();
+
+            return string.Empty;
+        }
+
 
         private StringBuilder BuildReport(List<string> ReportColumns, string reportStats, string dv)
         {

@@ -17,9 +17,10 @@ namespace MergePowerData
         /// Produce report
         /// </summary>
         /// <param name="grossDomesticProductLowerLimit"></param>
+        /// <param name="filter">Regular expression match string to identify linear regression report targets</param>
         public void ElectricReport( double grossDomesticProductLowerLimit, string filter)
         {
-            /* * IMPORTANT; Key variable that limits how many countries are processed in Linear regressions AND included in report **/
+            /** IMPORTANT; Key variable that limits how many countries are processed in Linear regressions AND included in report **/
 
             var intel = new Intel(grossDomesticProductLowerLimit, filter); 
             
