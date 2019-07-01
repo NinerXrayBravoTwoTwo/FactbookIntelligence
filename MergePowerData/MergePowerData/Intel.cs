@@ -32,7 +32,7 @@ namespace MergePowerData
             MinimumGdp = minimumGdp;
             Filter = filter;
 
-            _stats = new StatCollector(minimumGdp);
+            _stats = new StatCollector();
         }
 
         public double MinimumGdp { get; set; }
@@ -88,7 +88,7 @@ namespace MergePowerData
 
             var country = new Country(name, electric, ff, gdp, pop);
 
-            if (country.PurchasePower.value / IntelCore.Giga < _stats.PLimit) return;
+            if (country.PurchasePower.value / IntelCore.Giga < MinimumGdp) return;
 
             _countries.Add(country);
             _stats.Add(country);
@@ -127,7 +127,7 @@ namespace MergePowerData
             #region Statistics report
 
             Console.WriteLine($"Statistic Count: {_stats.Count}\n");
-            //Console.WriteLine(_stats.ToReport(dv, .88, -.5) + "\n");
+            //Console.WriteLine(_stats.ToReport(dv, .88, -.5) + "\n"); // Just the relevent stat's ma'm, just the relevenet ones
 
             if (!string.IsNullOrEmpty(Filter))
                 Console.WriteLine(_stats.ToReport(dv, Filter));
@@ -141,18 +141,17 @@ namespace MergePowerData
             var costOfMoney = _stats.Stats["eprodtwh_gdp"].Slope();
             double replacementTme;
 
+            Console.WriteLine("Time it takes One windmill to replace the energy required to create it;");
 
-            Console.WriteLine(WindMillCost(out replacementTme, costOfMoney: costOfMoney,
-                priceOfwindmill: 3.5 * IntelCore.Mega, efficiency: .33, utilizationPercent: 0.3));
+            Console.WriteLine(WindMillCost(out replacementTme, costOfMoney, 3.5 * IntelCore.Mega, .33, 0.30));
+            Console.WriteLine(WindMillCost(out replacementTme, costOfMoney, 3.5 * IntelCore.Mega, .33, 0.35));
+            Console.WriteLine(WindMillCost(out replacementTme, costOfMoney, 3.5 * IntelCore.Mega, .33, .38));
 
-            Console.WriteLine(WindMillCost(out replacementTme, costOfMoney: costOfMoney,
-                priceOfwindmill: 3.5 * IntelCore.Mega, efficiency: .33, utilizationPercent: 0.4));
-
-            Console.WriteLine(WindMillCost(out replacementTme, costOfMoney,
-                 3.5 * IntelCore.Mega, .33, .5));
-
-            Console.WriteLine(replacementTme);
+            Console.WriteLine($"Years For One windmill to replace it's self: {replacementTme}");
             #endregion
+
+            // ./ MergePowerData $=0 filter = eutilization | egrep - i 'capacity' | grep - v Generating
+
         }
 
 
@@ -168,15 +167,14 @@ namespace MergePowerData
             var winmillPerhour = kWGenPerHr / kWcostPerWindmill;
             var windmillPerYear = winmillPerhour * IntelCore.YearHours;
 
-            Console.WriteLine(
-                $"E: {efficiency} Util: {utilizationPercent} Gen: {kWGenPerHr:F3} kW/hr, money: {costOfMoney:F3} $/kWh, installedCost$: {kWcostPerWindmill:F3} kWh/windmill, " +
-                $" windmillPerYear: { windmillPerYear:F3}, yearsPerWindmill: {1 / windmillPerYear:F3}");
+            var result =
+                 $"Eff: {efficiency} Util: {utilizationPercent:F3} Gen: {kWGenPerHr:F3} kW/hr, money: {costOfMoney:F3} $/kWh, installedCost$: {kWcostPerWindmill:F3} kWh/windmill, " +
+                 $" windmillPerYear: { windmillPerYear:F3}, yearsPerWindmill: {1 / windmillPerYear:F3}";
 
             replacementTme = 1 / windmillPerYear;
 
-            return string.Empty;
+            return result;
         }
-
 
         private StringBuilder BuildReport(List<string> ReportColumns, string reportStats, string dv)
         {

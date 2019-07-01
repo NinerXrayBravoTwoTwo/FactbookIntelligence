@@ -12,11 +12,8 @@ namespace MergePowerData.IntelMath
     public class StatCollector
     {
         public readonly IDictionary<string, Statistic> Stats = new Dictionary<string, Statistic>();
-        public readonly double PLimit;
-
-        public StatCollector(double minGdpPp)
+        public StatCollector()
         {
-            PLimit = minGdpPp;
         }
 
         public int Count => Stats.Count;
@@ -39,9 +36,6 @@ namespace MergePowerData.IntelMath
 
         public void Add(Country c)
         {
-            // Limit countries by minimum GDP
-            if (c.PurchasePower.value / IntelCore.Giga < PLimit) return;
-
             //     do not add aggregation-country entries to stats
             if (Regex.IsMatch(c.Name, @"world|European", RegexOptions.IgnoreCase)) return;
 
@@ -117,7 +111,6 @@ namespace MergePowerData.IntelMath
                             $"{xyNames[0]}{dv}vs {xyNames[1]}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F1} {IntelCore.GetXyUnits(item.Key)}\n");
             }
 
-
             return result.ToString();
         }
 
@@ -126,7 +119,7 @@ namespace MergePowerData.IntelMath
             Console.WriteLine($"Filter by: {filter}");
             var regex = new Regex(filter, RegexOptions.IgnoreCase);
 
-            var result = new StringBuilder($"Independent(X){dv}vs Dependent(Y){dv}Correlation{dv}MeanX{dv}Slope\n");
+            var result = new StringBuilder($"Name: {dv}Independent(X){dv}vs Dependent(Y){dv}Correlation{dv}MeanX{dv}Slope\n");
 
             if (dv.Equals("|"))
                 result.Append(IntelCore.WriteDivider(Regex.Matches(result.ToString(), @"\|").Count) + "\n");
@@ -138,7 +131,7 @@ namespace MergePowerData.IntelMath
 
                 if (regex.IsMatch(item.Key))
                     result.Append(
-                        $"{xyNames[0]}{dv}vs {xyNames[1]}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F3} {IntelCore.GetXyUnits(item.Key)}\n");
+                        $"{item.Key} :{dv}{xyNames[0]}{dv}vs {xyNames[1]}{dv}{stat.Correlation():F3}{dv}{stat.MeanX():F1}{dv}{stat.Slope():F3} {IntelCore.GetXyUnits(item.Key)}\n");
             }
 
             return result.ToString();
