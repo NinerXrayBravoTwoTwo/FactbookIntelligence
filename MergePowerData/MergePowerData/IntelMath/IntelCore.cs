@@ -97,7 +97,7 @@ namespace MergePowerData.IntelMath
                              ?? double.NaN;
                     break;
                 case "capfftwh":
-                    result = igc?.YearCapTWhrByPercent(c.Electric.Electricity.by_source.fossil_fuels.percent) 
+                    result = igc?.YearCapTWhrByPercent(c.Electric.Electricity.by_source.fossil_fuels.percent)
                              ?? double.NaN;
                     break;
                 case "capnuke":
@@ -161,12 +161,22 @@ namespace MergePowerData.IntelMath
                     result = c.FossilFuelDetail.CrudeOil.Exports.Value / Mega;
                     break;
                 case "pcoilgdp":
-                    result = c.FossilFuelDetail.CrudeOil.Production.Value * 50 * 365.242198781 / c.PurchasePower.value *
-                             100;
+                    result = c.FossilFuelDetail.CrudeOil.Production.Value * 50 * 365.242198781 / c.PurchasePower.value * 100;
                     break;
-                // ratio capacity / ElecProd
-                case "ratiocap2eprod":
-                    result = igc?.YearCapacityTWhr / c.Electric.ProdTWh ?? double.NaN;
+                case "pctcaprenew":
+                    result = c.Electric.Electricity.by_source.other_renewable_sources.percent / 100;
+                    break;
+                case "pctcapfossil":
+                    result = c.Electric.Electricity.by_source.fossil_fuels.percent / 100;
+                    break;
+                case "pctcapnuclear":
+                    result = c.Electric.Electricity.by_source.nuclear_fuels.percent / 100;
+                    break;
+                case "pctcaphydro":
+                    result = c.Electric.Electricity.by_source.hydroelectric_plants.percent / 100;
+                    break;
+                case "eutilization": // should be fraction between 0 -.9999999 
+                    result = igc != null ? (c.Electric.ProdTWh / igc.YearCapacityTWhr) : double.NaN;
                     break;
                 case "kwu235":
                     result = c.Electric.Electricity.by_source.nuclear_fuels.percent / 100 * c.Electric.ProdKWh /
@@ -220,7 +230,7 @@ namespace MergePowerData.IntelMath
 
             return names.ToArray();
         }
-        
+
         public static string GetXyUnits(string itemKey)
         {
             var units = GetUnits(itemKey.Split('_'));

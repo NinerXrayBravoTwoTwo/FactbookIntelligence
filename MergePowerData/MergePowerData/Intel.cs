@@ -109,13 +109,15 @@ namespace MergePowerData
 
             var ReportColumns = new List<string>(new[]
             {
-                "eprod",
-                "capff",
+                "eprodtwh",
+                "capfftwh",
                 "emission",
-                "gdp"
+                "gdp",
+                "pctcaprenew",
+                "eutilization"
             });
 
-            var reportStats = @"(eprod|capff|caphydro|emission)";
+            var reportStats = @"(eprod|capff|eprodtwh|capfftwh|emission)";
 
             var reportSb = BuildReport(ReportColumns, reportStats, dv);
             Console.WriteLine(reportSb + "\n");
@@ -130,8 +132,6 @@ namespace MergePowerData
             if (!string.IsNullOrEmpty(Filter))
                 Console.WriteLine(_stats.ToReport(dv, Filter));
 
-            //Console.WriteLine(_stats);
-
             #endregion
 
             #region Report Wind Mill cost in TW
@@ -139,17 +139,24 @@ namespace MergePowerData
             // TODO: Verify that one axis is a GDP value and then determine if the gdp is X or Y (invert division)
             // TODO: Verify that cost of money is $ / kWh; or G$ / TWh * 1.0e-9
             var costOfMoney = _stats.Stats["eprodtwh_gdp"].Slope();
-            TimeSpan replacementTme;
+            double replacementTme;
+
+
+            Console.WriteLine(WindMillCost(out replacementTme, costOfMoney: costOfMoney,
+                priceOfwindmill: 3.5 * IntelCore.Mega, efficiency: .33, utilizationPercent: 0.3));
 
             Console.WriteLine(WindMillCost(out replacementTme, costOfMoney: costOfMoney,
                 priceOfwindmill: 3.5 * IntelCore.Mega, efficiency: .33, utilizationPercent: 0.4));
 
-            Console.WriteLine( replacementTme );
+            Console.WriteLine(WindMillCost(out replacementTme, costOfMoney,
+                 3.5 * IntelCore.Mega, .33, .5));
+
+            Console.WriteLine(replacementTme);
             #endregion
         }
 
 
-        private static string WindMillCost(out TimeSpan replacementTme, double costOfMoney,
+        private static string WindMillCost(out double replacementTme, double costOfMoney,
             double priceOfwindmill, double efficiency, double utilizationPercent)
         {
             // Covert stat to $ per kW hours, Since $ are in Billion dollars and energy is in TW divide both by a billion
@@ -162,10 +169,10 @@ namespace MergePowerData
             var windmillPerYear = winmillPerhour * IntelCore.YearHours;
 
             Console.WriteLine(
-                $" Gen: {kWGenPerHr:F3} kW/hr, money: { costOfMoney:F3} $/kWh, installedCost$: {kWcostPerWindmill:F3} kWh/windmill, " +
+                $"E: {efficiency} Util: {utilizationPercent} Gen: {kWGenPerHr:F3} kW/hr, money: {costOfMoney:F3} $/kWh, installedCost$: {kWcostPerWindmill:F3} kWh/windmill, " +
                 $" windmillPerYear: { windmillPerYear:F3}, yearsPerWindmill: {1 / windmillPerYear:F3}");
 
-            replacementTme = TimeSpan.FromHours( 1/ windmillPerYear);
+            replacementTme = 1 / windmillPerYear;
 
             return string.Empty;
         }

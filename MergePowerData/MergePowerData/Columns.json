@@ -118,19 +118,19 @@
     "Short": "FFNatGasExp",
     "Name": "FF Natural Gas Export",
     "Format": "1",
-    "Unit": "Gcm"
+    "Unit": "expGcm"
   },
   "ffnatgasreserv": {
     "Short": "FFNatGasRes",
     "Name": "FF Natural Gas Reserves",
     "Format": "1",
-    "Unit": "Gcm"
+    "Unit": "resGcm"
   },
   "ffcrudereserv": {
     "Short": "FFOilRes",
     "Name": "FF Oil Reserves",
     "Format": "1",
-    "Unit": "Gbbl"
+    "Unit": "resGbbl"
   },
   "ffcrudeprod": {
     "Short": "FFOilProd",
@@ -142,13 +142,13 @@
     "Short": "FFOilImp",
     "Name": "FF Oil Import",
     "Format": "1",
-    "Unit": "Mbbl"
+    "Unit": "impMbbl"
   },
   "ffcrudeexport": {
     "Short": "FFOilExp",
     "Name": "FF Oil Export",
     "Format": "1",
-    "Unit": "Mbbl"
+    "Unit": "expMbbl"
   },
   "gdp": {
     "Short": "GDP",
@@ -160,13 +160,13 @@
     "Short": "$Growth",
     "Name": "Growth Rate",
     "Format": "1",
-    "Unit": "%"
+    "Unit": "grwh%"
   },
   "pcoilgdp": {
-    "Short": "oil%gdp",
+    "Short": "Oil%Gdp",
     "Name": "Oil % GDP",
     "Format": 3,
-    "Unit": "%"
+    "Unit": "o%$"
   },
   "pop": {
     "Short": "PopM",
@@ -186,16 +186,41 @@
     "Format": "1",
     "Unit": "TT" // Trillion tons
   },
-  "ratiocap2eprod": {
-    "Short": "Cap2Eprod",
-    "Name": "Capacity to Elec prod",
-    "Format": "1",
-    "Unit": "ratio" // Trillion tons
-  },
   "kwu235": {
     "Short": "U235",
     "Name": "U235",
     "Format": "1",
     "Unit": "kg-y" // Trillion tons
+  },
+  "eutilization": {
+    "Short": "Utilization",
+    "Name": "Electric Utilization",
+    "Format": "4",
+    "Unit": "u%"
+  },
+  "pctcaprenew": {
+    "Short": "RenewCap",
+    "Name": "Renewable Capacity",
+    "Format": "4",
+    "Unit": "r%"
+  },
+  "pctcapfossil": {
+    "Short": "FossilCap",
+    "Name": "Fossil Capacity",
+    "Format": "4",
+    "Unit": "f%"
+  },
+  "pctcapnuclear": {
+    "Short": "NuclearCap",
+    "Name": "Nuclear Capacity",
+    "Format": "4",
+    "Unit": "n%"
+  },
+  "pctcaphydro": {
+    "Short": "HydroCap",
+    "Name": "Hydro Capacity",
+    "Format": "4",
+    "Unit": "h%"
   }
+
 }
