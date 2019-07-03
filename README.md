@@ -160,6 +160,34 @@ Note: Mass is not matter; it is an attribute of matter.
 Note: the Nagasaki bomb released 1g of energy, a 21 mega ton bomb releases a kg of energy, 1000 x Nagasaki.  Annual world electricity production is about 24,000 TWh or 947 kg (947,000 Nagasaki sized bombs. I am aware of the rounding error here but am trying to communicate not get lost in the weeds. One Nagasaki is actually 1.0242 g)
 
 # AARS
+## July  2, 2019
+Completed an estimation of the time it takes a windmill to produce enough energy to create another windmill.
+
+In this study finding actual/reliable data on utilization of wind energy is not available. This data is used in justifing loans for the electric industry.
+
+It turns out that CIAF contains enough data to estimate utilization by source if we use linear regressions of country installed electric utilization by source to estimate the factors that the different sources are deviating from the median.  This shows that there is a strong #negative# correlation to utilizaton by renewable-other electric sources.  Initial tests show this to be a -.4 to -3.0 utilization on renewable sources including windmills.
+```
+N: 14 $Corr: 0.984  $slope: 3.960
+Time it takes One windmill to replace the energy required to create it;
+Eff: 0.33 Util: 0.300 Gen: 22.588 kW/hr, money: 3.960 $/kWh, installedCost$: 883832.920 kWh/windmill, windmillPerYear: 0.224, yearsPerWindmill: 4.464
+Eff: 0.33 Util: 0.350 Gen: 26.352 kW/hr, money: 3.960 $/kWh, installedCost$: 883832.920 kWh/windmill, windmillPerYear: 0.261, yearsPerWindmill: 3.826
+Eff: 0.33 Util: 0.380 Gen: 28.611 kW/hr, money: 3.960 $/kWh, installedCost$: 883832.920 kWh/windmill, windmillPerYear: 0.284, yearsPerWindmill: 3.524
+Years For One windmill to replace it's self: 3.52405470656964
+
+Filter by: eutilization_pctcap
+Name:   Independent(X)  vs Dependent(Y) Correlation     MeanX   Slope
+eutilization_pctcapnuclear:     Electric Utilization    vs Nuclear Capacity     0.427   0.4     0.86798 n%/u%
+eutilization_pctcapfossil:      Electric Utilization    vs Fossil Capacity      0.193   0.4     0.59341 f%/u%
+eutilization_pctcaphydro:       Electric Utilization    vs Hydro Capacity       0.042   0.4     0.10320 h%/u%
+eutilization_pctcaprenew:       Electric Utilization    vs Renewable Capacity   -0.740  0.4     -1.53204 r%/u%
+
+Find Source Utilization;
+utilFossil 0.593405024639361
+utilHydro 0.103203535290629
+utilNuclear 0.867975728899084
+utilRenew -1.53204387869371
+```
+
 ## June 24, 2019
 Dramatically expanded linear regression testing to evaluate all data attributes against all other data attribues.  This has shown some suprising results.  Woring on adding other attributes just for the comparison.
 
@@ -202,7 +230,6 @@ emission: N: 14 Mean: 1931.45 Slp: 2.05 Cor: 0.9423 Qx: 859.299 Qy: 1865.048 Y: 
 GDP to GDP Growth rate - Very low correlation
 growth: N: 14 Mean: 3.26 Slp: 1072.37 Cor: 0.3594 Qx: 0.625 Qy: 1865.048 Y: 2729.416922744
 ```
-
 ## June 18, 2019
 
 b> Computed linear regressions for;
