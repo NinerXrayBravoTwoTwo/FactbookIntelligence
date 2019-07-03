@@ -80,9 +80,14 @@ namespace MergePowerData.IntelMath
 
             var country = new Country(name, electric, ff, gdp, pop);
 
-            if (country.PurchasePower.value / IntelCore.Giga < GdpMinimum && GdpMaximum is double.NaN) return;
-            if (country.PurchasePower.value / IntelCore.Giga >= GdpMaximum) return;
-
+            var gdpGiga = country.PurchasePower.value / IntelCore.Giga;
+            if (!double.IsNaN(GdpMaximum)
+                &&
+                gdpGiga < GdpMinimum || gdpGiga >= GdpMaximum)
+                return;
+            else
+                if (gdpGiga < GdpMinimum) return;
+                       
             Countries.Add(country);
             Stats.Add(country);
         }

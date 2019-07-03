@@ -38,6 +38,7 @@ namespace MergePowerData
         {
             if (!double.IsNaN(_countryData.GdpMaximum))
                 Console.WriteLine($"GDP less or equal: Giga ${_countryData.GdpMaximum} (billion)");
+
             Console.WriteLine($"GDP greater than: Giga ${_countryData.GdpMinimum} (billion)");
 
             // For example; if you are documenting an .md format file for example the col separator can be changed to '|'
@@ -78,14 +79,16 @@ namespace MergePowerData
 
             // TODO: Verify that one axis is a GDP value and then determine if the gdp is X or Y (invert division)
             // TODO: Verify that cost of money is $ / kWh; or G$ / TWh * 1.0e-9
-            var costOfMoney = _countryData.Stats.Stats["eprodtwh_gdp"].Slope();
+            var costOfMoney = _countryData.Stats.Stats["eprodtwh_gdp"];
+
+            Console.WriteLine($"N: {costOfMoney.N} $Corr: {costOfMoney.Correlation():F3}  $slope: {costOfMoney.Slope():F3}");
             double replacementTme;
 
             Console.WriteLine("Time it takes One windmill to replace the energy required to create it;");
 
-            Console.WriteLine(WindMillCost(out replacementTme, costOfMoney, 3.5 * IntelCore.Mega, .33, 0.30));
-            Console.WriteLine(WindMillCost(out replacementTme, costOfMoney, 3.5 * IntelCore.Mega, .33, 0.35));
-            Console.WriteLine(WindMillCost(out replacementTme, costOfMoney, 3.5 * IntelCore.Mega, .33, .38));
+            Console.WriteLine(WindMillCost(out replacementTme, costOfMoney.Slope(), 3.5 * IntelCore.Mega, .33, 0.30));
+            Console.WriteLine(WindMillCost(out replacementTme, costOfMoney.Slope(), 3.5 * IntelCore.Mega, .33, 0.35));
+            Console.WriteLine(WindMillCost(out replacementTme, costOfMoney.Slope(), 3.5 * IntelCore.Mega, .33, .38));
 
             Console.WriteLine($"Years For One windmill to replace it's self: {replacementTme}");
             #endregion
@@ -95,15 +98,14 @@ namespace MergePowerData
 
             var equalCap = new Dictionary<string, Statistic>
             {
-                { "utilFossil", _countryData.Stats.Stats["eutilization_pctcapfossil"] },
-                { "utilHydro", _countryData.Stats.Stats["eutilization_pctcaphydro"] },
+                { "utilFossil",  _countryData.Stats.Stats["eutilization_pctcapfossil"] },
+                { "utilHydro",   _countryData.Stats.Stats["eutilization_pctcaphydro"] },
                 { "utilNuclear", _countryData.Stats.Stats["eutilization_pctcapnuclear"] },
-                { "utilRenew", _countryData.Stats.Stats["eutilization_pctcaprenew"] }
+                { "utilRenew",   _countryData.Stats.Stats["eutilization_pctcaprenew"] }
             };
 
             var xxx = new ElectricSourceUtilizationAdjustment(equalCap, _countryData.Countries);
             #endregion
-
         }
 
         private static string WindMillCost(out double replacementTme, double costOfMoney, double priceOfwindmill, double efficiency, double utilizationPercent)

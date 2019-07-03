@@ -36,7 +36,7 @@ namespace MergePowerData.IntelMath
 
         public void Add(Country c)
         {
-            //     do not add aggregation-country entries to stats
+            // do not add aggregation-country entries to stats
             if (Regex.IsMatch(c.Name, @"world|European", RegexOptions.IgnoreCase)) return;
 
             AddCrossTableRegressions(c);
