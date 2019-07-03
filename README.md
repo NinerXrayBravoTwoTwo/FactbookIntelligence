@@ -165,7 +165,7 @@ Completed an estimation of the time it takes a windmill to produce enough energy
 
 In this study finding actual/reliable data on utilization of wind energy is not available. This data is used in justifing loans for the electric industry.
 
-It turns out that CIAF contains enough data to estimate utilization by source if we use linear regressions of country installed electric utilization by source to estimate the factors that the different sources are deviating from the median.  This shows that there is a strong #negative# correlation to utilizaton by renewable-other electric sources.  Initial tests show this to be a -.4 to -3.0 utilization on renewable sources including windmills.
+It turns out that CIAF contains enough data to estimate utilization by source if we use linear regressions of country installed electric utilization by source to estimate the factors that the different sources are deviating from the median.  This shows that there is a strong # negative # correlation to utilizaton by renewable-other electric sources.  Initial tests show this to be a -0.4 to -3.0 utilization on renewable sources including windmills.
 ```
 N: 14 $Corr: 0.984  $slope: 3.960
 Time it takes One windmill to replace the energy required to create it;
