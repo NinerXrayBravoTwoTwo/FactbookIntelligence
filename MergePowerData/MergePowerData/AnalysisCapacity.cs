@@ -1,16 +1,17 @@
 ﻿using System.IO;
-using MergePowerData.CIAFdata;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using MergePowerData.IntelMath;
 
 namespace MergePowerData
 {
     internal class AnalysisCapacity
     {
         private readonly JObject _fact;
+        private readonly string _fileName;
 
         public AnalysisCapacity(string fileName)
         {
+            _fileName = fileName;
             _fact = JObject.Parse(File.ReadAllText(fileName));
         }
         /// <summary>
@@ -18,50 +19,15 @@ namespace MergePowerData
         /// </summary>
         /// <param name="grossDomesticProductLowerLimit"></param>
         /// <param name="filter">Regular expression match string to identify linear regression report targets</param>
-        public void ElectricReport( double grossDomesticProductLowerLimit, string filter)
+        public void ElectricReport(string filter, double gdpLower, double gdpUpper= double.NaN)
         {
             /** IMPORTANT; Key variable that limits how many countries are processed in Linear regressions AND included in report **/
 
-            var intel = new Intel(grossDomesticProductLowerLimit, filter); 
-            
-            foreach (var item in _fact["countries"])
-            foreach (var country in item)
-            {
-                var data = country["data"];
-                var name = data["name"].Value<string>();
-                var energy = data["energy"];
-
-                var electric = energy?["electricity"] != null ? new Electric(energy) : null;
-
-                if (electric == null) continue;
-
-                var ff = new FossilFuelDetail(energy);
-
-                intel.Add(name, electric, ff, Gdp(data), Population(data));
-            }
+            var data = new CountryData(_fileName, gdpLower, gdpUpper);
+            var intel = new Intel(data,  filter);
 
             intel.CsvReport();
         }
 
-        /// <summary>
-        ///     Population data -> people
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        private static long Population(JToken data)
-        {
-            return data["people"]?["population"]["total"].Value<long>() ?? 0;
-        }
-
-        /// <summary>
-        ///     Gross domestic product
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        private static Gdp Gdp(JToken data)
-        {
-            var gdp = data["economy"]["gdp"];
-            return gdp != null ? JsonConvert.DeserializeObject<Gdp>(gdp.ToString()) : null;
-        }
     }
 }

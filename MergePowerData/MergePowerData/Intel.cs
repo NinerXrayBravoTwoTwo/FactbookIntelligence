@@ -4,7 +4,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using MergePowerData.CIAFdata;
 using MergePowerData.IntelMath;
 
 namespace MergePowerData
@@ -16,83 +15,20 @@ namespace MergePowerData
     public class Intel
     {
         // CIAF is a collection of data by country.  To analyze a specific set of data into a report we must extract a relevant subset 
-        protected readonly List<Country> _countries = new List<Country>();
-        protected Statistic _energyDeviationRelativeToGrowth;
-        protected Statistic _ffDevRelativeToGrowth;
-        protected StatCollector _stats;
-        protected Country _world;
+        protected CountryData _countryData;
 
         /// <summary>
         ///     Drive / Control CIAF data processing and filter based on minimum Gdp
         /// </summary>
         /// <param name="minimumGdp">Limit, in Billion $ (GIGA $) to filter out countries below a minimum GDP from report.</param>
         /// <param name="filter"> </param>
-        public Intel(double minimumGdp, string filter)
+        public Intel(CountryData countryData, string filter)
         {
-            MinimumGdp = minimumGdp;
             Filter = filter;
-
-            _stats = new StatCollector();
+            _countryData = countryData;
         }
 
-        public double MinimumGdp { get; set; }
         public string Filter { get; set; }
-
-        // These linear regressions showed that there is no correlation between gdp growth & countries diff from average energy / gdp 
-        /// <summary>
-        ///     Temporary obsolete.  Interesting bit of code because it can perform linear regressions on the data from the
-        ///     completed LR's in the report
-        ///     Kind of like taking a second integral representation of the data.
-        /// </summary>
-        /// <returns></returns>
-        public Statistic DevRelativeToGrowth()
-        {
-            _energyDeviationRelativeToGrowth = new Statistic();
-            _ffDevRelativeToGrowth = new Statistic();
-
-            foreach (var country in _countries)
-            {
-                // do not add aggregation country entries to stats
-                if (Regex.IsMatch(country.Name, @"world|european", RegexOptions.IgnoreCase)) continue;
-
-                var x = _stats.Stand("eprod_gdp", country.Electric.ProdTWh * IntelCore.TWh2Kg,
-                    country.PurchasePower.value / IntelCore.Giga);
-                _energyDeviationRelativeToGrowth.Add(x, country.GrowthRate.value);
-
-                x = _stats.Stand("capff_gdp",
-                    country.Electric.Electricity.by_source.fossil_fuels.percent / 100 * country.Electric.ProdTWh *
-                    IntelCore.TWh2Kg,
-                    country.PurchasePower.value / IntelCore.Giga);
-
-                _ffDevRelativeToGrowth.Add(x, country.GrowthRate.value);
-            }
-
-            Console.WriteLine(_energyDeviationRelativeToGrowth);
-            Console.WriteLine(_ffDevRelativeToGrowth);
-
-            return _energyDeviationRelativeToGrowth;
-        }
-
-        /// <summary>
-        ///     Countries added here will be part of report.
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="electric"></param>
-        /// <param name="ff"></param>
-        /// <param name="gdp"></param>
-        /// <param name="pop"></param>
-        public void Add(string name, Electric electric, FossilFuelDetail ff, Gdp gdp, long pop)
-        {
-            if (name.Equals("World"))
-                _world = new Country(name, electric, ff, gdp, pop);
-
-            var country = new Country(name, electric, ff, gdp, pop);
-
-            if (country.PurchasePower.value / IntelCore.Giga < MinimumGdp) return;
-
-            _countries.Add(country);
-            _stats.Add(country);
-        }
 
         /// <summary>
         ///     Research report.  Many report lines are commented out and can be added back if that data becomes significant to the
@@ -100,7 +36,9 @@ namespace MergePowerData
         /// </summary>
         public void CsvReport()
         {
-            Console.WriteLine($"Gross Domestic product greater than: Giga ${MinimumGdp} (billion)\n");
+            if (!double.IsNaN(_countryData.GdpMaximum))
+                Console.WriteLine($"GDP less or equal: Giga ${_countryData.GdpMaximum} (billion)");
+            Console.WriteLine($"GDP greater than: Giga ${_countryData.GdpMinimum} (billion)");
 
             // For example; if you are documenting an .md format file for example the col separator can be changed to '|'
             const string dv = "\t";
@@ -119,6 +57,7 @@ namespace MergePowerData
 
             var reportStats = @"(eprod|capff|eprodtwh|capfftwh|emission)";
 
+            Console.WriteLine();
             var reportSb = BuildReport(ReportColumns, reportStats, dv);
             Console.WriteLine(reportSb + "\n");
 
@@ -126,11 +65,12 @@ namespace MergePowerData
 
             #region Statistics report
 
-            Console.WriteLine($"Statistic Count: {_stats.Count}\n");
+            Console.WriteLine($"Statistic Count: {_countryData.Stats.Count}\n");
             //Console.WriteLine(_stats.ToReport(dv, .88, -.5) + "\n"); // Just the relevent stat's ma'm, just the relevenet ones
 
-            if (!string.IsNullOrEmpty(Filter))
-                Console.WriteLine(_stats.ToReport(dv, Filter));
+            if (string.IsNullOrEmpty(Filter)) Filter = "eutilization_pctcap";
+
+            Console.WriteLine(_countryData.Stats.ToReport(dv, Filter));
 
             #endregion
 
@@ -138,7 +78,7 @@ namespace MergePowerData
 
             // TODO: Verify that one axis is a GDP value and then determine if the gdp is X or Y (invert division)
             // TODO: Verify that cost of money is $ / kWh; or G$ / TWh * 1.0e-9
-            var costOfMoney = _stats.Stats["eprodtwh_gdp"].Slope();
+            var costOfMoney = _countryData.Stats.Stats["eprodtwh_gdp"].Slope();
             double replacementTme;
 
             Console.WriteLine("Time it takes One windmill to replace the energy required to create it;");
@@ -150,13 +90,23 @@ namespace MergePowerData
             Console.WriteLine($"Years For One windmill to replace it's self: {replacementTme}");
             #endregion
 
-            // ./ MergePowerData $=0 filter = eutilization | egrep - i 'capacity' | grep - v Generating
+            #region utilization by source report
+            Console.WriteLine("\nFind Source Utilization;");
+
+            var equalCap = new Dictionary<string, Statistic>
+            {
+                { "utilFossil", _countryData.Stats.Stats["eutilization_pctcapfossil"] },
+                { "utilHydro", _countryData.Stats.Stats["eutilization_pctcaphydro"] },
+                { "utilNuclear", _countryData.Stats.Stats["eutilization_pctcapnuclear"] },
+                { "utilRenew", _countryData.Stats.Stats["eutilization_pctcaprenew"] }
+            };
+
+            var xxx = new ElectricSourceUtilizationAdjustment(equalCap, _countryData.Countries);
+            #endregion
 
         }
 
-
-        private static string WindMillCost(out double replacementTme, double costOfMoney,
-            double priceOfwindmill, double efficiency, double utilizationPercent)
+        private static string WindMillCost(out double replacementTme, double costOfMoney, double priceOfwindmill, double efficiency, double utilizationPercent)
         {
             // Covert stat to $ per kW hours, Since $ are in Billion dollars and energy is in TW divide both by a billion
 
@@ -168,8 +118,9 @@ namespace MergePowerData
             var windmillPerYear = winmillPerhour * IntelCore.YearHours;
 
             var result =
-                 $"Eff: {efficiency} Util: {utilizationPercent:F3} Gen: {kWGenPerHr:F3} kW/hr, money: {costOfMoney:F3} $/kWh, installedCost$: {kWcostPerWindmill:F3} kWh/windmill, " +
-                 $" windmillPerYear: { windmillPerYear:F3}, yearsPerWindmill: {1 / windmillPerYear:F3}";
+                 $"Eff: {efficiency} Util: {utilizationPercent:F3} Gen: {kWGenPerHr:F3} kW/hr, money: {costOfMoney:F3}"
+                 + $" $/kWh, installedCost$: {kWcostPerWindmill:F3} kWh/windmill,"
+                 + $" windmillPerYear: { windmillPerYear:F3}, yearsPerWindmill: {1 / windmillPerYear:F3}";
 
             replacementTme = 1 / windmillPerYear;
 
@@ -216,13 +167,13 @@ namespace MergePowerData
 
             #region report body
 
-            foreach (var c in _countries.OrderByDescending(d => d.Electric.ProdTWh))
+            foreach (var c in _countryData.Countries.OrderByDescending(d => d.Electric.ProdTWh))
             {
                 var kgEfossil = c.Electric.Electricity.by_source.fossil_fuels.percent / 100 * c.Electric.ProdTWh *
                                 IntelCore.TWh2Kg;
 
-                var wrldKgEfossil = _world.Electric.Electricity.by_source.fossil_fuels.percent / 100 *
-                                    _world.Electric.ProdTWh * IntelCore.TWh2Kg;
+                var wrldKgEfossil = _countryData.World.Electric.Electricity.by_source.fossil_fuels.percent / 100 *
+                                    _countryData.World.Electric.ProdTWh * IntelCore.TWh2Kg;
 
                 var igc = c.Electric.Electricity.installed_generating_capacity;
                 if (igc == null) continue;
@@ -263,18 +214,18 @@ namespace MergePowerData
                         switch (match.Groups[1].Value)
                         {
                             case "eprod":
-                                reportSb.Append($"{_stats.Stand("eprod_gdp", c):F3}{dv}");
-                                reportSb.Append($"{_stats.Stand("eprod_emission", c):F3}{dv}");
+                                reportSb.Append($"{_countryData.Stats.Stand("eprod_gdp", c):F3}{dv}");
+                                reportSb.Append($"{_countryData.Stats.Stand("eprod_emission", c):F3}{dv}");
                                 break;
                             case "caphydro":
-                                reportSb.Append($"{_stats.Stand("caphydro_gdp", c):F3}{dv}");
+                                reportSb.Append($"{_countryData.Stats.Stand("caphydro_gdp", c):F3}{dv}");
                                 break;
                             case "capff":
-                                reportSb.Append($"{_stats.Stand("capff_gdp", c):F3}{dv}");
-                                reportSb.Append($"{_stats.Stand("capff_emission", c):F3}{dv}");
+                                reportSb.Append($"{_countryData.Stats.Stand("capff_gdp", c):F3}{dv}");
+                                reportSb.Append($"{_countryData.Stats.Stand("capff_emission", c):F3}{dv}");
                                 break;
                             case "emission":
-                                reportSb.Append($"{_stats.Stand("gdp_emission", c):F3}{dv}");
+                                reportSb.Append($"{_countryData.Stats.Stand("gdp_emission", c):F3}{dv}");
                                 break;
                         }
                 }
