@@ -21,7 +21,7 @@ namespace MergePowerData
 
             foreach (var item in stats.OrderBy(k => k.Key))
             {
-                Console.WriteLine($"{item.Key} {item.Value.Slope()}");
+                Console.WriteLine($"{item.Key}:\t{item.Value.Slope()}");
             }
 
             var target = countries.FirstOrDefault<Country>(c => c.Name.Equals("United States"));

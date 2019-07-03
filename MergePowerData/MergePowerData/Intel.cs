@@ -32,14 +32,17 @@ namespace MergePowerData
 
         /// <summary>
         ///     Research report.  Many report lines are commented out and can be added back if that data becomes significant to the
-        ///     current analysis OODA loop
+        ///     C analysis OODA loop
         /// </summary>
         public void CsvReport()
         {
-            if (!double.IsNaN(_countryData.GdpMaximum))
-                Console.WriteLine($"GDP less or equal: Giga ${_countryData.GdpMaximum} (billion)");
+            // Giga$: G$ >= Country GDP < G$
+            var dataRange = $" {_countryData.GdpMaximum} G$ >= Country GDP > {_countryData.GdpMinimum} G$";
 
-            Console.WriteLine($"GDP greater than: Giga ${_countryData.GdpMinimum} (billion)");
+            Console.WriteLine(dataRange);
+
+            //if (!double.IsNaN(_countryData.GdpMaximum)) Console.WriteLine($"GDP less or equal: Giga ${_countryData.GdpMaximum} (billion)");
+            //Console.WriteLine($"GDP greater than: Giga ${_countryData.GdpMinimum} (billion)");
 
             // For example; if you are documenting an .md format file for example the col separator can be changed to '|'
             const string dv = "\t";
@@ -49,11 +52,9 @@ namespace MergePowerData
             var ReportColumns = new List<string>(new[]
             {
                 "eprodtwh",
-                "capfftwh",
-                "emission",
-                "gdp",
                 "pctcaprenew",
-                "eutilization"
+                "eutilization",
+                "gdp",
             });
 
             var reportStats = @"(eprod|capff|eprodtwh|capfftwh|emission)";
