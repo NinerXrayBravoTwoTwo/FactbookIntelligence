@@ -8,9 +8,11 @@ This project parses "CIA Factbook" (CIAF) data and attempts to turn some of it i
 
 ## Purpose/Hypothesis
 
-To understand the economic realities and facts of the "Climate Change" narrative in order to determine their voracity and motivations.
+To process energy production and use data into a customizable set of reports that help us understand the economic realities of the world and specific energy production sources.
 
-This project represents a starting point for our improvement of perception of the world. We start with a preconceived notion of how things are.  If intelligence is practiced correctly, we will always find aspects of our preconceptions that are in error.  When we learn the facts and their context they will not agree with your friends, the media, your professors, generally accepted theories, or ourselves.  Often reality crystallizes into truths that are so profound it may take years before we accept them let alone are able to convince others. Look at AE's work for example.  It took him years to understand and accept some of the implications of his early work.  He never did fully believe the implications of quantum mechanics.  And today, 100 years later, most of the human race still does not even partially believe/understand it. 
+If intelligence is practiced correctly, we will always find aspects of our preconceptions that are in error.  When we learn the facts and their context, they will not agree with the way we thought or were told they were.
+
+Often reality crystallizes into truths so profound it may take years before we accept them let alone are able to convince others. Look at AE's work for example.  It took him years to understand and accept some of the implications of his early work.  He never did fully believe the implications of quantum mechanics.  And today, 100 years later, most of the human race still does not even partially believe/understand it; Einstein discovered that “Energy Equals Mass, e=m”. 
 
 Always consider the source and motives of intelligence. For example, "Journalism" usually starts from the story the editor wants to tell and works backwards to find "evidence/facts" that support that narrative.  If the journalist and editor have integrity, they will change their story to reflect facts and not ignore facts that don't support their story. This is a reason ACTUAL intelligence is often a secret, in order to figure out what is going on away from political influences. 
 
@@ -182,14 +184,14 @@ eutilization_pctcaphydro:       Electric Utilization    vs Hydro Capacity       
 eutilization_pctcaprenew:       Electric Utilization    vs Renewable Capacity   -0.740  0.4     -1.53204 r%/u%
 
 Find Source Utilization;
-utilFossil 0.593405024639361
-utilHydro 0.103203535290629
+utilFossil  0.593405024639361
+utilHydro   0.103203535290629
 utilNuclear 0.867975728899084
-utilRenew -1.53204387869371
+utilRenew  -1.53204387869371
 ```
 
 ## June 24, 2019
-Dramatically expanded linear regression testing to evaluate all data attributes against all other data attribues.  This has shown some suprising results.  Woring on adding other attributes just for the comparison.
+Dramatically expanded linear regression testing to evaluate all data attributes against all other data attributes.  This has shown some surprising results.  Working on adding other attributes just for the comparison.
 
 
 Started moving PDF report to iText 7 from iSharp
@@ -327,12 +329,10 @@ Problems; There is no value for Coal consumption.  It is mixed into FF electric 
 
 ## June 14, 2019
 
-Reduced all the data concepts into a single story/question; Ã¢â‚¬Å“How is country economics related to CO2 emissions.  Many ways to go with this; Am currently testing three views, 1> FF Electric Production, 2> CO2 Emissions, 3> Economic growth.
+Reduced all the data concepts into a single story/question; “How is country economics related to CO2 emissions.  Many ways to go with this; Am currently testing three views, 1> FF Electric Production, 2> CO2 Emissions, 3> Economic growth.
 
 Some problems; a> Only the top 40 or so countries by total Power production have an economy b> Some countries are in growth decline or collapse due to war (Venezuela, Syria, Saudi Arabia, Iran, Iraq)
 
 ## June 11, 2019
 
 Processed a series of pie charts detailing crude oil, refined oil, electric production, and CO2 emissions.  Converted some of this data into color coded world maps. Interesting results.  Each graph poses more experiments and questions. Am considering changes to output graphs directly instead of post processing the data in Excel.
-
-
