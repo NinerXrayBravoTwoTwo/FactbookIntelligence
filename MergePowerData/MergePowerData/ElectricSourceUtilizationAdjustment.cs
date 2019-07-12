@@ -21,7 +21,7 @@ namespace MergePowerData
 
             foreach (var item in stats.OrderBy(k => k.Key))
             {
-                Console.WriteLine($"{item.Key}:\t{item.Value.Slope()}");
+                Console.WriteLine($"{item.Key}:\t{item.Value.Slope():F4}\n{item.Value.ToString()}");
             }
 
             var target = countries.FirstOrDefault<Country>(c => c.Name.Equals("United States"));
@@ -33,12 +33,20 @@ namespace MergePowerData
 
             var source = target.Electric.Electricity.by_source;
 
-            Console.WriteLine($"f: {source.fossil_fuels.percent} h: {source.hydroelectric_plants.percent} n: {source.nuclear_fuels.percent} r: {source.other_renewable_sources.percent}");
-            Console.WriteLine($"f: {IntelCore.XValue("pctcapfossil", target)}");
+            Console.WriteLine(
+                $"{target.Name} PowerTWh: {IntelCore.XValue("eprodtwh", target):F3} Utilization%: {IntelCore.XValue("eutilization", target):F3} "
+                + $"f: {IntelCore.XValue("pctcapfossil", target)} "
+                + $"h: {IntelCore.XValue("pctcaphydro", target)} "
+                + $"n: {IntelCore.XValue("pctcapnuclear", target)} "
+                + $"r: {IntelCore.XValue("pctcaprenew", target)}"
+                );
 
             // Utiization starts at .25 for nuclear, fossil, hydro, renew
-            // sum of utilizations always = 1 (100%)
+            // sum of utilizations always = 1 (100%) just like sum of capacity's
+            // Total utilization % for a country is ePowerGen total / Capacity total ==> c.Electric.ProdTWh / igc.YearCapacityTWhr (see XValue in IntelCore class)
+            
             // Adjust utilization down for renew take that and split it among the other three
+
 
             // Search, calculate LR for each, take some capacity from the lowest and add that to each of the other three, repeat until cap's are equal.  
             // Keep track of how much was moved around to each one, this is the estimated utilization

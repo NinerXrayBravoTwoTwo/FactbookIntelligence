@@ -166,6 +166,9 @@ namespace MergePowerData.IntelMath
                 case "pctcaprenew":
                     result = c.Electric.Electricity.by_source.other_renewable_sources.percent / 100;
                     break;
+                case "pctcaprenewxxx":
+                    result = (c.Electric.Electricity.by_source.other_renewable_sources.percent / 100) * .08;
+                    break;
                 case "pctcapfossil":
                     result = c.Electric.Electricity.by_source.fossil_fuels.percent / 100;
                     break;

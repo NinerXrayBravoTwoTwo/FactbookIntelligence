@@ -198,6 +198,12 @@
     "Format": "4",
     "Unit": "u%"
   },
+  "pctcaprenewxxx": {
+    "Short": "RenewCap",
+    "Name": "Renew Capacity Test util",
+    "Format": "4",
+    "Unit": "r%"
+  },
   "pctcaprenew": {
     "Short": "RenewCap",
     "Name": "Renewable Capacity",

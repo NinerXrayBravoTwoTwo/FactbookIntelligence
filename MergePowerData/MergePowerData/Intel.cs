@@ -51,7 +51,7 @@ namespace MergePowerData
 
             var ReportColumns = new List<string>(new[]
             {
-                "eprodtwh",
+                "eprod",
                 "pctcaprenew",
                 "eutilization",
                 "gdp",
