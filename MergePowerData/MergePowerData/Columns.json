@@ -168,6 +168,12 @@
     "Format": 3,
     "Unit": "o%$"
   },
+  "prodkwhgdp": {
+    "Short": "kWh/gdp",
+    "Name": "KWh/gdp",
+    "Format": 3,
+    "Unit": "kWh/$"
+  },
   "pop": {
     "Short": "PopM",
     "Name": "Population Millions",
@@ -178,7 +184,7 @@
     "Short": "kW/pop",
     "Name": "kW per Population",
     "Format": "0",
-    "Unit": "kW"
+    "Unit": "kW/pop"
   },
   "emission": {
     "Short": "Emission",
@@ -198,12 +204,12 @@
     "Format": "4",
     "Unit": "u%"
   },
-  "pctcaprenewxxx": {
-    "Short": "RenewCap",
-    "Name": "Renew Capacity Test util",
-    "Format": "4",
-    "Unit": "r%"
-  },
+  //"pctcaprenewxxx": {
+  //  "Short": "RenewCap",
+  //  "Name": "Renew Capacity Test util",
+  //  "Format": "4",
+  //  "Unit": "r%"
+  //},
   "pctcaprenew": {
     "Short": "RenewCap",
     "Name": "Renewable Capacity",

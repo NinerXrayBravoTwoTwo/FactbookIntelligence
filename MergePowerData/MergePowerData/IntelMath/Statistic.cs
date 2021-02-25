@@ -36,6 +36,7 @@ namespace MergePowerData.IntelMath
     public sealed class Statistic
     {
         /// <summary>
+        /// Initialize a new regression, all data set to zero with no samples.
         /// </summary>
         public Statistic()
         {
@@ -49,11 +50,20 @@ namespace MergePowerData.IntelMath
             MinX = double.MaxValue;
         }
 
+        /// <summary>
+        /// Initialize a new regression with initial x & y
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
         public Statistic(double x, double y) : this()
         {
             Add(x, y);
         }
 
+        /// <summary>
+        /// Clone a regression in a new instance
+        /// </summary>
+        /// <param name="cloneMe"></param>
         public Statistic(Statistic cloneMe)
         {
             Sy += cloneMe.Sy;
@@ -104,6 +114,10 @@ namespace MergePowerData.IntelMath
         /// </summary>
         public double MinX { get; set; }
 
+        /// <summary>
+        /// Merge two Regressions
+        /// </summary>
+        /// <param name="other"></param>
         public void Add(Statistic other)
         {
             Sy += other.Sy;

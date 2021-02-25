@@ -23,7 +23,7 @@ namespace MergePowerData
                 if (match.Success) gdpLowerLimit = double.Parse(match.Groups[2].Value);
 
                 //
-                 match = Regex.Match(argString, @"[-]*(maxgdp|gdp\+)=(\d+)", RegexOptions.IgnoreCase);
+                match = Regex.Match(argString, @"[-]*(maxgdp|gdp\+)=(\d+)", RegexOptions.IgnoreCase);
                 if (match.Success)
                 {
                     gdpUpperLimit = double.Parse(match.Groups[2].Value);

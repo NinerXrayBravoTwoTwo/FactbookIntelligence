@@ -163,12 +163,15 @@ namespace MergePowerData.IntelMath
                 case "pcoilgdp":
                     result = c.FossilFuelDetail.CrudeOil.Production.Value * 50 * 365.242198781 / c.PurchasePower.value * 100;
                     break;
+                case "prodkwhgdp":
+                    result = c.Electric.ProdKWh / c.PurchasePower.value;
+                    break;
                 case "pctcaprenew":
                     result = c.Electric.Electricity.by_source.other_renewable_sources.percent / 100;
                     break;
-                case "pctcaprenewxxx":
-                    result = (c.Electric.Electricity.by_source.other_renewable_sources.percent / 100) * .08;
-                    break;
+                //case "pctcaprenewxxx":
+                //    result = (c.Electric.Electricity.by_source.other_renewable_sources.percent / 100) * .08;
+                //    break;
                 case "pctcapfossil":
                     result = c.Electric.Electricity.by_source.fossil_fuels.percent / 100;
                     break;

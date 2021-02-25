@@ -31,7 +31,7 @@ namespace MergePowerData
         public string Filter { get; set; }
 
         /// <summary>
-        ///     Research report.  Many report lines are commented out and can be added back if that data becomes significant to the
+        ///     Research report.
         ///     C analysis OODA loop
         /// </summary>
         public void CsvReport()
@@ -51,7 +51,8 @@ namespace MergePowerData
 
             var ReportColumns = new List<string>(new[]
             {
-                "eprod",
+                //"prodkwhgdp",
+                "eprodtwh",
                 "pctcaprenew",
                 "eutilization",
                 "gdp",
@@ -102,7 +103,7 @@ namespace MergePowerData
                 { "utilFossil",  _countryData.Stats.Stats["eutilization_pctcapfossil"] },
                 { "utilHydro",   _countryData.Stats.Stats["eutilization_pctcaphydro"] },
                 { "utilNuclear", _countryData.Stats.Stats["eutilization_pctcapnuclear"] },
-                { "utilRenew",   _countryData.Stats.Stats["eutilization_pctcaprenew"] }
+                { "utilRenew",   _countryData.Stats.Stats["eutilization_pctcaprenew"] },
             };
 
             var xxx = new ElectricSourceUtilizationAdjustment(equalCap, _countryData.Countries);
@@ -138,7 +139,15 @@ namespace MergePowerData
 
             foreach (var col in ReportColumns)
             {
-                reportSb.Append($"{IntelCore.ColumnConfigs[col].Short} {IntelCore.ColumnConfigs[col].Unit}{dv}");
+                try
+                {
+                    reportSb.Append($"{IntelCore.ColumnConfigs[col].Short} {IntelCore.ColumnConfigs[col].Unit}{dv}");
+                }
+                catch (KeyNotFoundException)
+                {
+                    Console.WriteLine($"Could not find column: {col}");
+                    throw;
+                }
 
                 var match = Regex.Match(col, reportStats);
                 if (match.Success)
