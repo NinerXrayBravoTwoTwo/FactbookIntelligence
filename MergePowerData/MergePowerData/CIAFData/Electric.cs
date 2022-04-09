@@ -36,7 +36,7 @@ namespace MergePowerData.CIAFdata
 
             var co2Json = energy["carbon_dioxide_emissions_from_consumption_of_energy"];
             MtonCo2 = co2Json?["megatonnes"].Value<double>() ?? 0;
-           
+
             PrcntTtl += Electricity.by_source.nuclear_fuels.percent;
             KWnuke = Electricity.by_source.nuclear_fuels.KWh(Electricity.installed_generating_capacity);
             PrcntTtl += Electricity.by_source.hydroelectric_plants.percent;

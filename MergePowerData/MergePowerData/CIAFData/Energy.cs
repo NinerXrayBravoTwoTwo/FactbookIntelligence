@@ -1,9 +1,11 @@
 ﻿using System;
+// ReSharper disable All
 
-/// <summary>
-/// The majority of this code was written by an online JSON to C# class generator.  
-/// Customization added for Installed generating capacity (which is why an interface was added)
-/// </summary>
+/* 
+ The majority of this code was written by an online JSON to C# class generator.  
+ Customization added for Installed generating capacity (which is why an interface was added)
+*/
+
 namespace MergePowerData.CIAFdata
 {
     public class PopulationWithoutElectricity
@@ -74,25 +76,26 @@ namespace MergePowerData.CIAFdata
     public class InstalledGeneratingCapacity
     {
         public static double HoursPerYear => 365.242198781 * 24;
-
         public double kW { get; set; }
         public int global_rank { get; set; }
         public string date { get; set; }
-
         public double TW => kW / 1.0e9;
         public double YearCapacityTWhr => HoursPerYear * TW;
-
+        /// <summary>
+        /// Calculate correct percentage, handeling 0 to 1 or values 0 to 100, and setting NaN input to zero.
+        /// </summary>
+        /// <param name="percent"></param>
+        /// <returns></returns>
         public double YearCapTWhrByPercent(double percent)
         {
             if (Math.Abs(percent) < 0.0000001 || double.IsNaN(percent))
                 return 0.0;
 
-            var p =  percent >= 1 ? percent / 100  : percent;
+            var p = percent >= 1 ? percent / 100 : percent;
 
             return YearCapacityTWhr * p;
         }
     }
-
 
     public interface IPercent
     {
@@ -113,7 +116,6 @@ namespace MergePowerData.CIAFdata
             return percent / 100 * igc.kW;
         }
     }
-
 
     public class NuclearFuels : IPercent
     {
