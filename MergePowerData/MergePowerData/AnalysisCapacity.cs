@@ -1,33 +1,33 @@
-﻿using System.IO;
+﻿using MergePowerData.IntelMath;
 using Newtonsoft.Json.Linq;
-using MergePowerData.IntelMath;
+using System.IO;
 
 namespace MergePowerData
 {
     internal class AnalysisCapacity
     {
-        private readonly JObject _fact;
         private readonly string _fileName;
 
         public AnalysisCapacity(string fileName)
         {
             _fileName = fileName;
-            _fact = JObject.Parse(File.ReadAllText(fileName));
+            JObject.Parse(File.ReadAllText(fileName));
         }
+
         /// <summary>
         /// Produce report
         /// </summary>
-        /// <param name="grossDomesticProductLowerLimit"></param>
         /// <param name="filter">Regular expression match string to identify linear regression report targets</param>
-        public void ElectricReport(string filter, double gdpLower, double gdpUpper= double.NaN)
+        /// <param name="gdpLower"></param>
+        /// <param name="gdpUpper"></param>
+        public void ElectricReport(string filter, double gdpLower, double gdpUpper = double.NaN)
         {
-            /** IMPORTANT; Key variable that limits how many countries are processed in Linear regressions AND included in report **/
+            /* IMPORTANT; Key variable that limits how many countries are processed in Linear regressions AND included in report */
 
             var data = new CountryData(_fileName, gdpLower, gdpUpper);
-            var intel = new Intel(data,  filter);
+            var intel = new Intel(data, filter);
 
             intel.CsvReport();
         }
-
     }
 }

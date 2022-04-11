@@ -1,32 +1,28 @@
-﻿using System.IO;
-using System.Collections.Generic;
-using MergePowerData.CIAFdata;
+﻿using MergePowerData.CIAFdata;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-
+using System.Collections.Generic;
+using System.IO;
 
 namespace MergePowerData.IntelMath
 {
     public class CountryData
     {
-        private readonly JObject _fact;
-
         public readonly List<Country> Countries = new List<Country>();
-        public Country World { get; protected set; }
+        public readonly double GdpMaximum;
+
+        public readonly double GdpMinimum;
         protected Statistic _energyDeviationRelativeToGrowth;
         protected Statistic _ffDevRelativeToGrowth;
         public StatCollector Stats = new StatCollector();
 
-        public readonly double GdpMinimum;
-        public readonly double GdpMaximum;
-
         public CountryData(string fileName, double gdpLower, double gdpUpper = double.NaN)
         {
-            _fact = JObject.Parse(File.ReadAllText(fileName));
+            var fact = JObject.Parse(File.ReadAllText(fileName));
             GdpMinimum = gdpLower;
             GdpMaximum = gdpUpper;
 
-            foreach (var item in _fact["countries"])
+            foreach (var item in fact["countries"])
                 foreach (var country in item)
                 {
                     var data = country["data"];
@@ -42,6 +38,8 @@ namespace MergePowerData.IntelMath
                     Add(name, electric, ff, Gdp(data), Population(data));
                 }
         }
+
+        public Country World { get; protected set; }
 
 
         /// <summary>
@@ -85,12 +83,10 @@ namespace MergePowerData.IntelMath
                 &&
                 gdpGiga < GdpMinimum || gdpGiga >= GdpMaximum)
                 return;
-            else
-                if (gdpGiga < GdpMinimum) return;
-                       
+            if (gdpGiga < GdpMinimum) return;
+
             Countries.Add(country);
             Stats.Add(country);
         }
-
     }
 }

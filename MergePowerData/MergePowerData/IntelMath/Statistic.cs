@@ -1,10 +1,10 @@
 ﻿using System;
-using  Math = System.Math;
+using Math = System.Math;
 
 namespace MergePowerData.IntelMath
 {
     /// <summary>
-    ///     2D Statistic Generator (Bivariate)
+    ///     2D Statistic Generator (Bi-variate)
     ///     Lineage from 1978 TI-58 and TI-59 calculators.  Ported to C in 1982, ported to Perl 3 in 1987.
     ///     Parameter names are more 'traditional' than newer code and am not going to upgrade them at this time.
     ///     Copyright (c) Jillian England, 2001, 2002, 2003, 2008, 2012, 2016, 2018, 2019
@@ -306,7 +306,7 @@ namespace MergePowerData.IntelMath
             string result;
             try
             {
-                var  isInfin = double.IsPositiveInfinity(Slope());
+                var isInfin = double.IsPositiveInfinity(Slope());
                 result = isInfin ? "NaN" : $"Cor: {Correlation():F4} N: {N} MeanX: {MeanX():F2} MeanY: {MeanY():F2} Slp: {Slope():F2} Qx: {Qx():F3} Qy: {Qy():F3} Yincpt: {YIntercept():F3}";
             }
             catch (InvalidOperationException)

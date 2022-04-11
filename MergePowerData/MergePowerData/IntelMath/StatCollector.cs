@@ -1,9 +1,9 @@
-﻿using System;
+﻿using MergePowerData.CIAFdata;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using MergePowerData.CIAFdata;
 
 namespace MergePowerData.IntelMath
 {
@@ -12,9 +12,6 @@ namespace MergePowerData.IntelMath
     public class StatCollector
     {
         public readonly IDictionary<string, Statistic> Stats = new Dictionary<string, Statistic>();
-        public StatCollector()
-        {
-        }
 
         public int Count => Stats.Count;
 
@@ -74,7 +71,7 @@ namespace MergePowerData.IntelMath
                         }
                     }
         }
-        
+
         /// <summary>
         /// </summary>
         /// <returns></returns>

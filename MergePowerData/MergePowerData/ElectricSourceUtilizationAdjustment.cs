@@ -1,8 +1,8 @@
-﻿using System;
+﻿using MergePowerData.CIAFdata;
 using MergePowerData.IntelMath;
-using System.Linq;
+using System;
 using System.Collections.Generic;
-using MergePowerData.CIAFdata;
+using System.Linq;
 
 namespace MergePowerData
 {
@@ -24,27 +24,16 @@ namespace MergePowerData
                 Console.WriteLine($"{item.Key}:\t{item.Value.Slope():F4}\n{item.Value.ToString()}");
             }
 
-            var target = countries.FirstOrDefault<Country>(c => c.Name.Equals("United States"));
-            if (target is null)
-            {
-                Console.WriteLine("United States NOT found in country set");
-                return;
-            }
+            Console.WriteLine(ReportCountryUtilization(LookupCountry(countries, "United States")));
+            Console.WriteLine(ReportCountryUtilization(LookupCountry(countries, "Russia")));
+            Console.WriteLine(ReportCountryUtilization(LookupCountry(countries, "France")));
+            Console.WriteLine(ReportCountryUtilization(LookupCountry(countries, "China")));
 
-            var source = target.Electric.Electricity.by_source;
 
-            Console.WriteLine(
-                $"{target.Name} PowerTWh: {IntelCore.XValue("eprodtwh", target):F3} Utilization%: {IntelCore.XValue("eutilization", target):F3} "
-                + $"f: {IntelCore.XValue("pctcapfossil", target)} "
-                + $"h: {IntelCore.XValue("pctcaphydro", target)} "
-                + $"n: {IntelCore.XValue("pctcapnuclear", target)} "
-                + $"r: {IntelCore.XValue("pctcaprenew", target)}"
-                );
-
-            // Utiization starts at .25 for nuclear, fossil, hydro, renew
-            // sum of utilizations always = 1 (100%) just like sum of capacity's
+            // Utilization starts at .25 for nuclear, fossil, hydro, renew
+            // sum of utilization always = 1 (100%) just like sum of capacity's
             // Total utilization % for a country is ePowerGen total / Capacity total ==> c.Electric.ProdTWh / igc.YearCapacityTWhr (see XValue in IntelCore class)
-            
+
             // Adjust utilization down for renew take that and split it among the other three
 
 
@@ -52,6 +41,31 @@ namespace MergePowerData
             // Keep track of how much was moved around to each one, this is the estimated utilization
 
             Console.WriteLine();
+        }
+
+        private static Country LookupCountry(IEnumerable<Country> countries, string countryName)
+        {
+            var result = countries.FirstOrDefault<Country>(c => c.Name.Equals(countryName));
+            if (result is null)
+            {
+                Console.WriteLine($"'{countryName}' NOT found in country set");
+            }
+
+            return result;
+        }
+
+        public string ReportCountryUtilization(Country target)
+        {
+            var result =
+                string.Empty
+                 + $"Utilization%: {IntelCore.XValue("eutilization", target):F3} "
+                 + $"f: {IntelCore.XValue("pctcapfossil", target):F2} "
+                 + $"h: {IntelCore.XValue("pctcaphydro", target):F2} "
+                 + $"n: {IntelCore.XValue("pctcapnuclear", target):F2} "
+                 + $"r: {IntelCore.XValue("pctcaprenew", target):F2} "
+                + $"PowerTWh: {IntelCore.XValue("eprodtwh", target)}\t{target.Name} "
+                ;
+            return result;
         }
     }
 }

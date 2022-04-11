@@ -1,10 +1,10 @@
-﻿using System;
+﻿using MergePowerData.IntelMath;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using MergePowerData.IntelMath;
 
 namespace MergePowerData
 {
@@ -20,7 +20,7 @@ namespace MergePowerData
         /// <summary>
         ///     Drive / Control CIAF data processing and filter based on minimum Gdp
         /// </summary>
-        /// <param name="minimumGdp">Limit, in Billion $ (GIGA $) to filter out countries below a minimum GDP from report.</param>
+        /// <param name="countryData"></param>
         /// <param name="filter"> </param>
         public Intel(CountryData countryData, string filter)
         {
@@ -45,21 +45,36 @@ namespace MergePowerData
             //Console.WriteLine($"GDP greater than: Giga ${_countryData.GdpMinimum} (billion)");
 
             // For example; if you are documenting an .md format file for example the col separator can be changed to '|'
-            const string dv = "\t";
+            const string dv = ", ";
 
             #region Table Report
 
             var ReportColumns = new List<string>(new[]
             {
-                //"prodkwhgdp",
-                "eprodtwh",
-                "pctcaprenew",
                 "eutilization",
-                "gdp",
+                "pctcapfossil",
+                "electricinstalledcapacityekg",
+                "sumsourcecapacity",
+                "sumsourceutilization",
+                "eprodtwh",
+
+                //"capfftwh",
+                //"utilfftwh",
+                // "gdp",
+                //"pctcaphydro",
+                //"pctcapnuclear",
+                //"pctcaprenew",
+                //"capff",
+                //"capnuke",
+                //"caphydro",
+                //"caprenew",
+                //"ffnatgascons",
+                //"kwu235",
+                //"ukgburned",
             });
 
             var reportStats = @"(eprod|capff|eprodtwh|capfftwh|emission)";
-
+            reportStats = string.Empty;
             Console.WriteLine();
             var reportSb = BuildReport(ReportColumns, reportStats, dv);
             Console.WriteLine(reportSb + "\n");
@@ -69,7 +84,7 @@ namespace MergePowerData
             #region Statistics report
 
             Console.WriteLine($"Statistic Count: {_countryData.Stats.Count}\n");
-            //Console.WriteLine(_stats.ToReport(dv, .88, -.5) + "\n"); // Just the relevent stat's ma'm, just the relevenet ones
+            //Console.WriteLine(_stats.ToReport(dv, .88, -.5) + "\n"); // Just the relevant stat's ma'm, just the relevant ones
 
             if (string.IsNullOrEmpty(Filter)) Filter = "eutilization_pctcap";
 
@@ -83,7 +98,8 @@ namespace MergePowerData
             // TODO: Verify that cost of money is $ / kWh; or G$ / TWh * 1.0e-9
             var costOfMoney = _countryData.Stats.Stats["eprodtwh_gdp"];
 
-            Console.WriteLine($"N: {costOfMoney.N} $Corr: {costOfMoney.Correlation():F3}  $slope: {costOfMoney.Slope():F3}");
+            Console.WriteLine(
+                $"N: {costOfMoney.N} $Corr: {costOfMoney.Correlation():F3}  $slope: {costOfMoney.Slope():F3}");
             double replacementTme;
 
             Console.WriteLine("Time it takes One windmill to replace the energy required to create it;");
@@ -93,38 +109,43 @@ namespace MergePowerData
             Console.WriteLine(WindMillCost(out replacementTme, costOfMoney.Slope(), 3.5 * IntelCore.Mega, .33, .38));
 
             Console.WriteLine($"Years For One windmill to replace it's self: {replacementTme}");
+
             #endregion
 
             #region utilization by source report
-            Console.WriteLine("\nFind Source Utilization;");
+
+            Console.WriteLine("\nFind Source Utilization:");
 
             var equalCap = new Dictionary<string, Statistic>
             {
-                { "utilFossil",  _countryData.Stats.Stats["eutilization_pctcapfossil"] },
-                { "utilHydro",   _countryData.Stats.Stats["eutilization_pctcaphydro"] },
+                { "utilFossil", _countryData.Stats.Stats["eutilization_pctcapfossil"] },
+                { "utilHydro", _countryData.Stats.Stats["eutilization_pctcaphydro"] },
                 { "utilNuclear", _countryData.Stats.Stats["eutilization_pctcapnuclear"] },
-                { "utilRenew",   _countryData.Stats.Stats["eutilization_pctcaprenew"] },
+                { "utilRenew", _countryData.Stats.Stats["eutilization_pctcaprenew"] }
             };
 
             var xxx = new ElectricSourceUtilizationAdjustment(equalCap, _countryData.Countries);
+
+
             #endregion
         }
 
-        private static string WindMillCost(out double replacementTme, double costOfMoney, double priceOfwindmill, double efficiency, double utilizationPercent)
+        private static string WindMillCost(out double replacementTme, double costOfMoney, double priceOfwindmill,
+            double efficiency, double utilizationPercent)
         {
             // Covert stat to $ per kW hours, Since $ are in Billion dollars and energy is in TW divide both by a billion
 
             // priceOfwindmill KWh
-            var kWcostPerWindmill = priceOfwindmill / (costOfMoney);
+            var kWcostPerWindmill = priceOfwindmill / costOfMoney;
             var kWGenPerHr = 2.0 * IntelCore.Mega * efficiency * utilizationPercent / IntelCore.YearHours;
 
             var winmillPerhour = kWGenPerHr / kWcostPerWindmill;
             var windmillPerYear = winmillPerhour * IntelCore.YearHours;
 
             var result =
-                 $"Eff: {efficiency} Util: {utilizationPercent:F3} Gen: {kWGenPerHr:F3} kW/hr, money: {costOfMoney:F3}"
-                 + $" $/kWh, installedCost$: {kWcostPerWindmill:F3} kWh/windmill,"
-                 + $" windmillPerYear: { windmillPerYear:F3}, yearsPerWindmill: {1 / windmillPerYear:F3}";
+                $"Eff: {efficiency} Util: {utilizationPercent:F3} Gen: {kWGenPerHr:F3} kW/hr, money: {costOfMoney:F3}"
+                + $" $/kWh, installedCost$: {kWcostPerWindmill:F3} kWh/windmill,"
+                + $" windmillPerYear: {windmillPerYear:F3}, yearsPerWindmill: {1 / windmillPerYear:F3}";
 
             replacementTme = 1 / windmillPerYear;
 

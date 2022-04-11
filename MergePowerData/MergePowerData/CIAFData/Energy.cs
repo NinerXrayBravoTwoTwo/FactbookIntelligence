@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MergePowerData.IntelMath;
+using System;
+
 // ReSharper disable All
 
 /* 
@@ -81,6 +83,7 @@ namespace MergePowerData.CIAFdata
         public string date { get; set; }
         public double TW => kW / 1.0e9;
         public double YearCapacityTWhr => HoursPerYear * TW;
+
         /// <summary>
         /// Calculate correct percentage, handeling 0 to 1 or values 0 to 100, and setting NaN input to zero.
         /// </summary>
@@ -102,65 +105,13 @@ namespace MergePowerData.CIAFdata
         double KWh(InstalledGeneratingCapacity igc);
     }
 
-    public class FossilFuels : IPercent
-    {
-        public double percent { get; set; }
-        public int global_rank { get; set; }
-        public string date { get; set; }
+    public class FossilFuels : EnergySource { }
 
-        public double KWh(InstalledGeneratingCapacity igc)
-        {
-            if (Math.Abs(percent) < 0.0000001 || double.IsNaN(percent))
-                return 0.0;
+    public class NuclearFuels : EnergySource { }
 
-            return percent / 100 * igc.kW;
-        }
-    }
+    public class HydroelectricPlants : EnergySource { }
 
-    public class NuclearFuels : IPercent
-    {
-        public double percent { get; set; }
-        public int global_rank { get; set; }
-        public string date { get; set; }
-
-        public double KWh(InstalledGeneratingCapacity igc)
-        {
-            if (Math.Abs(percent) < 0.0000001 || double.IsNaN(percent))
-                return 0.0;
-
-            return percent / 100 * igc.kW;
-        }
-    }
-
-    public class HydroelectricPlants : IPercent
-    {
-        public double percent { get; set; }
-        public int global_rank { get; set; }
-        public string date { get; set; }
-
-        public double KWh(InstalledGeneratingCapacity igc)
-        {
-            if (Math.Abs(percent) < 0.0000001 || double.IsNaN(percent))
-                return 0.0;
-
-            return percent / 100 * igc.kW;
-        }
-    }
-
-    public class OtherRenewableSources : IPercent
-    {
-        public double percent { get; set; }
-        public int global_rank { get; set; }
-        public string date { get; set; }
-
-        public double KWh(InstalledGeneratingCapacity igc)
-        {
-            if (Math.Abs(percent) < 0.0000001 || double.IsNaN(percent))
-                return 0.0;
-
-            return percent / 100 * igc.kW;
-        }
-    }
+    public class OtherRenewableSources : EnergySource { }
 
     public class BySource
     {

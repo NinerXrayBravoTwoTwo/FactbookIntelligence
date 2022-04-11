@@ -11,8 +11,8 @@ namespace MergePowerData
             // https://github.com/iancoleman/cia_world_factbook_api
 
             double gdpLowerLimit = 1000;
-            double gdpUpperLimit = double.NaN;
-            string filter = string.Empty;
+            var gdpUpperLimit = double.NaN;
+            var filter = string.Empty;
 
             if (args.Length > 0)
             {
@@ -40,7 +40,7 @@ namespace MergePowerData
                 if (match.Success) filter = match.Groups[2].Value;
 
                 //
-                match = Regex.Match(argString, @"[-]*(help)", RegexOptions.IgnoreCase);
+                match = Regex.Match(argString, @"[-]*(help)|h", RegexOptions.IgnoreCase);
                 if (match.Success)
                 {
                     Console.WriteLine("minGdp=nn | maxGdp=nn | filter=string; are all acceptable parameters.");

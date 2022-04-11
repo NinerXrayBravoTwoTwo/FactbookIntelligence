@@ -72,6 +72,20 @@
     "Format": "1",
     "Unit": "TWh"
   },
+
+  "utilfftwh": {
+    "Short": "UtilFF",
+    "Name": "Electric Utilized Fossil Fuel",
+    "Format": "4",
+    "Unit": "TWh"
+  },
+  //"utilnuketwh": {
+  //  "Short": "UtilNuke",
+  //  "Name": "Electric Utilized Nuclear Fuel",
+  //  "Format": "4",
+  //  "Unit": "TWh"
+  //},
+
   "ffrefineprod": {
     "Short": "FFRefProd",
     "Name": "FF Refined Produced",
@@ -198,41 +212,72 @@
     "Format": "1",
     "Unit": "kg-y" // Trillion tons
   },
+
+  // Electric by type
+
   "eutilization": {
     "Short": "Utilization",
     "Name": "Electric Utilization",
     "Format": "4",
     "Unit": "u%"
   },
-  //"pctcaprenewxxx": {
-  //  "Short": "RenewCap",
-  //  "Name": "Renew Capacity Test util",
-  //  "Format": "4",
-  //  "Unit": "r%"
-  //},
+  "sumsourcefraction": {
+    "Short": "SumSrcFraction",
+    "Name": "Electric Utilization",
+    "Format": "4",
+    "Unit": "%"
+  },
+  "sumsourcecapacity": {
+    "Short": "SumSrcCap",
+    "Name": "Sum Source Capacity",
+    "Format": "4",
+    "Unit": "TWh"
+  },
+  "sumsourceutilization": {
+    "Short": "SumSourceUtilization",
+    "Name": "Electric Utilization",
+    "Format": "4",
+    "Unit": "TWh"
+  },
+
+  // end Electric by type
+
   "pctcaprenew": {
     "Short": "RenewCap",
     "Name": "Renewable Capacity",
-    "Format": "4",
+    "Format": "2",
     "Unit": "r%"
   },
   "pctcapfossil": {
     "Short": "FossilCap",
     "Name": "Fossil Capacity",
-    "Format": "4",
+    "Format": "2",
     "Unit": "f%"
   },
   "pctcapnuclear": {
     "Short": "NuclearCap",
     "Name": "Nuclear Capacity",
-    "Format": "4",
+    "Format": "2",
     "Unit": "n%"
   },
   "pctcaphydro": {
     "Short": "HydroCap",
     "Name": "Hydro Capacity",
-    "Format": "4",
+    "Format": "2",
     "Unit": "h%"
+  },
+  "ukgburned": {
+    "Short": "UraniumBurned",
+    "Name": "u235 equivent used",
+    "Format": "4",
+    "Unit": "kg"
+  },
+  "electricinstalledcapacityekg": {
+    "Short": "ElecInstalledCap",
+    "Name": "Installed Generating Capacity",
+    "Format": "4",
+    "Unit": "ekg"
   }
+
 
 }
