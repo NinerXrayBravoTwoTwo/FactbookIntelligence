@@ -1,0 +1,268 @@
+{
+  "Electric": {
+    "MtonCo2": 5242000000.0,
+    "ConsKWh": 3902000000000.0,
+    "ConsTWh": 3902.0,
+    "KWfossil": 760900000.0,
+    "KWhydro": 76090000.0,
+    "KWnuclear": 97830000.0,
+    "KWrenew": 152180000.0,
+    "PrcntTtl": 100.0,
+    "ProdKWh": 4095000000000.0,
+    "ProdTWh": 4095.0,
+    "TtonCo2": 5242.0,
+    "Electricity": {
+      "access": {
+        "population_without_electricity": null,
+        "total_electrification": {
+          "value": 100.0,
+          "units": "%"
+        },
+        "urban_electrification": null,
+        "rural_electrification": null,
+        "date": "2020"
+      },
+      "production": {
+        "TWh": 4095.0,
+        "kWh": 4095000000000,
+        "global_rank": 2,
+        "date": "2016"
+      },
+      "consumption": {
+        "TWh": 3902.0,
+        "kWh": 3902000000000.0,
+        "global_rank": 2,
+        "date": "2016"
+      },
+      "exports": {
+        "TWh": 9.695,
+        "kWh": 9695000000.0,
+        "global_rank": 22,
+        "date": "2016"
+      },
+      "imports": {
+        "TWh": 72.72,
+        "kWh": 72720000000,
+        "global_rank": 1,
+        "date": "2016"
+      },
+      "installed_generating_capacity": {
+        "kW": 1087000000.0,
+        "global_rank": 2,
+        "date": "2016",
+        "TW": 1.087,
+        "YearCapacityTWhr": 9528.4384817987284
+      },
+      "by_source": {
+        "fossil_fuels": {
+          "percent": 70.0,
+          "global_rank": 111,
+          "date": "2016"
+        },
+        "nuclear_fuels": {
+          "percent": 9.0,
+          "global_rank": 18,
+          "date": "2017"
+        },
+        "hydroelectric_plants": {
+          "percent": 7.0,
+          "global_rank": 128,
+          "date": "2017"
+        },
+        "other_renewable_sources": {
+          "percent": 14.0,
+          "global_rank": 65,
+          "date": "2017"
+        }
+      }
+    }
+  },
+  "FossilFuelDetail": {
+    "CrudeOil": {
+      "Exports": {
+        "Value": 1158000.0,
+        "Date": "2017"
+      },
+      "Imports": {
+        "Value": 7969000.0,
+        "Date": "2017"
+      },
+      "Production": {
+        "Value": 10962000.0,
+        "Date": "2018"
+      },
+      "ProvedReserves": {
+        "Value": 0.0,
+        "Date": ""
+      }
+    },
+    "NaturalGas": {
+      "Consumption": {
+        "Value": 767600000000.0,
+        "Date": "2017"
+      },
+      "Exports": {
+        "Value": 89700000000.0,
+        "Date": "2017"
+      },
+      "Imports": {
+        "Value": 86150000000.0,
+        "Date": "2017"
+      },
+      "Production": {
+        "Value": 772800000000.0,
+        "Date": "2017"
+      },
+      "ProvedReserves": {
+        "Value": 0.0,
+        "Date": "2017-01-01"
+      }
+    },
+    "RefinedPetroleum": {
+      "Production": {
+        "Value": 20300000.0,
+        "Date": "2017"
+      },
+      "Consumption": {
+        "Value": 19960000.0,
+        "Date": "2017"
+      },
+      "Exports": {
+        "Value": 5218000.0,
+        "Date": "2017"
+      },
+      "Imports": {
+        "Value": 2175000.0,
+        "Date": "2017"
+      }
+    }
+  },
+  "Gdp": {
+    "purchasing_power_parity": {
+      "annual_values": [
+        {
+          "value": 19490000000000.0,
+          "units": "USD",
+          "date": "2017"
+        },
+        {
+          "value": 19060000000000.0,
+          "units": "USD",
+          "date": "2016"
+        },
+        {
+          "value": 18770000000000.0,
+          "units": "USD",
+          "date": "2015"
+        }
+      ],
+      "global_rank": 2,
+      "note": "data are in 2017 dollars"
+    },
+    "official_exchange_rate": {
+      "USD": 19490000000000,
+      "date": "2017"
+    },
+    "real_growth_rate": {
+      "annual_values": [
+        {
+          "value": 2.16,
+          "units": "%",
+          "date": "2019"
+        },
+        {
+          "value": 3.0,
+          "units": "%",
+          "date": "2018"
+        },
+        {
+          "value": 2.33,
+          "units": "%",
+          "date": "2017"
+        }
+      ],
+      "global_rank": 130
+    },
+    "per_capita_purchasing_power_parity": {
+      "annual_values": [
+        {
+          "value": 59800.0,
+          "units": "USD",
+          "date": "2017"
+        },
+        {
+          "value": 58900.0,
+          "units": "USD",
+          "date": "2016"
+        },
+        {
+          "value": 58400.0,
+          "units": "USD",
+          "date": "2015"
+        }
+      ],
+      "global_rank": 19,
+      "note": "data are in 2017 dollars"
+    },
+    "composition": {
+      "by_end_use": {
+        "end_uses": {
+          "household_consumption": {
+            "value": 68.4,
+            "units": "%"
+          },
+          "government_consumption": {
+            "value": 17.3,
+            "units": "%"
+          },
+          "investment_in_fixed_capital": {
+            "value": 17.2,
+            "units": "%"
+          },
+          "investment_in_inventories": {
+            "value": 0.1,
+            "units": "%"
+          },
+          "exports_of_goods_and_services": {
+            "value": 12.1,
+            "units": "%"
+          },
+          "imports_of_goods_and_services": {
+            "value": -15.0,
+            "units": "%"
+          }
+        },
+        "date": "2017"
+      },
+      "by_sector_of_origin": {
+        "sectors": {
+          "agriculture": {
+            "value": 0.9,
+            "units": "%"
+          },
+          "industry": {
+            "value": 19.1,
+            "units": "%"
+          },
+          "services": {
+            "value": 80.0,
+            "units": "%"
+          }
+        },
+        "date": "2017"
+      }
+    }
+  },
+  "Name": "United States",
+  "Pop": 332639102,
+  "GrowthRate": {
+    "value": 2.16,
+    "units": "%",
+    "date": "2019"
+  },
+  "PurchasePower": {
+    "value": 19490000000000.0,
+    "units": "USD",
+    "date": "2017"
+  }
+}
