@@ -5,18 +5,15 @@ namespace MergePowerData.IntelMath
 {
     public class PercentCapacityUtilization
     {
-        private readonly Country _country;
         private readonly InstalledGeneratingCapacity _igc;
         private readonly double _countryUtilization; // energy produced / energy installed
         private readonly EnergySource _source;
 
         public PercentCapacityUtilization(
             InstalledGeneratingCapacity igc, 
-            double countryUtilization,
-            Country country, 
+            double countryUtilization, // energy produced / energy installed
             EnergySource source)
         {
-            _country = country;
             _igc = igc;
             _source = source;
             _countryUtilization = countryUtilization;
@@ -24,7 +21,7 @@ namespace MergePowerData.IntelMath
 
         public double Percent => ConvertCorrectScale(_source.percent);
 
-        private double ConvertCorrectScale(double percent)
+        private static double ConvertCorrectScale(double percent)
         {
             double result;
 
@@ -43,8 +40,8 @@ namespace MergePowerData.IntelMath
 
         public EEnergy Utilization => new EEnergy
         {
-            TeraWattHours =
-                Capacity.TeraWattHours * Percent * _countryUtilization
+            KiloGram = 
+                Capacity.KiloGram *  _countryUtilization
         };
     }
 

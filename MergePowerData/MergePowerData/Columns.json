@@ -1,5 +1,5 @@
 ﻿{
-  "eprod": {
+  "eprodekg": {
     "Short": "ElecProd",
     "Name": "Electric Production",
     "Format": "1",
@@ -35,7 +35,7 @@
     "Format": "1",
     "Unit": "ekg"
   },
-  "capff": {
+  "capffkg": {
     "Short": "CapFF",
     "Name": "Generating Capacity Fossil Fuel",
     "Format": "3",
@@ -47,44 +47,93 @@
     "Format": "3",
     "Unit": "TWh"
   },
+  "capnucleartwh": {
+    "Short": "Capnuclear",
+    "Name": "Generating Capacity Nuclear",
+    "Format": "1",
+    "Unit": "TWh"
+  },
 
-  "capnuke": {
-    "Short": "CapNuke",
+  "capnuclearekg": {
+    "Short": "Capnuclear",
     "Name": "Generating Capacity Nuclear",
     "Format": "1",
     "Unit": "ekg"
   },
-  "caphydro": {
+  "caphydrotwh": {
+    "Short": "CapHydro",
+    "Name": "Generating Capacity Hydro",
+    "Format": "1",
+    "Unit": "TWh"
+  },
+  "caphydrokg": {
     "Short": "CapHydro",
     "Name": "Generating Capacity Hydro",
     "Format": "1",
     "Unit": "ekg"
   },
-  "caprenew": {
+  "caprenewkg": {
     "Short": "CapRenew",
-    "Name": "Generating Capacity Renewable",
+    "Name": "Capacity Renewable",
     "Format": "1",
     "Unit": "ekg"
   },
   "caprenewtwh": {
     "Short": "CapRenew",
-    "Name": "Generating Capacity Renewable",
+    "Name": "Capacity Renewable",
     "Format": "1",
     "Unit": "TWh"
   },
 
   "utilfftwh": {
     "Short": "UtilFF",
-    "Name": "Electric Utilized Fossil Fuel",
+    "Name": "Electroc Utilized Fossil Fuel",
     "Format": "4",
     "Unit": "TWh"
   },
-  //"utilnuketwh": {
-  //  "Short": "UtilNuke",
-  //  "Name": "Electric Utilized Nuclear Fuel",
-  //  "Format": "4",
-  //  "Unit": "TWh"
-  //},
+  "utilffekg": {
+    "Short": "UtilFF",
+    "Name": "Electroc Utilized Fossil Fuel",
+    "Format": "4",
+    "Unit": "ekg"
+  },
+  "utilhydrotwh": {
+    "Short": "UtilHydro",
+    "Name": "Electric Utilized Hydroelectric",
+    "Format": "4",
+    "Unit": "TWh"
+  },
+  "utilhydroekg": {
+    "Short": "UtilHydro",
+    "Name": "Electric Utilized Hydroelectric",
+    "Format": "4",
+    "Unit": "ekg"
+  },
+  "utilnucleartwh": {
+    "Short": "Utilnuclear",
+    "Name": "Electric Utilized Nuclear Fuel",
+    "Format": "4",
+    "Unit": "TWh"
+  },
+  "utilnuclearekg": {
+    "Short": "Utilnuclear",
+    "Name": "Electric Utilized Nuclear Fuel",
+    "Format": "4",
+    "Unit": "ekg"
+  },
+  "utilrenewtwh": {
+    "Short": "UtilRenew",
+    "Name": "Electric Utilized Renew",
+    "Format": "4",
+    "Unit": "TWh"
+  },
+  "utilrenewekg": {
+    "Short": "UtilRenew",
+    "Name": "Electric Utilized Renew",
+    "Format": "4",
+    "Unit": "ekg"
+  },
+
 
   "ffrefineprod": {
     "Short": "FFRefProd",
@@ -221,9 +270,9 @@
     "Format": "4",
     "Unit": "u%"
   },
-  "sumsourcefraction": {
-    "Short": "SumSrcFraction",
-    "Name": "Electric Utilization",
+  "sumsrcpct": {
+    "Short": "SumSrcPercent",
+    "Name": "Sum Source Fractions",
     "Format": "4",
     "Unit": "%"
   },
@@ -242,12 +291,6 @@
 
   // end Electric by type
 
-  "pctcaprenew": {
-    "Short": "RenewCap",
-    "Name": "Renewable Capacity",
-    "Format": "2",
-    "Unit": "r%"
-  },
   "pctcapfossil": {
     "Short": "FossilCap",
     "Name": "Fossil Capacity",
@@ -265,6 +308,12 @@
     "Name": "Hydro Capacity",
     "Format": "2",
     "Unit": "h%"
+  },
+  "pctcaprenew": {
+    "Short": "Capacity Renew",
+    "Name": "Renewable Capacity",
+    "Format": "2",
+    "Unit": "r%"
   },
   "ukgburned": {
     "Short": "UraniumBurned",

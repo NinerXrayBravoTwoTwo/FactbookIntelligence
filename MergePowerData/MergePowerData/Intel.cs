@@ -51,12 +51,12 @@ namespace MergePowerData
 
             var ReportColumns = new List<string>(new[]
             {
-                "eutilization",
-                "pctcapfossil",
-                "electricinstalledcapacityekg",
-                "sumsourcecapacity",
-                "sumsourceutilization",
-                "eprodtwh",
+               "utilffekg",
+               "utilhydroekg",
+               "utilnuclearekg",
+               "utilrenewekg",
+                "gdp",
+                "eprodekg",
 
                 //"capfftwh",
                 //"utilfftwh",
@@ -65,7 +65,7 @@ namespace MergePowerData
                 //"pctcapnuclear",
                 //"pctcaprenew",
                 //"capff",
-                //"capnuke",
+                //"capnuclear",
                 //"caphydro",
                 //"caprenew",
                 //"ffnatgascons",
@@ -124,7 +124,7 @@ namespace MergePowerData
                 { "utilRenew", _countryData.Stats.Stats["eutilization_pctcaprenew"] }
             };
 
-            var xxx = new ElectricSourceUtilizationAdjustment(equalCap, _countryData.Countries);
+            // var xxx = new ElectricSourceUtilizationAdjustment(equalCap, _countryData.Countries);
 
 
             #endregion
@@ -174,7 +174,7 @@ namespace MergePowerData
                 if (match.Success)
                     switch (match.Groups[1].Value)
                     {
-                        case "eprod":
+                        case "eprodekg":
                             reportSb.Append($"Qx {IntelCore.GetXyUnits("eprod_gdp")}{dv}");
                             reportSb.Append($"Qx {IntelCore.GetXyUnits("eprod_emission")}{dv}");
                             break;
@@ -246,9 +246,9 @@ namespace MergePowerData
                     if (match.Success)
                         switch (match.Groups[1].Value)
                         {
-                            case "eprod":
-                                reportSb.Append($"{_countryData.Stats.Stand("eprod_gdp", c):F3}{dv}");
-                                reportSb.Append($"{_countryData.Stats.Stand("eprod_emission", c):F3}{dv}");
+                            case "eprodekg":
+                                reportSb.Append($"{_countryData.Stats.Stand("eprodekg_gdp", c):F3}{dv}");
+                                reportSb.Append($"{_countryData.Stats.Stand("eprodekg_emission", c):F3}{dv}");
                                 break;
                             case "caphydro":
                                 reportSb.Append($"{_countryData.Stats.Stand("caphydro_gdp", c):F3}{dv}");

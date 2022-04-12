@@ -77,7 +77,7 @@ namespace MergePowerData.IntelMath
                     case "kwpop":
                         result = c.Electric.ProdKWh / c.Pop;
                         break;
-                    case "eprod":
+                    case "eprodekg":
                         result = electricByType.ElectricProduction.KiloGram;
                         break;
                     case "econs":
@@ -97,7 +97,7 @@ namespace MergePowerData.IntelMath
                         result = elcity.exports?.TWh * TWh2Kg ?? double.NaN;
                         break;
 
-#region Electric by Type
+                    #region Electric by Type
                     // Electric By Type
 
                     case "eutilization": // should be fraction between 0 -.9999999 
@@ -108,7 +108,7 @@ namespace MergePowerData.IntelMath
                         result = electricByType.InstalledCapacity.KiloGram;
                         break;
 
-                    case "sumsourcefraction":
+                    case "sumsrcpct":
                         result = electricByType.SumSourceFraction;
                         break;
 
@@ -121,7 +121,8 @@ namespace MergePowerData.IntelMath
                         break;
 
                     // fossil
-                    case "capff":
+
+                    case "capffkg":
                         result = electricByType.Fossil.Capacity.KiloGram;
                         break;
 
@@ -133,50 +134,81 @@ namespace MergePowerData.IntelMath
                         result = electricByType.Fossil.Utilization.TeraWattHours;
                         break;
 
+                    case "utilffekg":
+                        result = electricByType.Fossil.Utilization.KiloGram;
+                        break;
+
                     case "pctcapfossil":
-                        // result = electricByType.PercentFossilFuel;
                         result = electricByType.Fossil.Percent;
                         break;
 
-                    // nuke
-                    case "capnuke":
-                        result = igc?.YearCapTWhrByPercent(c.Electric.Electricity.by_source.nuclear_fuels.percent) *
-                                 TWh2Kg
-                                 ?? double.NaN;
+                    // nuclear
+                    case "capnucleartwh":
+                        result = electricByType.Nuclear.Capacity.TeraWattHours;
                         break;
+
+                    case "utilnucleartwh":
+                        result = electricByType.Nuclear.Utilization.TeraWattHours;
+                        break;
+
+                    case "capnuclearekg":
+                        result = electricByType.Nuclear.Capacity.KiloGram;
+                        break;
+
+                    case "utilnuclearekg":
+                        result = electricByType.Nuclear.Utilization.KiloGram;
+                        break;
+
                     case "pctcapnuclear":
-                        result = c.Electric.Electricity.by_source.nuclear_fuels.percent / 100;
+                        result = electricByType.Nuclear.Percent;
                         break;
 
                     // hydro
-                    case "caphydro":
-                        result = igc?.YearCapTWhrByPercent(
-                                     c.Electric.Electricity.by_source.hydroelectric_plants.percent) * TWh2Kg ?? double.NaN;
+                    case "caphydrotwh":
+                        result = electricByType.HydroElectric.Capacity.TeraWattHours;
                         break;
+                    
                     case "pctcaphydro":
-                        // result = c.Electric.Electricity.by_source.hydroelectric_plants.percent / 100;
                         result = electricByType.HydroElectric.Percent;
                         break;
 
+                    case "caphydrokg":
+                        result = electricByType.HydroElectric.Capacity.KiloGram;
+                        break;
+
+                    case "utilhydrotwh":
+                        result = electricByType.HydroElectric.Utilization.TeraWattHours;
+                        break;
+
+                    case "utilhydroekg":
+                        result = electricByType.HydroElectric.Utilization.KiloGram;
+                        break;
                     // renew
-                    case "caprenew":
-                        //result = igc?.YearCapTWhrByPercent(c.Electric.Electricity.by_source.other_renewable_sources
-                        //             .percent) * TWh2Kg
-                        //         ?? double.NaN;
-                        result = electricByType.Renewable.Capacity.TeraWattHours;
+                    case "caprenewkg":
+                        result = electricByType.Renewable.Capacity.KiloGram;
                         break;
+
                     case "pctcaprenew":
-                        result = c.Electric.Electricity.by_source.other_renewable_sources.percent / 100;
+                        result = electricByType.Renewable.Percent;
                         break;
+
+                    case "utilrenewtwh":
+                        result = electricByType.Renewable.Utilization.TeraWattHours;
+                        break;
+
+                    case "utilrenewekg":
+                        result = electricByType.Renewable.Utilization.KiloGram;
+                        break;
+
 
                     case "caprenewtwh":
-                        result =
-                            igc?.YearCapTWhrByPercent(c.Electric.Electricity.by_source.other_renewable_sources.percent)
-                            ?? double.NaN;
+                        result = electricByType.Renewable.Capacity.TeraWattHours;
                         break;
-
-#endregion Electric by type
-
+                    
+                    case "utilizationrenewtwh":
+                        result = electricByType.Renewable.Utilization.TeraWattHours;
+                        break;
+                    #endregion Electric by type
 
                     // fossil OIL production
                     case "ffrefineprod":
@@ -281,7 +313,7 @@ namespace MergePowerData.IntelMath
                 if (result.Count >= configKeys.Length)
                     break;
             }
-            
+
             return result;
         }
 

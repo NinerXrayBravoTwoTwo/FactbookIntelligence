@@ -3,6 +3,7 @@ using MergePowerData.IntelMath;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace MergePowerData
 {
@@ -24,23 +25,29 @@ namespace MergePowerData
                 Console.WriteLine($"{item.Key}:\t{item.Value.Slope():F4}\n{item.Value.ToString()}");
             }
 
-            Console.WriteLine(ReportCountryUtilization(LookupCountry(countries, "United States")));
-            Console.WriteLine(ReportCountryUtilization(LookupCountry(countries, "Russia")));
-            Console.WriteLine(ReportCountryUtilization(LookupCountry(countries, "France")));
-            Console.WriteLine(ReportCountryUtilization(LookupCountry(countries, "China")));
+            var usa = LookupCountry(countries, "United States");
+
+            var result = JsonConvert.SerializeObject(usa, Formatting.Indented);
+
+            Console.WriteLine(result);
+
+            //Console.WriteLine(ReportCountryUtilization(LookupCountry(countries, "United States")));
+            //Console.WriteLine(ReportCountryUtilization(LookupCountry(countries, "Russia")));
+            //Console.WriteLine(ReportCountryUtilization(LookupCountry(countries, "France")));
+            //Console.WriteLine(ReportCountryUtilization(LookupCountry(countries, "China")));
 
 
-            // Utilization starts at .25 for nuclear, fossil, hydro, renew
-            // sum of utilization always = 1 (100%) just like sum of capacity's
-            // Total utilization % for a country is ePowerGen total / Capacity total ==> c.Electric.ProdTWh / igc.YearCapacityTWhr (see XValue in IntelCore class)
+            //// Utilization starts at .25 for nuclear, fossil, hydro, renew
+            //// sum of utilization always = 1 (100%) just like sum of capacity's
+            //// Total utilization % for a country is ePowerGen total / Capacity total ==> c.Electric.ProdTWh / igc.YearCapacityTWhr (see XValue in IntelCore class)
 
-            // Adjust utilization down for renew take that and split it among the other three
+            //// Adjust utilization down for renew take that and split it among the other three
 
 
-            // Search, calculate LR for each, take some capacity from the lowest and add that to each of the other three, repeat until cap's are equal.  
-            // Keep track of how much was moved around to each one, this is the estimated utilization
+            //// Search, calculate LR for each, take some capacity from the lowest and add that to each of the other three, repeat until cap's are equal.  
+            //// Keep track of how much was moved around to each one, this is the estimated utilization
 
-            Console.WriteLine();
+            //Console.WriteLine();
         }
 
         private static Country LookupCountry(IEnumerable<Country> countries, string countryName)
