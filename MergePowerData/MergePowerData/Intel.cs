@@ -57,6 +57,7 @@ namespace MergePowerData
                "utilrenewekg",
                 "gdp",
                 "eprodekg",
+                "prodkwhgdp",
 
                 //"capfftwh",
                 //"utilfftwh",
@@ -73,7 +74,8 @@ namespace MergePowerData
                 //"ukgburned",
             });
 
-            var reportStats = @"(eprod|capff|eprodtwh|capfftwh|emission)";
+            // data to inject standard deviations into report
+            var reportStats = @"(eprodekg|capff|eprodtwh|capfftwh|emission)";
             reportStats = string.Empty;
             Console.WriteLine();
             var reportSb = BuildReport(ReportColumns, reportStats, dv);
@@ -114,17 +116,19 @@ namespace MergePowerData
 
             #region utilization by source report
 
-            Console.WriteLine("\nFind Source Utilization:");
+            // This is a note for future work. Purpose to research corrected source utilizations / autocorrect from other data in db if
+            // reasonable inferences can be drawn.  
+            //Console.WriteLine("\nFind Source Utilization:");
 
-            var equalCap = new Dictionary<string, Statistic>
-            {
-                { "utilFossil", _countryData.Stats.Stats["eutilization_pctcapfossil"] },
-                { "utilHydro", _countryData.Stats.Stats["eutilization_pctcaphydro"] },
-                { "utilNuclear", _countryData.Stats.Stats["eutilization_pctcapnuclear"] },
-                { "utilRenew", _countryData.Stats.Stats["eutilization_pctcaprenew"] }
-            };
+            //var equalCap = new Dictionary<string, Statistic>
+            //{
+            //    { "utilFossil", _countryData.Stats.Stats["eutilization_pctcapfossil"] },
+            //    { "utilHydro", _countryData.Stats.Stats["eutilization_pctcaphydro"] },
+            //    { "utilNuclear", _countryData.Stats.Stats["eutilization_pctcapnuclear"] },
+            //    { "utilRenew", _countryData.Stats.Stats["eutilization_pctcaprenew"] }
+            //};
 
-            // var xxx = new ElectricSourceUtilizationAdjustment(equalCap, _countryData.Countries);
+            //// var xxx = new ElectricSourceUtilizationAdjustment(equalCap, _countryData.Countries);
 
 
             #endregion

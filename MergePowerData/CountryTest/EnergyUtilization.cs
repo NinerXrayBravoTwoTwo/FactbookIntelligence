@@ -37,8 +37,9 @@ public class EnergyUtilizationTest1
                  */
             };
 
-        EEnergy countryElectricProd = new EEnergy { KiloGram = 1000 }; // Energy / year in kg, shou
+        EEnergy countryElectricProd = new EEnergy { KiloGram = 1000 }; // Energy / year in kg
 
+        // by definition the sum of percents should be 100
         EnergySource fossil = new() { date = today, global_rank = 99, percent = 40 };
         EnergySource hydro = new() { date = today, global_rank = 99, percent = 30 };
         EnergySource nuclear = new() { date = today, global_rank = 99, percent = 20 };
